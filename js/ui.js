@@ -36,6 +36,7 @@ const P = {
   stop: '<rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/>',
   next: '<path d="M5 12h13"/><path d="m13 6 6 6-6 6"/>',
   book: '<path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"/><path d="M12 6.5V19"/>',
+  mute: '<path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/>',
   speaker: '<path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>',
   reset: '<path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/>',
   dice: '<rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="9" cy="9" r="1.3" fill="currentColor"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/><circle cx="15" cy="9" r="1.3" fill="currentColor"/><circle cx="9" cy="15" r="1.3" fill="currentColor"/>',
@@ -54,8 +55,8 @@ export function icon(name) {
 }
 
 export function tbtn(ic, label, onclick, extra = {}) {
-  return h("button", { class: "tbtn", type: "button", title: label, "aria-label": label, onclick, ...extra },
-    icon(ic), extra.showLabel ? h("span", { class: "lbl" }, label) : null);
+  const { big, cls, showLabel, ...rest } = extra;
+  return h("button", { class: "ib" + (big ? " big" : "") + (cls ? " " + cls : ""), type: "button", "aria-label": label, "data-tip": label, onclick, ...rest }, icon(ic));
 }
 
 let toastTimer;

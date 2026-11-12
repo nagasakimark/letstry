@@ -2,7 +2,7 @@
 // narrow ones. Turn by tapping the arrows, swiping/dragging a page corner, or
 // with the arrow keys. Optional narration per page ("Read aloud").
 import { h, icon, preload } from "./ui.js";
-import { playAudio, stopAudio, audioEl } from "./media.js";
+import { playAudio, stopAudio } from "./media.js";
 
 export function flipbook({ title, pages, aspect, startPage = 0, onPage }) {
   // pages: [{img, audio?}]

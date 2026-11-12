@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Let's Try! デジタル教科書</title>
 <meta name="description" content="Let's Try! 1 and 2 digital textbooks for elementary English, with audio, video, chants, picture books and a drawing tool.">
-<meta name="theme-color" content="#22403a">
+<meta name="theme-color" content="#18302a">
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,9 +14,10 @@
 <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-<div id="app" class="board">
+<div id="app" class="shell">
+  <nav id="railL" class="rail l" aria-label="Navigation"></nav>
   <main id="view" class="view" aria-live="polite"></main>
-  <nav id="tray" class="tray" aria-label="Tools"></nav>
+  <nav id="railR" class="rail r" aria-label="Tools"></nav>
 </div>
 <div id="layer" class="layer-root"></div>
 <noscript>This textbook needs JavaScript turned on.</noscript>

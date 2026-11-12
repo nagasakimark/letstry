@@ -10,7 +10,7 @@ import { closeAll, layerCount, onLayersChange } from "./layers.js";
 import { pen, setPen, COLORS, SIZES, undo, clearInk, hasInk } from "./pen.js";
 import { flipbook } from "./flipbook.js";
 
-const view = $("#view"), tray = $("#tray");
+const view = $("#view"), railL = $("#railL"), railR = $("#railR");
 const cache = {};
 async function load(name) {
   cache[name] ||= fetch(`data/${name}.json`).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
@@ -19,56 +19,60 @@ async function load(name) {
 const BOOKS = { lt1: { color: "#e8502e", grade: "3年生" }, lt2: { color: "#1f8fd1", grade: "4年生" } };
 let current = { destroy: null };
 
-function setView(node, trayItems) {
+// rails: { top: [...], mid: [...], bot: [...] } for each side
+function fillRail(rail, spec = {}) {
+  const grp = (items, cls = "grp") => items && items.filter(Boolean).length ? h("div", { class: cls }, items.filter(Boolean)) : null;
+  rail.replaceChildren(...[grp(spec.top), h("div", { class: "mid" }, grp(spec.mid, "grp bare")), grp(spec.bot), ...(spec.extra || [])].filter(Boolean));
+}
+function setView(node, left = {}, right = {}) {
   current.destroy && current.destroy();
   current = { destroy: null };
   closeAll();
   stopAudio();
   view.replaceChildren(node);
-  tray.replaceChildren(...trayItems);
+  fillRail(railL, left);
+  fillRail(railR, right);
 }
 
-// ------------------------------------------------------------------ tray parts
+// ------------------------------------------------------------------ rail parts
 const fsBtn = () => {
-  const b = tbtn(document.fullscreenElement ? "unfull" : "full", "Full screen", () => {
+  const b = tbtn(document.fullscreenElement ? "unfull" : "full", "Full screen (F)", () => {
     if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {});
   });
   document.addEventListener("fullscreenchange", () => b.replaceChildren(icon(document.fullscreenElement ? "unfull" : "full")));
   return b;
 };
-const sep = () => h("span", { class: "sep" });
-const spacer = () => h("span", { class: "spacer" });
 
 function penControls() {
-  const toggle = tbtn("pen", "Pen", () => setPen({ on: !pen.on }), { showLabel: true });
-  const chalks = h("div", { class: "chalks", role: "group", "aria-label": "Pen colour" },
+  const toggle = tbtn("pen", "Draw on the page", () => setPen({ on: !pen.on }));
+  const swatches = h("div", { class: "swatches", role: "group", "aria-label": "Pen colour" },
     COLORS.map(([c, name]) => {
-      const b = h("button", { class: "chalk", type: "button", title: name, "aria-label": name, style: { "--c": c } });
+      const b = h("button", { class: "sw", type: "button", title: name, "aria-label": name });
       b.style.setProperty("--c", c);
       b.onclick = () => setPen({ on: true, color: c, tool: pen.tool === "eraser" ? "pen" : pen.tool });
       return b;
     }));
-  const sizeBtn = h("button", { class: "tbtn", type: "button", title: "Line size", "aria-label": "Line size", onclick: () => setPen({ size: (pen.size + 1) % SIZES.length }) });
+  const sizeBtn = tbtn("pen", "Line size", () => setPen({ size: (pen.size + 1) % SIZES.length }));
   const markerBtn = tbtn("marker", "Highlighter", () => setPen({ on: true, tool: pen.tool === "marker" ? "pen" : "marker" }));
-  const eraseBtn = tbtn("eraser", "Eraser (tap a line)", () => setPen({ on: true, tool: pen.tool === "eraser" ? "pen" : "eraser" }));
+  const eraseBtn = tbtn("eraser", "Eraser: tap a line", () => setPen({ on: true, tool: pen.tool === "eraser" ? "pen" : "eraser" }));
   const undoBtn = tbtn("undo", "Undo", undo);
   const clearBtn = tbtn("trash", "Clear drawing", () => { clearInk(); toast("けしました"); });
-  const tools = h("div", { class: "pen-tools" }, chalks, sizeBtn, markerBtn, eraseBtn, undoBtn, clearBtn);
+  const handBtn = tbtn("hand", "Stop drawing", () => setPen({ on: false }));
+  const panel = h("div", { class: "penpanel", hidden: true }, swatches,
+    h("div", { class: "pentools" }, sizeBtn, markerBtn, eraseBtn, undoBtn, clearBtn, handBtn));
   const sync = () => {
     toggle.setAttribute("aria-pressed", pen.on);
-    toggle.replaceChildren(icon(pen.on ? "hand" : "pen"), h("span", { class: "lbl" }, pen.on ? "Done" : "Pen"));
-    toggle.title = pen.on ? "Stop drawing" : "Draw on the page";
-    tools.hidden = !pen.on;
-    chalks.querySelectorAll(".chalk").forEach((b, i) => b.setAttribute("aria-pressed", String(pen.tool !== "eraser" && COLORS[i][0] === pen.color)));
-    sizeBtn.replaceChildren(h("span", { class: "size-dot", style: { "--s": [6, 11, 18][pen.size] + "px" } }));
-    sizeBtn.firstChild.style.setProperty("--s", [6, 11, 18][pen.size] + "px");
+    panel.hidden = !pen.on;
+    swatches.querySelectorAll(".sw").forEach((b, i) => b.setAttribute("aria-pressed", String(pen.tool !== "eraser" && COLORS[i][0] === pen.color)));
+    const d = h("span", { class: "size-dot" }); d.style.setProperty("--s", [6, 11, 18][pen.size] + "px");
+    sizeBtn.replaceChildren(d);
     markerBtn.setAttribute("aria-pressed", pen.tool === "marker");
     eraseBtn.setAttribute("aria-pressed", pen.tool === "eraser");
     undoBtn.disabled = clearBtn.disabled = !hasInk();
   };
   pen.listeners.add(sync);
   sync();
-  return [toggle, tools];
+  return { toggle, panel };
 }
 
 function revealBtn() {
@@ -84,7 +88,7 @@ function revealBtn() {
 // ------------------------------------------------------------------ views
 async function home() {
   const [b1, b2, st] = await Promise.all([load("lt1"), load("lt2"), load("stories")]);
-  const card = (b, href, cover, name, sub, color, tag) => h("button", { class: "bookcard", type: "button", onclick: () => go(href), style: { "--spine": color } },
+  const card = (b, href, cover, name, sub, color, tag) => h("button", { class: "bookcard", type: "button", onclick: () => go(href) },
     h("div", { class: "cover" }, h("img", { src: cover, alt: "" }), tag ? h("b", {}, tag) : null),
     h("div", { class: "name" }, name, h("span", {}, sub)));
   const cards = [
@@ -92,12 +96,12 @@ async function home() {
     card(b2, "#/lt2", "media/thumbs/lt2-u1.webp", "Let's Try! 2", "4年生 · 9 units", BOOKS.lt2.color, "4年"),
     card(st, "#/stories", "media/thumbs/stories.webp", "Storybooks", "えほん · 2 books", "#2e9d47", "えほん"),
   ];
-  cards.forEach(c => c.querySelector(".cover").style.setProperty("--spine", c.style.getPropertyValue("--spine")));
+  [BOOKS.lt1.color, BOOKS.lt2.color, "#2e9d47"].forEach((c, i) => cards[i].style.setProperty("--accent", c));
   setView(h("section", { class: "home" },
     h("h1", {}, "Let's Try!", h("small", {}, "デジタル教科書 · Digital textbook")),
     h("div", { class: "shelf" }, cards),
-    h("p", { class: "foot" }, "Textbook content © MEXT 文部科学省. Rebuilt from plip-plop-land.com with permission. Works best in full screen — press F or the button at bottom right.")),
-    [spacer(), fsBtn()]);
+    h("p", { class: "foot" }, "Textbook content © MEXT 文部科学省")),
+    {}, { bot: [fsBtn()] });
 }
 
 async function contents(bookId) {
@@ -108,7 +112,7 @@ async function contents(bookId) {
       h("div", { class: "t" }, h("span", { class: "n" }, u.n), h("span", { class: "ti" }, u.title)))));
   setView(h("section", { class: "contents" },
     h("header", {}, h("h2", {}, book.title), h("p", {}, `${BOOKS[bookId].grade} · もくじ Contents`)), grid),
-    [tbtn("home", "Home", () => go("#/"), { showLabel: true }), spacer(), fsBtn()]);
+    { top: [tbtn("home", "Home", () => go("#/"))] }, { bot: [fsBtn()] });
 }
 
 async function unitPage(bookId, un, pn) {
@@ -128,9 +132,7 @@ async function unitPage(bookId, un, pn) {
   if (dir) v.sheet.classList.add("turn-" + dir);
   const goPrev = () => prev && turnTo(`#/${bookId}/${prev[0]}/${prev[1]}`, "prev");
   const goNext = () => next && turnTo(`#/${bookId}/${next[0]}/${next[1]}`, "next");
-  const edgeL = h("button", { class: "edge l", type: "button", "aria-label": "Previous page", hidden: !prev || null, onclick: goPrev }, icon("left"));
-  const edgeR = h("button", { class: "edge r", type: "button", "aria-label": "Next page", hidden: !next || null, onclick: goNext }, icon("right"));
-  const wrap = h("div", { style: { position: "absolute", inset: "0" } }, v.fit, edgeL, edgeR);
+  const wrap = h("div", { style: { position: "absolute", inset: "0" } }, v.fit);
 
   // swipe to turn (when not drawing)
   let sx = null, sy = 0;
@@ -141,18 +143,16 @@ async function unitPage(bookId, un, pn) {
     if (Math.abs(dx) > 80 && Math.abs(dx) > Math.abs(dy) * 2) dx < 0 ? goNext() : goPrev();
   });
 
-  const pager = h("span", { class: "pager" }, `Unit ${un}  ·  ${pIdx + 1}/${unit.pages.length}`);
-  setView(wrap, [
-    tbtn("home", "Home", () => go("#/")),
-    tbtn("grid", "Contents", () => go(`#/${bookId}`), { showLabel: true }),
-    sep(),
-    tbtn("left", "Previous page", goPrev, { disabled: !prev || null }),
-    pager,
-    tbtn("right", "Next page", goNext, { disabled: !next || null }),
-    spacer(),
-    ...penControls(),
-    sep(), revealBtn(), fsBtn(),
-  ]);
+  const where = h("div", { class: "where", title: `Unit ${un}, page ${pIdx + 1} of ${unit.pages.length}` },
+    h("small", {}, "Unit"), h("b", {}, un), h("small", {}, `${pIdx + 1} / ${unit.pages.length}`));
+  const penc = penControls();
+  setView(wrap,
+    { top: [tbtn("home", "Home", () => go("#/")), tbtn("grid", "Contents", () => go(`#/${bookId}`))],
+      mid: [tbtn("left", "Previous page", goPrev, { big: true, cls: "navbtn", disabled: !prev || null })],
+      bot: [where] },
+    { top: [penc.toggle, revealBtn()],
+      mid: [tbtn("right", "Next page", goNext, { big: true, cls: "navbtn", disabled: !next || null })],
+      bot: [fsBtn()], extra: [penc.panel] });
   current.destroy = v.destroy;
   current.keys = e => {
     if (layerCount() || e.target.closest("input, textarea")) return;
@@ -172,13 +172,13 @@ async function stories(id) {
         h("div", { class: "thumb", style: { aspectRatio: "457/320" } }, h("img", { src: s.pages[0], alt: "" })),
         h("div", { class: "t" }, h("span", { class: "ti" }, s.title)))));
     setView(h("section", { class: "contents" }, h("header", {}, h("h2", {}, "Storybooks"), h("p", {}, "えほん")), grid),
-      [tbtn("home", "Home", () => go("#/"), { showLabel: true }), spacer(), fsBtn()]);
+      { top: [tbtn("home", "Home", () => go("#/"))] }, { bot: [fsBtn()] });
     return;
   }
   const s = st.stories.find(x => x.id === id);
   if (!s) return go("#/stories");
   const fb = flipbook({ title: s.title, pages: s.pages.map(img => ({ img })), aspect: s.size[0] / s.size[1] });
-  setView(fb.root, [tbtn("home", "Home", () => go("#/")), tbtn("grid", "Storybooks", () => go("#/stories"), { showLabel: true }), spacer(), fsBtn()]);
+  setView(fb.root, { top: [tbtn("home", "Home", () => go("#/")), tbtn("grid", "Storybooks", () => go("#/stories"))] }, { bot: [fsBtn()] });
   current.destroy = fb.destroy;
 }
 

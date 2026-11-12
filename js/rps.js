@@ -1,6 +1,6 @@
 // Rock-paper-scissors around the world (Let's Try! 1, Unit 3)
 import { h, place, icon } from "./ui.js";
-import { playAudio, audioEl } from "./media.js";
+import { playAudio } from "./media.js";
 
 export function mountRps(sheetEl, cfg) {
   let lang = cfg.langs[0], busy = false, timer = null, quit = false;

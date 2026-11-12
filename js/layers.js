@@ -7,7 +7,7 @@ let root;
 const listeners = new Set();
 
 export function onLayersChange(fn) { listeners.add(fn); }
-function changed() { listeners.forEach(f => f(stack.length)); }
+function changed() { document.body.classList.toggle("layered", stack.length > 0); listeners.forEach(f => f(stack.length)); }
 
 export function openLayer(content, { onClose, history: useHistory = true, tag } = {}) {
   root ||= document.getElementById("layer");

@@ -1,119 +1,179 @@
-// Audio bar, video lightbox and chant player
+// Audio bar, custom video player, chant player
 import { h, icon } from "./ui.js";
 import { openLayer } from "./layers.js";
 
-const audio = new Audio();
-audio.preload = "auto";
-let bar, fill, playBtn, speedBtn, currentEl = null;
-const SPEEDS = [1, 0.75, 0.5];
-let speedIdx = 0;
+const fmt = s => !isFinite(s) ? "0:00" : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+const RATES = [1, 0.75, 0.5];
+const rateLabel = r => (r === 1 ? "1" : String(r).replace(/^0/, "")) + "×";
 
-function buildBar() {
-  fill = h("i");
-  const track = h("div", { class: "track", title: "Seek", onclick: e => {
-    const r = track.getBoundingClientRect();
-    if (audio.duration) audio.currentTime = audio.duration * ((e.clientX - r.left) / r.width);
-  } }, fill);
-  playBtn = h("button", { type: "button", "aria-label": "Play or pause", onclick: () => audio.paused ? audio.play() : audio.pause() }, icon("pause"));
-  speedBtn = h("button", { type: "button", class: "speed", title: "Playback speed", onclick: () => {
-    speedIdx = (speedIdx + 1) % SPEEDS.length;
-    audio.playbackRate = SPEEDS[speedIdx];
-    speedBtn.textContent = SPEEDS[speedIdx] === 1 ? "1×" : SPEEDS[speedIdx] + "×";
-  } }, "1×");
-  bar = h("div", { class: "audiobar", hidden: true, role: "region", "aria-label": "Audio" },
-    playBtn,
-    h("button", { type: "button", class: "lite", "aria-label": "Play again", title: "Play again", onclick: () => { audio.currentTime = 0; audio.play(); } }, icon("replay")),
-    track, speedBtn,
-    h("button", { type: "button", class: "lite", "aria-label": "Stop", title: "Stop", onclick: stopAudio }, icon("close")));
-  document.body.append(bar);
-  audio.addEventListener("timeupdate", () => { fill.style.width = (audio.duration ? audio.currentTime / audio.duration * 100 : 0) + "%"; });
-  audio.addEventListener("play", () => { playBtn.replaceChildren(icon("pause")); });
-  audio.addEventListener("pause", () => { playBtn.replaceChildren(icon("play")); });
-  audio.addEventListener("ended", () => { fill.style.width = "100%"; markPlaying(null); });
+// A draggable progress bar shared by the audio bar and the video player.
+function scrubber(media) {
+  const buf = h("i", { class: "buf" }), prog = h("i", { class: "prog" }), knob = h("i", { class: "knob" });
+  const el = h("div", { class: "scrub", role: "slider", "aria-label": "Position", tabindex: "0" },
+    h("div", { class: "track" }, buf, prog), knob);
+  const seekTo = x => {
+    const r = el.getBoundingClientRect();
+    const f = Math.max(0, Math.min(1, (x - r.left) / r.width));
+    if (media.duration) media.currentTime = f * media.duration;
+    paint();
+  };
+  el.addEventListener("pointerdown", e => {
+    el.setPointerCapture(e.pointerId); el.classList.add("drag"); seekTo(e.clientX);
+    const mv = ev => seekTo(ev.clientX);
+    const up = () => { el.classList.remove("drag"); el.removeEventListener("pointermove", mv); el.removeEventListener("pointerup", up); };
+    el.addEventListener("pointermove", mv); el.addEventListener("pointerup", up);
+  });
+  el.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") { media.currentTime += 5; e.preventDefault(); e.stopPropagation(); }
+    if (e.key === "ArrowLeft") { media.currentTime -= 5; e.preventDefault(); e.stopPropagation(); }
+  });
+  function paint() {
+    const d = media.duration || 0, f = d ? media.currentTime / d : 0;
+    prog.style.width = knob.style.left = f * 100 + "%";
+    let b = 0;
+    try { if (media.buffered.length) b = media.buffered.end(media.buffered.length - 1) / (d || 1); } catch {}
+    buf.style.width = Math.min(1, b) * 100 + "%";
+    el.setAttribute("aria-valuenow", Math.round(f * 100));
+  }
+  ["timeupdate", "progress", "loadedmetadata", "seeked", "emptied"].forEach(ev => media.addEventListener(ev, paint));
+  return el;
 }
 
+// ------------------------------------------------------------------ audio
+const audio = new Audio();
+audio.preload = "auto";
+let bar, mainBtn, rateBtn, currentEl = null, rateIdx = 0;
+
+function buildBar() {
+  mainBtn = h("button", { class: "ib main", type: "button", "aria-label": "Play or pause", onclick: () => audio.paused ? audio.play() : audio.pause() }, icon("pause"));
+  rateBtn = h("button", { class: "chip", type: "button", title: "Playback speed", onclick: () => {
+    rateIdx = (rateIdx + 1) % RATES.length; audio.playbackRate = RATES[rateIdx]; rateBtn.textContent = rateLabel(RATES[rateIdx]);
+  } }, "1×");
+  bar = h("div", { class: "audiobar", hidden: true, role: "region", "aria-label": "Audio" },
+    mainBtn,
+    h("button", { class: "ib", type: "button", "aria-label": "Play again", title: "Play again", onclick: () => { audio.currentTime = 0; audio.play(); } }, icon("replay")),
+    scrubber(audio), rateBtn,
+    h("button", { class: "ib", type: "button", "aria-label": "Close", title: "Close", onclick: stopAudio }, icon("close")));
+  document.body.append(bar);
+  audio.addEventListener("play", () => mainBtn.replaceChildren(icon("pause")));
+  audio.addEventListener("pause", () => mainBtn.replaceChildren(icon("play")));
+  audio.addEventListener("ended", () => markPlaying(null));
+}
 function markPlaying(el) {
   if (currentEl) currentEl.classList.remove("playing");
   currentEl = el;
   if (el) el.classList.add("playing");
 }
-
 export function playAudio(src, el = null, { showBar = true } = {}) {
   if (!bar) buildBar();
-  pauseVideos();
+  document.querySelectorAll("video").forEach(v => v.pause());
+  audio.onended = null;
   audio.src = src;
-  audio.playbackRate = SPEEDS[speedIdx];
-  audio.currentTime = 0;
+  audio.playbackRate = RATES[rateIdx];
   audio.play().catch(() => {});
   markPlaying(el);
   bar.hidden = !showBar;
   return audio;
 }
 export function stopAudio() {
-  audio.pause();
-  audio.removeAttribute("src");
-  audio.load();
+  audio.pause(); audio.onended = null;
+  audio.removeAttribute("src"); audio.load();
   markPlaying(null);
   if (bar) bar.hidden = true;
 }
-export const audioEl = audio;
 
-function pauseVideos() { document.querySelectorAll("video").forEach(v => v.pause()); }
+// ------------------------------------------------------------------ video
+// Custom player: always-visible controls, and the picture is the largest box
+// of the video's own shape that fits the space (never cropped, never overflowing).
+export function videoPlayer({ src, head = [], extra = [], rates = true, autoplay = true }) {
+  const video = h("video", { playsinline: true, preload: "auto" });
+  const frame = h("div", { class: "frame" }, video,
+    h("button", { class: "bigplay", type: "button", "aria-label": "Play" }, icon("play")), h("i", { class: "spin" }));
+  const big = frame.querySelector(".bigplay");
+  const root = h("div", { class: "vp" }, h("div", { class: "head" }, head), h("div", { class: "stage" }, frame));
+  const main = h("button", { class: "ib main", type: "button", "aria-label": "Play or pause" }, icon("play"));
+  const time = h("span", { class: "time" }, "0:00 / 0:00");
+  let rIdx = 0;
+  const rateBtn = rates ? h("button", { class: "chip", type: "button", title: "Playback speed", onclick: () => {
+    rIdx = (rIdx + 1) % RATES.length; video.playbackRate = RATES[rIdx]; rateBtn.textContent = rateLabel(RATES[rIdx]);
+  } }, "1×") : null;
+  const mute = h("button", { class: "ib", type: "button", "aria-label": "Mute", title: "Mute", onclick: () => { video.muted = !video.muted; mute.replaceChildren(icon(video.muted ? "mute" : "speaker")); } }, icon("speaker"));
+  const full = h("button", { class: "ib", type: "button", "aria-label": "Full screen", title: "Full screen", onclick: () => {
+    if (document.fullscreenElement === frame) document.exitFullscreen(); else frame.requestFullscreen().catch(() => {});
+  } }, icon("full"));
+  const replay = h("button", { class: "ib", type: "button", "aria-label": "Start again", title: "Start again", onclick: () => { video.currentTime = 0; video.play(); } }, icon("replay"));
+  const vbar = h("div", { class: "vbar" }, main, replay, time, scrubber(video), rateBtn, ...extra, mute, full);
+  root.append(vbar);
+
+  const toggle = () => video.paused || video.ended ? video.play() : video.pause();
+  main.onclick = toggle; big.onclick = e => { e.stopPropagation(); toggle(); };
+  frame.addEventListener("click", toggle);
+  frame.addEventListener("dblclick", () => full.click());
+  video.addEventListener("play", () => { root.classList.add("playing"); main.replaceChildren(icon("pause")); });
+  video.addEventListener("pause", () => { root.classList.remove("playing"); main.replaceChildren(icon("play")); });
+  video.addEventListener("ended", () => { big.classList.add("replay"); big.replaceChildren(icon("replay")); });
+  video.addEventListener("playing", () => { big.classList.remove("replay"); big.replaceChildren(icon("play")); root.classList.remove("waiting"); });
+  video.addEventListener("waiting", () => root.classList.add("waiting"));
+  video.addEventListener("canplay", () => root.classList.remove("waiting"));
+  video.addEventListener("timeupdate", () => { time.textContent = `${fmt(video.currentTime)} / ${fmt(video.duration)}`; });
+  video.addEventListener("loadedmetadata", () => {
+    if (video.videoWidth) frame.style.setProperty("--var-ar", video.videoWidth / video.videoHeight);
+    time.textContent = `0:00 / ${fmt(video.duration)}`;
+  });
+  const key = e => {
+    if (!root.isConnected || e.target.closest("input, textarea")) return;
+    if (e.key === " " || e.key === "k") { e.preventDefault(); toggle(); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); e.stopPropagation(); video.currentTime += 5; }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); e.stopPropagation(); video.currentTime -= 5; }
+    else if (e.key === "m") mute.click();
+  };
+  window.addEventListener("keydown", key, true);
+
+  function setSrc(s, play = true) {
+    video.src = s; video.load();
+    video.playbackRate = RATES[rIdx];
+    if (play) video.play().catch(() => {});
+  }
+  if (src) setSrc(src, autoplay);
+  return {
+    root, video, setSrc,
+    destroy() { window.removeEventListener("keydown", key, true); video.pause(); video.removeAttribute("src"); video.load(); },
+  };
+}
 
 export function playVideo(src) {
   stopAudio();
-  const v = h("video", { src, controls: true, autoplay: true, playsinline: true, preload: "auto" });
-  openLayer(h("div", { class: "vid" }, v), { onClose: () => { v.pause(); v.removeAttribute("src"); v.load(); } });
-  v.play().catch(() => {});
+  const vp = videoPlayer({ src });
+  openLayer(vp.root, { onClose: vp.destroy });
 }
 
-// Chant / song player built from {options:[{label, variants:{normal, slow, karaoke-normal, karaoke-slow, repeat}}]}
-const SPEED_LBL = { normal: "ふつう", slow: "ゆっくり" };
-export function chantPlayer(screen, onClose) {
+// Chant / song player built from {options:[{variants:{normal, slow, karaoke-normal, karaoke-slow, repeat}}]}
+export function chantPlayer(screen) {
   stopAudio();
   const opts = screen.chant.options;
-  const st = { opt: 0, speed: "normal", mode: "sing" }; // mode: sing | karaoke | repeat
-  const video = h("video", { controls: true, playsinline: true, preload: "auto" });
-  const banner = h("div", { class: "banner" }, h("img", { src: screen.image, alt: "", style: { objectFit: "cover", objectPosition: "left top" } }));
-  // crop the original title strip from the page image
-  const bImg = banner.firstChild;
-  bImg.style.height = "auto"; bImg.style.width = "auto";
-  bImg.onload = () => {
-    const ratio = bImg.naturalWidth / bImg.naturalHeight;
-    const hpx = banner.clientHeight;
-    // title strip is roughly the top 11% of the image
-    bImg.style.height = hpx / 0.11 + "px";
-    banner.style.width = Math.min(hpx / 0.11 * ratio * 0.97, banner.parentElement.clientWidth) + "px";
-  };
-  const controls = h("div", { class: "controls" });
-
-  const key = () => {
+  const st = { opt: 0, speed: "normal", mode: "sing" };
+  const src = () => {
     const v = opts[st.opt].variants;
     if (st.mode === "repeat" && v.repeat) return v.repeat;
-    const k = (st.mode === "karaoke" ? "karaoke-" : "") + st.speed;
-    return v[k] || v.normal || Object.values(v)[0];
+    return v[(st.mode === "karaoke" ? "karaoke-" : "") + st.speed] || v.normal || Object.values(v)[0];
   };
-  const load = (autoplay = true) => {
-    const t = video.currentTime;
-    video.src = key();
-    video.load();
-    if (autoplay) video.play().catch(() => {});
-    return t;
-  };
-  const seg = (items, cur, onPick, cls = "") => h("div", { class: "seg", role: "group" },
-    items.map(([val, label, title]) => h("button", { type: "button", class: cls, "aria-pressed": String(val === cur), title: title || label, onclick: () => onPick(val) }, label)));
-
+  const sing = /sing/.test(opts[0].base || "");
+  const banner = h("h2", { class: "title" }, h("span", { class: "tag" }, sing ? "うた" : "チャンツ"), sing ? "Let's Sing" : "Let's Chant");
+  const optSeg = h("div", { class: "seg", role: "group", "aria-label": "Chant number" });
+  const speedSeg = h("div", { class: "seg", role: "group", "aria-label": "Speed" });
+  const modeSeg = h("div", { class: "seg", role: "group", "aria-label": "Voice" });
+  const vp = videoPlayer({ head: [banner, opts.length > 1 ? optSeg : null].filter(Boolean), extra: [speedSeg, modeSeg], rates: false, autoplay: false });
+  const fill = (seg, items, cur, pick, cls = "") => seg.replaceChildren(...items.map(([val, label, title]) =>
+    h("button", { type: "button", class: cls, "aria-pressed": String(val === cur), title: title || label, onclick: () => pick(val) }, label)));
   const render = () => {
     const v = opts[st.opt].variants;
-    controls.replaceChildren(...[
-      opts.length > 1 ? seg(opts.map((o, i) => [i, "①②③④⑤"[i] || o.label, `Chant ${i + 1}`]), st.opt, i => { st.opt = i; if (st.mode === "repeat" && !opts[i].variants.repeat) st.mode = "sing"; render(); load(); }, "num") : null,
-      seg([["normal", SPEED_LBL.normal, "Normal speed"], ["slow", SPEED_LBL.slow, "Slow"]], st.speed, s => { st.speed = s; if (st.mode === "repeat") st.mode = "sing"; render(); load(); }),
-      seg([["sing", "うたあり", "With voice"], ["karaoke", "カラオケ", "Karaoke (no voice)"], ...(v.repeat ? [["repeat", "リピート", "Repeat after"]] : [])],
-        st.mode, m => { st.mode = m; render(); load(); }),
-    ].filter(Boolean));
+    if (st.mode === "repeat" && !v.repeat) st.mode = "sing";
+    fill(optSeg, opts.map((o, i) => [i, "①②③④⑤"[i] || String(i + 1), `Chant ${i + 1}`]), st.opt, i => { st.opt = i; change(); }, "num");
+    fill(speedSeg, [["normal", "ふつう", "Normal speed"], ["slow", "ゆっくり", "Slow"]], st.mode === "repeat" ? null : st.speed, s => { st.speed = s; if (st.mode === "repeat") st.mode = "sing"; change(); });
+    fill(modeSeg, [["sing", "うたあり", "With voice"], ["karaoke", "カラオケ", "Karaoke: no voice"], ...(v.repeat ? [["repeat", "リピート", "Repeat after"]] : [])], st.mode, m => { st.mode = m; change(); });
   };
+  const change = () => { render(); vp.setSrc(src(), true); };
   render();
-  load(true);
-  const root = h("div", { class: "chant" }, banner, h("div", { class: "screen" }, video), controls);
-  return { root, close: () => { video.pause(); video.removeAttribute("src"); video.load(); } };
+  vp.setSrc(src(), true);
+  return { root: vp.root, close: vp.destroy };
 }
