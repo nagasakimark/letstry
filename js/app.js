@@ -263,7 +263,7 @@ async function home() {
     h("div", { class: "storylinks" }, st.stories.map(s => h("button", { class: "slink", type: "button", onclick: () => go(`#/stories/${s.id}`) }, icon("book"), s.title))),
     h("div", { class: "pacts" }, offlinePanel("stories"))));
   function slot(id, obj, plate) {
-    const c = h("div", { class: "slot s-" + id }, h("div", { class: "stand" }, obj), plate);
+    const c = h("div", { class: "bslot s-" + id }, h("div", { class: "stand" }, obj), plate);
     c.style.setProperty("--accent", BOOKS[id].color);
     return c;
   }
@@ -272,7 +272,7 @@ async function home() {
   const tcy = n => h("span", { class: "tcy" }, String(n));
   const date = ja ? [tcy(d.getMonth() + 1), "月", tcy(d.getDate()), "日", h("span", { class: "dow" }, "日月火水木金土"[d.getDay()])]
     : [d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })];
-  setView(h("section", { class: "home board" + (ja ? " ja" : "") },
+  setView(h("section", { class: "home chalkboard" + (ja ? " ja" : "") },
     h("header", { class: "chalkhead" },
       h("h1", {}, "Let's Try!"), h("p", {}, t("subtitle")),
       h("div", { class: "date", "aria-hidden": "true" }, ...date)),
