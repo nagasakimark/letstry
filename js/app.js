@@ -231,23 +231,54 @@ onOffline((id, st) => {
 
 // ------------------------------------------------------------------ views
 async function home() {
-  await Promise.all([load("lt1"), load("lt2"), load("stories")]);
+  const [lt1, lt2, st] = await Promise.all([load("lt1"), load("lt2"), load("stories")]);
   const ja = getLang() === "ja";
-  const card = (id, href, cover, name, sub, tag) => {
-    const c = h("div", { class: "bookslot" },
-      h("button", { class: "bookcard", type: "button", onclick: () => go(href) },
-        h("div", { class: "cover" }, h("img", { src: cover, alt: "" }), h("b", {}, tag)),
-        h("div", { class: "name" }, name, h("span", {}, sub))),
-      offlinePanel(id));
+  const last = id => { try { return localStorage.getItem("last:" + id); } catch { return null; } };
+
+  // a hardcover textbook standing on the chalk ledge
+  const tome = (id, book, grade) => {
+    const res = last(id);
+    const [ru, rp] = res ? res.split("/").map(Number) : [];
+    const b = h("button", { class: "tome", type: "button", "aria-label": BOOKS[id].name, onclick: () => go(`#/${id}`) },
+      h("span", { class: "spine" }),
+      h("span", { class: "front" },
+        h("span", { class: "art" }, h("img", { src: `media/thumbs/${id}-u1.webp`, alt: "" })),
+        h("span", { class: "label" }, h("span", { class: "ttl" }, BOOKS[id].name), h("span", { class: "grade" }, grade))),
+      h("span", { class: "pages" }));
+    const units = h("div", { class: "unitrow", role: "group", "aria-label": t("unitsJump") },
+      book.units.map(u => h("button", { class: "uchip" + (u.n === ru ? " here" : ""), type: "button", title: `${u.n}. ${u.title}`,
+        "aria-label": `${t("unit")} ${u.n}: ${u.title}`, onclick: () => go(`#/${id}/${u.n}/1`) }, String(u.n))));
+    const resume = res ? h("button", { class: "resume", type: "button", onclick: () => go(`#/${id}/${ru}/${rp}`) },
+      icon("play"), t("resume"), h("small", {}, `${t("unit")} ${ru} · p.${rp}`)) : null;
+    return slot(id, b, h("div", { class: "plate" },
+      h("div", { class: "pname" }, h("b", {}, BOOKS[id].name), h("span", {}, `${t(BOOKS[id].grade)} · ${t("units9")}`)),
+      units, h("div", { class: "pacts" }, resume, offlinePanel(id))));
+  };
+  // the two picture books, leaning together
+  const pics = h("div", { class: "pbooks" }, st.stories.map((s, i) =>
+    h("button", { class: "pbook p" + i, type: "button", "aria-label": s.title, title: s.title, onclick: () => go(`#/stories/${s.id}`) },
+      h("span", { class: "front" }, h("img", { src: s.pages[0], alt: "" })), h("span", { class: "pages" }))));
+  const storySlot = slot("stories", pics, h("div", { class: "plate" },
+    h("div", { class: "pname" }, h("b", {}, t("storybooks")), h("span", {}, `${t("storybooksEn")} · ${t("books2")}`)),
+    h("div", { class: "storylinks" }, st.stories.map(s => h("button", { class: "slink", type: "button", onclick: () => go(`#/stories/${s.id}`) }, icon("book"), s.title))),
+    h("div", { class: "pacts" }, offlinePanel("stories"))));
+  function slot(id, obj, plate) {
+    const c = h("div", { class: "slot s-" + id }, h("div", { class: "stand" }, obj), plate);
     c.style.setProperty("--accent", BOOKS[id].color);
     return c;
-  };
-  setView(h("section", { class: "home" },
-    h("h1", {}, "Let's Try!", h("small", {}, t("subtitle"))),
-    h("div", { class: "shelf" },
-      card("lt1", "#/lt1", "media/thumbs/lt1-u1.webp", "Let's Try! 1", `${t("grade3")} · ${t("units9")}`, ja ? "3年" : "G3"),
-      card("lt2", "#/lt2", "media/thumbs/lt2-u1.webp", "Let's Try! 2", `${t("grade4")} · ${t("units9")}`, ja ? "4年" : "G4"),
-      card("stories", "#/stories", "media/thumbs/stories.webp", t("storybooks"), `${t("storybooksEn")} · ${t("books2")}`, ja ? "えほん" : "Books")),
+  }
+
+  const d = new Date();
+  const tcy = n => h("span", { class: "tcy" }, String(n));
+  const date = ja ? [tcy(d.getMonth() + 1), "月", tcy(d.getDate()), "日", h("span", { class: "dow" }, "日月火水木金土"[d.getDay()])]
+    : [d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })];
+  setView(h("section", { class: "home board" + (ja ? " ja" : "") },
+    h("header", { class: "chalkhead" },
+      h("h1", {}, "Let's Try!"), h("p", {}, t("subtitle")),
+      h("div", { class: "date", "aria-hidden": "true" }, ...date)),
+    h("div", { class: "ledge-wrap" },
+      h("div", { class: "shelf" }, tome("lt1", lt1, ja ? "3年" : "G3"), tome("lt2", lt2, ja ? "4年" : "G4"), storySlot),
+      h("div", { class: "ledge", "aria-hidden": "true" })),
     h("p", { class: "foot" }, t("copyright"))),
     {}, { top: [langBtn()], bot: [fsBtn()] });
 }
@@ -276,6 +307,7 @@ async function unitPage(bookId, un, pn) {
   sessionStorage.removeItem("turn");
 
   const ctx = { book, unit, inkKey: `${bookId}/${un}/p${pIdx + 1}` };
+  try { localStorage.setItem("last:" + bookId, `${un}/${pIdx + 1}`); } catch {}
   const v = renderScreen(page, ctx);
   if (dir) v.sheet.classList.add("turn-" + dir);
   const goPrev = () => prev && turnTo(`#/${bookId}/${prev[0]}/${prev[1]}`, "prev");
