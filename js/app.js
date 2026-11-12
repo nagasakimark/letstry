@@ -13,7 +13,7 @@ import { activeZoom, onZoom } from "./zoom.js";
 import { timerButton } from "./timer.js";
 import { t, getLang, setLang, onLang } from "./i18n.js";
 import { offlineState, onOffline, download, remove, checkAll } from "./offline.js";
-import { bonusFor, openBonus, wordGamesFor } from "./bonus/index.js";
+import { bonusFor, openBonus, wordGamesFor, classGamesFor } from "./bonus/index.js";
 import { openPicker } from "./bonus/picker.js";
 
 const view = $("#view"), railL = $("#railL"), railR = $("#railR");
@@ -168,7 +168,7 @@ function pageActivities(page) {
   return [...first.keys()].sort((a, b) => order(first.get(a)) - order(first.get(b)));
 }
 const BONUS_ICON = { smile: "smile", count: "count", shapes: "shapes", sun: "sun", timer: "timer", search: "search", poll: "poll", pouch: "pouch", parfait: "parfait", route: "route" };
-function activityList(page, ctx, firstBookPage, bonus = [], games = []) {
+function activityList(page, ctx, firstBookPage, bonus = [], games = [], klass = []) {
   const items = pageActivities(page).map(k => {
     const { label, type } = activityLabel(k);
     const b = h("button", { class: "act", type: "button", "data-key": k, "data-type": type },
@@ -190,8 +190,13 @@ function activityList(page, ctx, firstBookPage, bonus = [], games = []) {
   const gtiles = games.length ? h("div", { class: "gtiles" }, games.map(d =>
     h("button", { class: "gtile", type: "button", "data-g": d.id, title: t(d.label), onclick: () => openBonus(d) },
       icon(d.icon), h("span", {}, t(d.label))))) : null;
+  // class games (Mark's online apps): one row per category, one button per app
+  const crows = klass.map(c => h("div", { class: "crow" }, h("span", { class: "cname" }, t(c.label)),
+    ...c.apps.map(d => h("button", { class: "capp", type: "button", "data-app": d.app, title: `${t(d.label)}${t("colon")}${t(d.cat)}`,
+      "aria-label": `${t(d.label)}${t("colon")}${t(d.cat)}`, onclick: () => openBonus(d) }, icon(d.icon)))));
   const list = h("div", { class: "acts" }, items.length ? items : h("p", { class: "none" }, t("noActivities")),
     bitems.length ? h("div", { class: "acthead bonushead" }, t("bonus")) : null, bitems,
+    crows.length ? h("div", { class: "acthead bonushead" }, t("classGames")) : null, crows.length ? h("div", { class: "crows" }, crows) : null,
     gtiles ? h("div", { class: "acthead bonushead" }, t("wordGames")) : null, gtiles);
   const sync = key => items.forEach(b => b.setAttribute("aria-current", String(b.dataset.key === key)));
   popupState.subs.clear(); popupState.subs.add(sync);
@@ -357,7 +362,7 @@ async function unitPage(bookId, un, pn) {
 
   let firstBookPage = null;
   outer: for (const hs of page.hotspots) for (const a of hs.a) if (a.t === "book") { firstBookPage = a.page; break outer; }
-  const acts = activityList(page, ctx, firstBookPage, bonusFor(bookId, un), wordGamesFor(bookId, un));
+  const acts = activityList(page, ctx, firstBookPage, bonusFor(bookId, un), wordGamesFor(bookId, un), classGamesFor(bookId, un));
   const where = h("div", { class: "where", title: `Unit ${un} · ${pIdx + 1} / ${unit.pages.length}` },
     h("small", {}, t("unit")), h("b", {}, un), h("small", {}, `${pIdx + 1} / ${unit.pages.length}`));
   const penc = penControls();

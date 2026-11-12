@@ -301,3 +301,14 @@ body[data-layout="dock"] .wpicker { inset: 8px; }
 .pfex.playing { box-shadow: 0 0 0 4px #e8642c; }
 .pfgame.ordering .pfex { width: clamp(84px, 18cqw, 150px); font-size: 12px; }
 .pfgame.ordering .pfbox { left: 57%; }
+
+/* ---- sidebar: class games (poll / slots / soccer per category) */
+.crows { display: grid; gap: 3px; padding: 2px 0 6px; }
+.crow { display: flex; align-items: center; gap: 5px; padding: 2px 2px 2px 6px; border-radius: 12px; }
+.crow .cname { flex: 1; min-width: 0; font-size: 13px; font-weight: 700; }
+.capp { flex: none; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 10px; color: #fff; cursor: pointer;
+  transition: transform .15s var(--ease), box-shadow .15s; }
+.capp:hover { transform: translateY(-1px) scale(1.06); box-shadow: 0 3px 8px rgba(0, 0, 0, .18); }
+.capp:focus-visible { outline: 3px solid var(--hi); outline-offset: 2px; }
+.capp svg { width: 18px; height: 18px; }
+.capp[data-app="poll"] { background: #e9a21e; } .capp[data-app="slot"] { background: #e0453a; } .capp[data-app="soccer"] { background: #2f6fd6; }

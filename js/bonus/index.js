@@ -16,17 +16,25 @@ const DEFS = {
   parfait: { label: "b_parfait", icon: "parfait", load: () => import("./parfait.js") },
   gettingaround: { label: "b_gettingaround", icon: "route", load: () => import("./gettingaround.js") },
   hidden: { label: "b_hidden", icon: "search", url: `${GAMES}/hiddenletters/` },
-  "poll:colors": { label: "b_poll_colors", icon: "poll", url: `${GAMES}/poll/#colors` },
-  "poll:fruits": { label: "b_poll_fruits", icon: "poll", url: `${GAMES}/poll/#fruits` },
-  "poll:sports": { label: "b_poll_sports", icon: "poll", url: `${GAMES}/poll/#sports` },
-  "poll:animals": { label: "b_poll_animals", icon: "poll", url: `${GAMES}/poll/#animals` },
-  "poll:days": { label: "b_poll_days", icon: "poll", url: `${GAMES}/poll/#days` },
-  "poll:vegetables": { label: "b_poll_vegetables", icon: "poll", url: `${GAMES}/poll/#vegetables` },
 };
 const BY_UNIT = {
-  lt1: { 2: ["feelings"], 3: ["howmany"], 4: ["poll:colors"], 5: ["poll:fruits", "poll:sports", "poll:animals"], 6: ["hidden"], 7: ["cardmaker"] },
-  lt2: { 2: ["weather"], 3: ["poll:days"], 4: ["clock"], 5: ["pencilcase"], 7: ["parfait", "poll:fruits", "poll:vegetables"], 8: ["gettingaround"] },
+  lt1: { 2: ["feelings"], 3: ["howmany"], 6: ["hidden"], 7: ["cardmaker"] },
+  lt2: { 2: ["weather"], 4: ["clock"], 5: ["pencilcase"], 7: ["parfait"], 8: ["gettingaround"] },
 };
+// Class games (online): Mark's poll, slot machine and Pokémon Soccer, each opened on a category with #category
+export const CLASS_APPS = {
+  poll: { label: "a_poll", icon: "poll", url: c => `${GAMES}/poll/#${c}` },
+  slot: { label: "a_slot", icon: "slot", url: c => `${GAMES}/slot/#${c}` },
+  soccer: { label: "a_soccer", icon: "ball", url: c => `${GAMES}/football/#${c}` },
+};
+const CLASS_BY_UNIT = {
+  lt1: { 4: ["colors"], 5: ["fruits", "sports", "animals"] },
+  lt2: { 3: ["days"], 7: ["fruits", "vegetables"] },
+};
+export const classGamesFor = (bookId, unit) => (CLASS_BY_UNIT[bookId] && CLASS_BY_UNIT[bookId][unit] || []).map(cat => ({
+  cat, label: "c_" + cat,
+  apps: Object.entries(CLASS_APPS).map(([id, a]) => ({ id: id + "-" + cat, app: id, label: a.label, cat: "c_" + cat, icon: a.icon, url: a.url(cat) })),
+}));
 // Vocabulary games: every unit gets all five, opening with that unit's words
 export const WORD_GAMES = {
   flashcards: { label: "g_flashcards", icon: "cards", load: () => import("./flashcards.js") },
@@ -44,7 +52,8 @@ export const bonusLabel = d => t(d.label);
 
 export async function openBonus(d) {
   stopAudio(); closeAll();
-  const title = h("h2", { class: "btitle" }, t(d.label));
+  const name = d.cat ? `${t(d.label)}${t("colon")}${t(d.cat)}` : t(d.label);
+  const title = h("h2", { class: "btitle" }, name);
   const tools = h("div", { class: "btools" });
   const stage = h("div", { class: "bstage" });
   const root = h("div", { class: "bonus b-" + (d.id || "x") }, h("div", { class: "bhead" }, title, tools), stage);
@@ -53,7 +62,7 @@ export async function openBonus(d) {
   if (d.url) {
     root.classList.add("embed");
     if (!navigator.onLine) { stage.append(h("p", { class: "bnote" }, t("needsOnline"))); return; }
-    const frame = h("iframe", { src: d.url, title: t(d.label), allow: "autoplay; fullscreen", loading: "eager" });
+    const frame = h("iframe", { src: d.url, title: name, allow: "autoplay; fullscreen", loading: "eager" });
     stage.append(frame);
     tools.append(h("a", { class: "ib", href: d.url, target: "_blank", rel: "noopener", "data-tip": t("openNewTab"), "aria-label": t("openNewTab") }, icon("external")));
     setTimeout(() => frame.focus(), 300);
