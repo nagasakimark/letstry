@@ -8,7 +8,7 @@ import { t } from "./i18n.js";
 export function flipbook({ title, pages, aspect, startPage = 0, onPage }) {
   // pages: [{img, audio?}]
   const hasAudio = pages.some(p => p.audio);
-  const st = { spread: true, view: 0, busy: false, readAloud: hasAudio };
+  const st = { spread: true, view: 0, busy: false, readAloud: hasAudio, views: [] };
   const spreadEl = h("div", { class: "spread" });
   const stageWrap = h("div", { class: "stagewrap" }, spreadEl);
   const L = h("div", { class: "pg L" }), R = h("div", { class: "pg R" });
@@ -30,8 +30,26 @@ export function flipbook({ title, pages, aspect, startPage = 0, onPage }) {
     h("div", { class: "nav" }, label, readBtn));
 
   const pageImg = i => (i >= 0 && i < pages.length) ? h("img", { src: pages[i].img, alt: `Page ${i + 1}`, draggable: "false" }) : null;
-  const views = () => st.spread ? Math.floor(pages.length / 2) + 1 : pages.length;
-  const sides = v => st.spread ? [v === 0 ? -1 : 2 * v - 1, 2 * v] : [-1, v];
+  // A "view" is what's open at once: a left/right pair of pages, or one page that is itself a
+  // two-page picture ({w}) and fills the whole open book.
+  function buildViews(spread) {
+    const V = [];
+    if (!spread) { pages.forEach((p, i) => V.push(p.wide ? { w: i } : { l: -1, r: i })); return V; }
+    let i = 0;
+    if (pages[0] && !pages[0].wide) { V.push({ l: -1, r: 0 }); i = 1; }   // cover on the right
+    while (i < pages.length) {
+      if (pages[i].wide) { V.push({ w: i }); i++; continue; }
+      if (i + 1 < pages.length && !pages[i + 1].wide) { V.push({ l: i, r: i + 1 }); i += 2; }
+      else { V.push({ l: i, r: -1 }); i++; }
+    }
+    return V;
+  }
+  st.views = buildViews(true);
+  const views = () => st.views.length;
+  const isWide = v => st.views[v] && st.views[v].w != null;
+  const sides = v => { const x = st.views[v]; return !x ? [-1, -1] : x.w != null ? [-1, x.w] : [x.l, x.r]; };
+  const shownPages = v => sides(v).filter(i => i >= 0 && i < pages.length);
+  const viewOf = page => Math.max(0, st.views.findIndex(x => x.w === page || x.l === page || x.r === page));
   function fill(el, i) { el.replaceChildren(...[pageImg(i)].filter(Boolean)); el.classList.toggle("blank", !(i >= 0 && i < pages.length)); }
 
   function layout() {
@@ -40,25 +58,29 @@ export function flipbook({ title, pages, aspect, startPage = 0, onPage }) {
     const singleH = Math.min(ch, cw / aspect), spreadH = Math.min(ch, cw / (2 * aspect));
     const want = spreadH >= singleH * 0.62;
     if (want !== st.spread) {
-      const firstPage = Math.max(0, sides(st.view)[1] === -1 ? sides(st.view)[0] : sides(st.view)[1]);
+      const firstPage = shownPages(st.view)[0] || 0;
       st.spread = want;
-      st.view = want ? Math.floor((firstPage + 1) / 2) : firstPage;
+      st.views = buildViews(want);
+      st.view = viewOf(firstPage);
     }
-    spreadEl.classList.toggle("single", !st.spread);
-    spreadEl.style.setProperty("--sar", st.spread ? 2 * aspect : aspect);
-    spreadEl.style.setProperty("--pw", st.spread ? "50%" : "100%");
-    L.style.display = st.spread ? "" : "none";
     draw();
   }
   function draw() {
+    const wide = isWide(st.view);
+    // a spread page is shown at twice a page's width; a single page alone at one page's width
+    spreadEl.classList.toggle("single", !st.spread && !wide);
+    spreadEl.classList.toggle("widepage", wide);
+    spreadEl.style.setProperty("--sar", st.spread || wide ? 2 * aspect : aspect);
+    spreadEl.style.setProperty("--pw", st.spread && !wide ? "50%" : "100%");
+    L.style.display = st.spread && !wide ? "" : "none";
     const [a, b] = sides(st.view);
     fill(L, a); fill(R, b);
     const n = pages.length;
-    const shown = [a, b].filter(i => i >= 0 && i < n).map(i => i + 1);
+    const shown = shownPages(st.view).map(i => i + 1);
     label.textContent = (shown.length > 1 ? `${shown[0]}–${shown[1]}` : shown[0] || "") + ` / ${n}`;
     prevBtn.disabled = st.view === 0;
     nextBtn.disabled = st.view >= views() - 1;
-    preload([...sides(st.view + 1), ...sides(st.view - 1)].filter(i => i >= 0 && i < n).map(i => pages[i].img));
+    preload([...shownPages(st.view + 1), ...shownPages(st.view - 1)].map(i => pages[i].img));
     onPage && onPage(shown[0] - 1);
   }
   function narrate() {
@@ -114,11 +136,23 @@ export function flipbook({ title, pages, aspect, startPage = 0, onPage }) {
     };
     requestAnimationFrame(step);
   }
+  function slideTurn(dir, target) {
+    // to or from a two-page picture: slide the book across instead of lifting a single leaf
+    const out = spreadEl.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: `translateX(${-dir * 40}px)` }],
+      { duration: 170, easing: "ease-in" });
+    out.onfinish = () => {
+      st.view = target; draw();
+      const inn = spreadEl.animate([{ opacity: 0, transform: `translateX(${dir * 40}px)` }, { opacity: 1, transform: "none" }],
+        { duration: 240, easing: "cubic-bezier(.2,.7,.2,1)" });
+      inn.onfinish = () => { st.busy = false; narrate(); };
+    };
+  }
   function turn(dir, leaf = null, fromAngle = null) {
     const target = st.view + dir;
     if (st.busy || target < 0 || target >= views()) { leaf && leaf.remove(); draw(); return; }
     st.busy = true;
     stopAudio();
+    if (isWide(st.view) || isWide(target)) { leaf && leaf.remove(); return slideTurn(dir, target); }
     leaf ||= makeLeaf(dir);
     const a0 = fromAngle ?? (dir > 0 ? 0 : -180), a1 = dir > 0 ? -180 : 0;
     animate(leaf, a0, a1, 650 * Math.abs(a1 - a0) / 180 + 120, () => {
@@ -133,6 +167,12 @@ export function flipbook({ title, pages, aspect, startPage = 0, onPage }) {
       const target = st.view + dir;
       if (target < 0 || target >= views()) return;
       zone.setPointerCapture(e.pointerId);
+      if (isWide(st.view) || isWide(target)) {   // no leaf to drag: a tap or a swipe turns the page
+        const up = ev => { zone.removeEventListener("pointerup", up); const dx = ev.clientX - e.clientX;
+          if (Math.abs(dx) < 6 || (dir > 0 ? dx < -30 : dx > 30)) turn(dir); };
+        zone.addEventListener("pointerup", up);
+        return;
+      }
       const leaf = makeLeaf(dir);
       const w = spreadEl.clientWidth / (st.spread ? 2 : 1);
       let ang = dir > 0 ? 0 : -180, moved = false;
@@ -163,7 +203,7 @@ export function flipbook({ title, pages, aspect, startPage = 0, onPage }) {
   window.addEventListener("keydown", key);
   const ro = new ResizeObserver(layout);
   ro.observe(stageWrap);
-  st.view = startPage ? Math.floor((startPage + 1) / 2) : 0;
-  requestAnimationFrame(() => { layout(); if (st.view) { if (!st.spread) st.view = startPage; draw(); } narrate(); });
+  st.view = viewOf(startPage);
+  requestAnimationFrame(() => { layout(); st.view = viewOf(startPage); draw(); narrate(); });
   return { root, destroy: () => { window.removeEventListener("keydown", key); ro.disconnect(); stopAudio(); } };
 }

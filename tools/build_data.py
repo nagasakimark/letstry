@@ -427,8 +427,13 @@ def apply_overrides(book, unit, pages, screens):
         n = 1
         bp = []
         while exists(f"/letstrydata/letstry{book}/images/unit9/book-page-{n}.png"):
-            bp.append({"img": img(f"book-page-{n}.png"),
-                       "audio": aud(f"book-page-{n}.mp3") if exists(f"/letstrydata/letstry{book}/audio/unit9/book-page-{n}.mp3") else None})
+            entry = {"img": img(f"book-page-{n}.png"),
+                     "audio": aud(f"book-page-{n}.mp3") if exists(f"/letstrydata/letstry{book}/audio/unit9/book-page-{n}.mp3") else None}
+            # a page drawn as a two-page spread fills both sides of the open book
+            from PIL import Image
+            w, hh = Image.open(os.path.join(SRC, f"letstrydata/letstry{book}/images/unit9/book-page-{n}.png")).size
+            if w / hh > 1.2: entry["wide"] = True
+            bp.append(entry)
             n += 1
         screens.pop("unit9-book-view", None)
         for k in pages:
