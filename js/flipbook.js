@@ -156,6 +156,7 @@ export function flipbook({ title, pages, aspect, startPage = 0, onPage }) {
   dragFrom(grabR, 1); dragFrom(grabL, -1);
 
   const key = e => {
+    if (e.target.closest && e.target.closest("input, textarea, [contenteditable='true']")) return;
     if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") { e.preventDefault(); turn(1); }
     if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); turn(-1); }
   };

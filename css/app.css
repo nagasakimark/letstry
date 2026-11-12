@@ -1,3 +1,4 @@
+@font-face { font-family: "Pook"; src: url("../fonts/Pook.woff2") format("woff2"); font-display: swap; }
 /* Let's Try! — design tokens --------------------------------------------- */
 :root {
   --bg: #18302a;
@@ -490,3 +491,27 @@ body[data-layout="dock"] .timerpanel { right: 8px; top: auto; bottom: calc(100% 
 .otext.warn { color: #ffcf7a; }
 .olink { border: 0; background: none; color: var(--ink-dim); text-decoration: underline; cursor: pointer; font-size: 12px; padding: 4px; }
 .rail .mid:empty { flex: 0; }
+
+/* ---------------------------------------------------------------- text tool */
+.textlayer { position: absolute; inset: 0; z-index: 8; pointer-events: none; border-radius: 6px; }
+.tbox {
+  position: absolute; pointer-events: none; min-width: .6em; padding: .04em .14em; border-radius: .18em;
+  font-family: "Pook", "Klee One", "Hiragino Mincho ProN", serif; font-weight: 600; line-height: 1.15;
+  white-space: pre; outline: none; caret-color: currentColor;
+  text-shadow: 0 0 2px #fff, 0 0 3px #fff, 0 0 5px rgba(255,255,255,.9);
+}
+.tbox.light { text-shadow: 0 0 2px #000, 0 0 3px rgba(0,0,0,.8), 0 0 6px rgba(0,0,0,.6); }
+.pen-on[data-tool="text"] .tbox, .pen-on[data-tool="eraser"] .tbox { pointer-events: auto; cursor: move; box-shadow: 0 0 0 1.5px rgba(30, 99, 214, .55); }
+.pen-on[data-tool="eraser"] .tbox { cursor: pointer; }
+.tbox.editing { cursor: text !important; background: rgba(255,255,255,.72); box-shadow: 0 0 0 2px var(--sun) !important; }
+.tbox.light.editing { background: rgba(0,0,0,.45); }
+.tbox.moving { opacity: .85; }
+.pen-on[data-tool="text"] .ink { cursor: text; }
+.tglyph { font-family: "Pook", var(--font-ui); font-size: 17px; font-weight: 700; }
+.tsizes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.tsizes[hidden] { display: none; }
+.tsz { height: 38px; border: 0; border-radius: 11px; background: transparent; color: var(--ink); cursor: pointer; font-family: "Pook", var(--font-ui); display: grid; place-items: center; }
+.tsz:hover { background: var(--glass-hi); }
+.tsz[aria-pressed="true"] { background: var(--sun); color: var(--sun-ink); }
+.penfoot { display: flex; justify-content: flex-end; border-top: 1px solid var(--line); padding-top: 8px; }
+.penfoot .ib { width: auto; padding: 0 10px; }

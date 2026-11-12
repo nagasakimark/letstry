@@ -122,7 +122,7 @@ export function videoPlayer({ src, head = [], extra = [], rates = true, autoplay
     time.textContent = `0:00 / ${fmt(video.duration)}`;
   });
   const key = e => {
-    if (!root.isConnected || e.target.closest("input, textarea")) return;
+    if (!root.isConnected || e.target.closest("input, textarea, [contenteditable='true']")) return;
     if (e.key === " " || e.key === "k") { e.preventDefault(); toggle(); }
     else if (e.key === "ArrowRight") { e.preventDefault(); e.stopPropagation(); video.currentTime += 5; }
     else if (e.key === "ArrowLeft") { e.preventDefault(); e.stopPropagation(); video.currentTime -= 5; }

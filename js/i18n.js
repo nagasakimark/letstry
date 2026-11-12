@@ -24,6 +24,7 @@ const S = {
     t_activity: "Activity", t_shimen: "誌面", t_3hints: "スリーヒントクイズ", t_kanji: "漢字クイズ", t_footprints: "足あとクイズ", t_book: "えほん",
     k_audio: "音声を再生", k_video: "動画を再生", k_open: "活動をひらく", k_answer: "答えを表示 / かくす", k_spot: "絵を大きく表示", k_swap: "タップで変える", k_book: "えほんをよむ",
     clearCards: "カードをぜんぶもどす", removeLast: "最後のカードをもどす",
+    textTool: "文字を書く", textSize: "文字の大きさ",
   },
   en: {
     home: "Home", contents: "Contents", prev: "Previous page", next: "Next page",
@@ -49,6 +50,7 @@ const S = {
     t_activity: "Activity", t_shimen: "Picture page", t_3hints: "Three-hint quiz", t_kanji: "Kanji quiz", t_footprints: "Footprints quiz", t_book: "Picture book",
     k_audio: "Play audio", k_video: "Play video", k_open: "Open activity", k_answer: "Show or hide answer", k_spot: "Show picture", k_swap: "Tap to change", k_book: "Read the picture book",
     clearCards: "Clear all cards", removeLast: "Remove last card",
+    textTool: "Write text", textSize: "Text size",
   },
 };
 

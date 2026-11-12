@@ -7,7 +7,7 @@ import { $, h, icon, tbtn, preload, toast } from "./ui.js";
 import { renderScreen, openPopup, openPictureBook, popupState } from "./viewer.js";
 import { stopAudio } from "./media.js";
 import { closeAll, layerCount } from "./layers.js";
-import { pen, setPen, COLORS, SIZES, undo, clearInk, hasInk } from "./pen.js";
+import { pen, setPen, COLORS, SIZES, TEXT_SIZES, undo, clearInk, hasInk, isTyping } from "./pen.js";
 import { flipbook } from "./flipbook.js";
 import { activeZoom, onZoom } from "./zoom.js";
 import { timerButton } from "./timer.js";
@@ -89,8 +89,18 @@ function penControls() {
   const undoBtn = tbtn("undo", t("undo"), undo);
   const clearBtn = tbtn("trash", t("clear"), () => { clearInk(); toast(t("cleared")); });
   const handBtn = tbtn("hand", t("stopPen"), () => setPen({ on: false }));
+  const textBtn = h("button", { class: "ib tool-text", type: "button", "aria-label": t("textTool"), "data-tip": t("textTool"),
+    onclick: () => setPen({ on: true, tool: pen.tool === "text" ? "pen" : "text" }) }, h("span", { class: "tglyph" }, "Aa"));
+  const tsizes = h("div", { class: "tsizes", role: "group", "aria-label": t("textSize") },
+    TEXT_SIZES.map((_, i) => h("button", { class: "tsz", type: "button", "data-tip": t("textSize") + " " + "SMLX"[i],
+      "aria-label": t("textSize") + " " + ["S", "M", "L", "XL"][i], onclick: () => setPen({ textSize: i }) },
+      h("span", { style: { fontSize: [12, 16, 21, 27][i] + "px" } }, "A"))));
+  tsizes.querySelectorAll(".tsz span").forEach((sp, i) => sp.style.fontSize = [12, 16, 21, 27][i] + "px");
   const panel = h("div", { class: "penpanel", hidden: true }, swatches,
-    h("div", { class: "pentools" }, sizeBtn, markerBtn, eraseBtn, undoBtn, clearBtn, handBtn));
+    h("div", { class: "pentools" }, sizeBtn, markerBtn, textBtn, eraseBtn, undoBtn, clearBtn), tsizes,
+    h("div", { class: "penfoot" }, handBtn));
+  // keep focus in an open text box while picking colours and sizes
+  panel.addEventListener("mousedown", e => { if (e.target.closest("button")) e.preventDefault(); });
   const sync = () => {
     toggle.setAttribute("aria-pressed", pen.on);
     panel.hidden = !pen.on;
@@ -99,6 +109,10 @@ function penControls() {
     sizeBtn.replaceChildren(d);
     markerBtn.setAttribute("aria-pressed", pen.tool === "marker");
     eraseBtn.setAttribute("aria-pressed", pen.tool === "eraser");
+    textBtn.setAttribute("aria-pressed", pen.tool === "text");
+    tsizes.hidden = pen.tool !== "text";
+    sizeBtn.disabled = pen.tool === "text" || pen.tool === "eraser";
+    tsizes.querySelectorAll(".tsz").forEach((b, i) => b.setAttribute("aria-pressed", String(i === pen.textSize)));
     undoBtn.disabled = clearBtn.disabled = !hasInk();
   };
   pen.listeners.add(sync);
@@ -299,7 +313,7 @@ async function unitPage(bookId, un, pn) {
   }
   current.destroy = v.destroy;
   current.keys = e => {
-    if (layerCount() || e.target.closest("input, textarea")) return;
+    if (layerCount() || isTyping(e)) return;
     if (v.zoom.scale > 1.001 && (e.key === "ArrowRight" || e.key === "ArrowLeft")) return;
     if (e.key === "ArrowRight" || e.key === "PageDown") goNext();
     if (e.key === "ArrowLeft" || e.key === "PageUp") goPrev();
@@ -350,7 +364,7 @@ async function route() {
 }
 addEventListener("hashchange", () => route());
 addEventListener("keydown", e => {
-  if (e.target.closest && e.target.closest("input, textarea")) return;
+  if (isTyping(e)) return;
   if (e.key === "f" || e.key === "F") { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); }
   current.keys && current.keys(e);
 });

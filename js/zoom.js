@@ -73,7 +73,7 @@ export function attachZoom(fit, sheet) {
   let mode = null, start = null, moved = false, lastTap = 0, lastTapXY = [0, 0];
   const dist = () => { const [a, b] = [...pts.values()]; return Math.hypot(a.x - b.x, a.y - b.y); };
   const mid = () => { const [a, b] = [...pts.values()]; return [(a.x + b.x) / 2, (a.y + b.y) / 2]; };
-  const blocksPan = el => el.closest(".piece, .placed, .scrub, .seg, .pill, .closer") || document.body.classList.contains("pen-on");
+  const blocksPan = el => el.closest(".piece, .placed, .scrub, .seg, .pill, .closer, .tbox") || document.body.classList.contains("pen-on");
 
   fit.addEventListener("contextmenu", e => e.preventDefault());
   fit.addEventListener("pointerdown", e => {
@@ -153,7 +153,7 @@ export function attachZoom(fit, sheet) {
 }
 
 window.addEventListener("keydown", e => {
-  if (e.target.closest && e.target.closest("input, textarea")) return;
+  if (e.target.closest && e.target.closest("input, textarea, [contenteditable='true']")) return;
   const z = activeZoom();
   if (!z) return;
   if (e.key === "0") z.reset();

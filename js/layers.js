@@ -59,4 +59,7 @@ window.addEventListener("popstate", e => {
   if (ignorePop) { ignorePop--; e.stopImmediatePropagation(); return; }
   if (stack.length && stack[stack.length - 1].hist) { closeTop(true); e.stopImmediatePropagation(); }
 }, true);
-window.addEventListener("keydown", e => { if (e.key === "Escape" && stack.length) { e.preventDefault(); closeTop(); } });
+window.addEventListener("keydown", e => {
+  if (e.target.closest && e.target.closest("[contenteditable='true']")) return;
+  if (e.key === "Escape" && stack.length) { e.preventDefault(); closeTop(); }
+});

@@ -3,13 +3,14 @@
 import { h, icon } from "./ui.js";
 import { t, onLang } from "./i18n.js";
 
-const st = { total: 0, left: 0, running: false, end: 0, mini: false, done: false };
+const st = { total: 0, left: 0, running: false, end: 0, mini: false, done: false, started: false };
 let panel = null, big = null, tick = 0, railBtn = null;
 const subs = new Set();
 const emit = () => subs.forEach(f => f());
 const fmt = ms => { const s = Math.ceil(ms / 1000); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; };
 
 function add(sec) {
+  silence();
   st.done = false;
   if (st.running) { st.end += sec * 1000; st.total += sec * 1000; }
   else { st.left += sec * 1000; st.total = st.left; }
@@ -17,36 +18,61 @@ function add(sec) {
 }
 function start() {
   if (!st.left) return;
-  st.running = true; st.done = false; st.mini = false; st.end = Date.now() + st.left;
+  silence(); audioReady();
+  st.running = true; st.done = false; st.started = true; st.mini = false; st.end = Date.now() + st.left;
   closePanel(); loop(); emit();
 }
-function pause() { if (!st.running) return; st.left = Math.max(0, st.end - Date.now()); st.running = false; cancelAnimationFrame(tick); emit(); }
-function stop() { st.running = false; st.left = 0; st.total = 0; st.done = false; cancelAnimationFrame(tick); emit(); }
+function pause() { silence(); if (!st.running) return; st.left = Math.max(0, st.end - Date.now()); st.running = false; cancelAnimationFrame(tick); emit(); }
+function stop() { silence(); st.running = false; st.left = 0; st.total = 0; st.done = false; st.started = false; cancelAnimationFrame(tick); emit(); }
 function loop() {
   cancelAnimationFrame(tick);
   const step = () => {
     if (!st.running) return;
     const left = st.end - Date.now();
-    if (left <= 0) { st.running = false; st.left = 0; st.done = true; st.mini = false; chime(); emit(); return; }
+    if (left <= 0) { st.running = false; st.left = 0; st.done = true; st.started = false; st.mini = false; alarm(); emit(); return; }
     st.left = left; paint();
     tick = requestAnimationFrame(step);
   };
   step();
 }
 
-function chime() {
+// Alarm: a classic "beep-beep-beep-beep" played three times with short pauses.
+// Clear and attention-getting, but soft-edged and only ~5 seconds long.
+let ac = null, alarmOut = null, alarmTimer = 0;
+// created/resumed on the Start click so the browser allows it to sound later
+function audioReady() {
   try {
-    const ac = new (window.AudioContext || window.webkitAudioContext)();
-    [0, 0.28, 0.56].forEach((d, i) => {
-      const o = ac.createOscillator(), g = ac.createGain();
-      o.type = "sine"; o.frequency.value = [880, 1175, 1568][i];
-      g.gain.setValueAtTime(0.0001, ac.currentTime + d);
-      g.gain.exponentialRampToValueAtTime(0.35, ac.currentTime + d + 0.02);
-      g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + d + 0.9);
-      o.connect(g).connect(ac.destination); o.start(ac.currentTime + d); o.stop(ac.currentTime + d + 1);
-    });
-    setTimeout(() => ac.close(), 2000);
+    ac ||= new (window.AudioContext || window.webkitAudioContext)();
+    if (ac.state === "suspended") ac.resume();
   } catch {}
+}
+function alarm() {
+  silence();
+  if (!ac) return;
+  if (ac.state === "suspended") ac.resume();
+  const master = alarmOut = ac.createGain();
+  master.gain.value = 0.32;
+  const lp = ac.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 3200; // soften the edge
+  master.connect(lp).connect(ac.destination);
+  const beep = (at, f) => {
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.type = "square"; o.frequency.value = f;
+    g.gain.setValueAtTime(0, at);
+    g.gain.linearRampToValueAtTime(1, at + 0.012);
+    g.gain.setValueAtTime(1, at + 0.1);
+    g.gain.linearRampToValueAtTime(0, at + 0.13);
+    o.connect(g).connect(master); o.start(at); o.stop(at + 0.15);
+  };
+  const t0 = ac.currentTime + 0.05;
+  for (let round = 0; round < 3; round++) {          // three rounds…
+    const r0 = t0 + round * 1.7;
+    for (let k = 0; k < 4; k++) beep(r0 + k * 0.2, k % 2 ? 1760 : 1568);  // …of beep-beep-beep-beep
+  }
+  alarmTimer = setTimeout(silence, 5600);
+}
+function silence() {
+  clearTimeout(alarmTimer);
+  if (alarmOut) { try { alarmOut.disconnect(); } catch {} alarmOut = null; }
 }
 
 // ---------------------------------------------------------------- setup panel (beside the rail)
@@ -74,8 +100,9 @@ function outside(e) {
 
 // ---------------------------------------------------------------- big centre display
 function render() {
-  const show = st.running || st.done || (st.left > 0 && st.total > 0 && !st.running && big);
-  if (!show && !st.left) { big && big.remove(); big = null; updateRail(); return; }
+  // the big display only appears once the timer has been started
+  const show = st.running || st.done || st.started;
+  if (!show) { big && big.remove(); big = null; updateRail(); return; }
   if (!big) { big = h("div", { class: "bigtimer" }); document.body.append(big); }
   big.classList.toggle("mini", st.mini && !st.done);
   big.classList.toggle("done", st.done);
@@ -84,13 +111,13 @@ function render() {
   const R = 46, C = 2 * Math.PI * R;
   big.innerHTML = "";
   big.append(
-    h("div", { class: "tface", onclick: () => { if (st.mini) { st.mini = false; emit(); } } },
+    h("div", { class: "tface", onclick: () => { silence(); if (st.mini) { st.mini = false; emit(); } } },
       h("div", { class: "tring", html: `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="${R}" class="bg"/><circle cx="50" cy="50" r="${R}" class="fg" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - frac)}"/></svg>` }),
       h("div", { class: "tnum" }, st.done ? t("timesUp") : fmt(st.left))),
     h("div", { class: "tctl" },
       st.done ? null : h("button", { class: "ib", type: "button", "aria-label": t("plus30s"), "data-tip": t("plus30s"), onclick: () => add(30) }, h("b", {}, "+30")),
       st.done ? null : h("button", { class: "ib main", type: "button", "aria-label": st.running ? t("pause") : t("resume"), onclick: () => st.running ? pause() : start() }, icon(st.running ? "pause" : "play")),
-      h("button", { class: "ib", type: "button", "aria-label": t("stop"), "data-tip": t("stop"), onclick: stop }, icon("stop")),
+      h("button", { class: "ib", type: "button", "aria-label": st.done ? t("close") : t("stop"), "data-tip": st.done ? t("close") : t("stop"), onclick: stop }, icon(st.done ? "close" : "stop")),
       st.done ? null : h("button", { class: "ib", type: "button", "aria-label": t("minimize"), "data-tip": t("minimize"), onclick: () => { st.mini = !st.mini; emit(); } }, icon(st.mini ? "full" : "minimize"))));
   updateRail();
 }
@@ -114,7 +141,8 @@ onLang(() => render());
 export function timerButton() {
   railBtn = h("button", { class: "ib timer-btn", type: "button", "aria-label": t("timer"), "data-tip": t("timer") }, icon("timer"));
   railBtn.onclick = () => {
-    if (st.running || st.done || (st.left && big)) { st.mini = false; if (st.done) stop(); emit(); return; }
+    if (st.done) { stop(); return; }
+    if (st.started) { st.mini = false; emit(); return; }
     openPanel(railBtn);
   };
   updateRail();

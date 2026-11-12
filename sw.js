@@ -3,10 +3,10 @@
 // - Images and audio are cached as they're used.
 // - Books saved with "Use offline" live in their own caches (letstry-offline-*),
 //   including videos, which are served here with byte-range support so they can seek.
-const VERSION = "letstry-v2";
+const VERSION = "letstry-v3";
 const SHELL = ["./", "index.html", "css/app.css", "js/app.js", "js/ui.js", "js/media.js", "js/layers.js",
   "js/viewer.js", "js/pen.js", "js/board.js", "js/rps.js", "js/flipbook.js", "js/zoom.js", "js/timer.js",
-  "js/offline.js", "js/i18n.js",
+  "js/offline.js", "js/i18n.js", "fonts/Pook.woff2",
   "data/lt1.json", "data/lt2.json", "data/stories.json",
   "data/offline-lt1.json", "data/offline-lt2.json", "data/offline-stories.json", "icons/icon.svg", "manifest.webmanifest"];
 
