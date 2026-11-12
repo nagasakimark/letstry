@@ -897,3 +897,8 @@ body[data-layout="dock"] .btools { margin-right: 54px; }
 
 /* elements inside activities that toggle with the hidden attribute */
 .bonus [hidden], .picker [hidden] { display: none !important; }
+.lay.front { z-index: 4; pointer-events: none; }
+.lay.over.dim { background: rgba(35, 35, 40, .58); border-radius: 14px; box-shadow: 0 0 0 6px rgba(35, 35, 40, .58); }
+.hs.icon img { width: 100%; height: 100%; display: block; pointer-events: none; border-radius: 22%; box-shadow: 0 2px 5px rgba(0, 0, 0, .3); transition: transform .15s var(--ease); }
+.hs.icon:hover img { transform: scale(1.1); }
+.hs.icon.playing img, .hs.icon[aria-pressed="true"] img { box-shadow: 0 0 0 3px #fff, 0 0 0 6px #e8642c; }

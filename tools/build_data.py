@@ -347,11 +347,22 @@ def apply_overrides(book, unit, pages, screens):
                        "hands": [aud(f"rps-audio-{c}-{h}.mp3") for h in ("rock", "scissors", "paper")],
                        "delay": delays.get(c, 6000)} for c, l, fid in langs],
         }
+        # Picture page: each button lights up one kind of object (all the tomatoes, all the balls…) to count.
+        # The pictures are cut-outs that sit on the photo at (130, 102), so show them in place over a greyed photo.
+        for h in screens["unit3-shimen-page"]["hotspots"]:
+            x, y, w, hh = h["r"]   # draw the original's play buttons, a bit bigger to tap
+            h["r"] = [round(x - w * .2, 4), round(y - hh * .2, 4), round(w * 1.4, 4), round(hh * 1.4, 4)]
+            h["icon"] = img("shimen-audio-play-button.png")
+            for a in h["a"]:
+                if a.get("t") == "spot": a.update(r=[0.0747, 0.093, 0.8507, 0.8997], dim=True)
         # apples: tap to fill / empty
         sc = screens["unit3-activity-1-page"]
-        apples = [e for e in els("unit3-activity-1-page").values() if "apple" in e["cls"] and e["img"]]
-        for e in apples:
-            sc["hotspots"].append({"r": r4(e["rect"]), "a": [{"t": "swap", "imgs": [img("noapple.png"), img("yesapple.png")]}], "k": "swap"})
+        # The recorded apple boxes don't line up with the apples printed on the page, so these were
+        # measured by matching noapple.png / basket.png against activity1.png (back, middle, front row).
+        APPLES = [[0.235, 0.2873, 0.069, 0.1143], [0.3157, 0.2873, 0.069, 0.1143], [0.3966, 0.2873, 0.069, 0.1143], [0.4773, 0.2873, 0.069, 0.1143], [0.558, 0.2873, 0.069, 0.1143], [0.639, 0.2873, 0.069, 0.1143], [0.7197, 0.2873, 0.069, 0.1143], [0.2077, 0.3208, 0.069, 0.1143], [0.2862, 0.3208, 0.069, 0.1143], [0.3646, 0.3208, 0.069, 0.1143], [0.443, 0.3208, 0.069, 0.1143], [0.5214, 0.3208, 0.069, 0.1143], [0.5998, 0.3208, 0.069, 0.1143], [0.6782, 0.3208, 0.069, 0.1143], [0.2681, 0.3729, 0.069, 0.1143], [0.3416, 0.3729, 0.069, 0.1143], [0.4152, 0.3729, 0.069, 0.1143], [0.4888, 0.3729, 0.069, 0.1143], [0.5624, 0.3729, 0.069, 0.1143], [0.6359, 0.3729, 0.069, 0.1143]]
+        for rr in APPLES:
+            sc["hotspots"].append({"r": rr, "a": [{"t": "swap", "imgs": [img("noapple.png"), img("yesapple.png")]}], "k": "swap"})
+        sc["front"] = [{"img": img("basket.png"), "rect": [0.1545, 0.358, 0.6879, 0.2574]}]   # the basket rim sits in front of the bottom row
         sc["kind"] = "swap"
     if U == "1-6":
         sc = screens["unit6-play-page"]

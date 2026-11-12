@@ -40,6 +40,8 @@ export function renderScreen(screen, ctx) {
   };
   const env = { layerEls, ctx, over, state, setMode };
   for (const hs of screen.hotspots || []) sh.append(hotspot(hs, sh, env));
+  // pictures that sit in front of the hotspots (e.g. the basket rim over the bottom row of apples)
+  for (const F of screen.front || []) sh.append(place(h("div", { class: "lay front" }, h("img", { src: F.img, alt: "", draggable: "false" })), F.rect));
   if (modes) setMode(state.mode);
 
   // Don't show the page until its picture and the covers on it have loaded, so answers
@@ -68,6 +70,7 @@ function hotspot(hs, sh, env) {
   if (opener) b.dataset.open = opener.t === "book" ? "book" : opener.s;
   let swapState = 0;
   if (hs.k === "swap") b.append(h("img", { src: hs.a[0].imgs[0], alt: "" }));
+  if (hs.icon) { b.classList.add("icon"); b.append(h("img", { src: hs.icon, alt: "" })); }   // a button the original drew on the page
   b.addEventListener("click", () => {
     ringAt(sh, hs.r);
     for (const a of hs.a) run(a, b, { ...env, setSwap: () => { swapState ^= 1; b.firstChild.src = a.imgs[swapState]; } });
@@ -117,6 +120,7 @@ function inPlace(sh) {
       const s = slot(a.r);
       if (!a.stay && s.owner === btn && !s.el.hidden) { hide(s); stopAudio(); return; }
       s.img.src = a.img; s.el.hidden = false; s.owner = btn; s.i = -1;
+      s.el.classList.toggle("dim", !!a.dim);   // grey the photo behind, so only the lit-up things stand out
       if (a.audio) playAudio(a.audio, btn);
     },
     step(a, btn) {
