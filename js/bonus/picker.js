@@ -3,7 +3,7 @@
 // Scratch the card; after enough is scratched it wipes clean so it's never left half-done.
 import { h, icon } from "../ui.js";
 import { t } from "../i18n.js";
-import { openLayer } from "../layers.js";
+import { openLayer, closeTop } from "../layers.js";
 
 const KEY = "picker";
 function load() { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch { return null; } }
@@ -20,10 +20,18 @@ function draw() {
   return n;
 }
 
+let openRoot = null;   // the picker that's showing, if any
+
 export function openPicker() {
+  // the toolbar button toggles: pressing it again closes the picker instead of opening a second one
+  if (openRoot && openRoot.isConnected) {
+    if (openRoot.closest(".pop") === document.querySelector("#layer .pop:last-child")) closeTop();
+    return;
+  }
   const root = h("div", { class: "picker" });
+  openRoot = root;
   let destroyCard = null;
-  openLayer(root, { onClose: () => destroyCard && destroyCard() });
+  openLayer(root, { onClose: () => { destroyCard && destroyCard(); openRoot = null; } });
   setupView();
 
   function setupView() {
@@ -84,27 +92,41 @@ function scratchable(card, cv, hint, onDone) {
   const ro = new ResizeObserver(() => { if (!done) paintFoil(); });
   ro.observe(card);
   let last = null, moves = 0;
+  // Only the number decides when to reveal: we sample the foil over the digits themselves
+  // (not the whole card), so scratching the edges never gives the answer away.
+  const digits = card.querySelector(".sface b");
+  function numberBox() {
+    const c = card.getBoundingClientRect(), b = digits.getBoundingClientRect();
+    // trim the empty space around the glyphs (line box and side bearings)
+    const w = b.width * .8, hgt = b.height * .62;
+    return [b.left - c.left + (b.width - w) / 2, b.top - c.top + (b.height - hgt) / 2, w, hgt];
+  }
   function cleared() {
-    // sample a grid of points on the foil layer and count the transparent ones
-    const d = ctx.getImageData(0, 0, cv.width, cv.height).data;
+    const [bx, by, bw, bh] = numberBox();
+    const sx = cv.width / W, sy = cv.height / H;
+    const d = ctx.getImageData(Math.max(0, Math.floor(bx * sx)), Math.max(0, Math.floor(by * sy)), Math.max(1, Math.ceil(bw * sx)), Math.max(1, Math.ceil(bh * sy)));
     let clear = 0, n = 0;
-    for (let gy = 0; gy < 30; gy++) for (let gx = 0; gx < 40; gx++) {
-      const x = Math.floor((gx + .5) / 40 * cv.width), y = Math.floor((gy + .5) / 30 * cv.height);
-      n++; if (d[(y * cv.width + x) * 4 + 3] < 40) clear++;
+    for (let gy = 0; gy < 16; gy++) for (let gx = 0; gx < 24; gx++) {
+      const x = Math.floor((gx + .5) / 24 * d.width), y = Math.floor((gy + .5) / 16 * d.height);
+      n++; if (d.data[(y * d.width + x) * 4 + 3] < 40) clear++;
     }
     return clear / n;
   }
+  const REVEAL = 0.6;   // share of the number that must be scratched clear
   function scratchAt(x, y) {
-    const rad = Math.max(18, W * .055);
+    const rad = Math.max(16, W * .045);
     ctx.globalCompositeOperation = "destination-out";
-    ctx.lineCap = "round"; ctx.lineWidth = rad * 2;
     ctx.beginPath();
-    if (last) { ctx.moveTo(last[0], last[1]); ctx.lineTo(x, y); } else { ctx.arc(x, y, rad, 0, Math.PI * 2); ctx.fill(); }
-    ctx.stroke();
+    if (last) {
+      // a stroke exactly as wide as a single tap
+      ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = rad * 2;
+      ctx.moveTo(last[0], last[1]); ctx.lineTo(x, y); ctx.stroke();
+    } else {
+      ctx.arc(x, y, rad, 0, Math.PI * 2); ctx.fill();
+    }
     last = [x, y];
-    // every few strokes, measure how much foil is really gone
-    if (++moves % 6 === 0 && cleared() > 0.4) wipe();
-
+    // every few strokes, measure how much of the number is really showing
+    if (++moves % 5 === 0 && cleared() >= REVEAL) wipe();
   }
   const pos = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * W, (e.clientY - r.top) / r.height * H]; };
   cv.addEventListener("pointerdown", e => {
@@ -112,7 +134,7 @@ function scratchable(card, cv, hint, onDone) {
     e.preventDefault(); cv.setPointerCapture(e.pointerId); hint.classList.add("gone");
     last = null; scratchAt(...pos(e));
     const mv = ev => { (ev.getCoalescedEvents ? ev.getCoalescedEvents() : [ev]).forEach(c => !done && scratchAt(...pos(c))); };
-    const up = () => { last = null; if (!done && cleared() > 0.4) wipe(); cv.removeEventListener("pointermove", mv); cv.removeEventListener("pointerup", up); cv.removeEventListener("pointercancel", up); };
+    const up = () => { last = null; if (!done && cleared() >= REVEAL) wipe(); cv.removeEventListener("pointermove", mv); cv.removeEventListener("pointerup", up); cv.removeEventListener("pointercancel", up); };
     cv.addEventListener("pointermove", mv); cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
   });
   card.addEventListener("wipe", wipe);
