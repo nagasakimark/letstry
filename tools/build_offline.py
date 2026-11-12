@@ -19,6 +19,8 @@ for name in ("lt1", "lt2", "stories"):
         files |= {f"media/thumbs/{name}-u{u}.webp" for u in range(1, 10)}
     else:
         files.add("media/thumbs/stories.webp")
+    # the interface fonts, so Japanese text looks right with no connection
+    files |= {f"fonts/{f}" for f in os.listdir(os.path.join(ROOT, "fonts")) if f.endswith(".woff2")}
     rows = []
     for f in sorted(files):
         p = os.path.join(ROOT, f)

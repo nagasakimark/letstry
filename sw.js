@@ -1,10 +1,10 @@
 // Service worker
 // - The app shell is cached on install so the site opens without a connection.
-// - Images and audio are cached as they're used.
+// - Images, audio and font pieces are cached as they're used.
 // - Books saved with "Use offline" live in their own caches (letstry-offline-*),
 //   including videos, which are served here with byte-range support so they can seek.
-const VERSION = "letstry-v8";
-const SHELL = ["./", "index.html", "css/app.css", "js/app.js", "js/ui.js", "js/media.js", "js/layers.js",
+const VERSION = "letstry-v9";
+const SHELL = ["./", "index.html", "css/app.css", "css/fonts.css", "js/app.js", "js/ui.js", "js/media.js", "js/layers.js",
   "js/viewer.js", "js/pen.js", "js/board.js", "js/rps.js", "js/flipbook.js", "js/zoom.js", "js/timer.js",
   "js/offline.js", "js/i18n.js", "fonts/Pook.woff2",
   "js/bonus/index.js", "js/bonus/common.js", "js/bonus/weather.js", "js/bonus/howmany.js", "js/bonus/slot.js",
@@ -45,7 +45,7 @@ self.addEventListener("fetch", e => {
   const url = new URL(req.url);
   if (req.method !== "GET" || url.origin !== location.origin) return;
 
-  if (url.pathname.includes("/media/")) {
+  if (url.pathname.includes("/media/") || url.pathname.includes("/fonts/")) {
     const range = req.headers.get("range");
     e.respondWith((async () => {
       const hit = await caches.match(url.href);               // any cache, incl. offline books
