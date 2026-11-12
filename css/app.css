@@ -343,11 +343,15 @@ body[data-layout="dock"] .penpanel { right: 8px; top: auto; bottom: calc(100% + 
 }
 .contents header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; width: min(100%, 1400px); margin: 0 auto; }
 .contents h2 { margin: 0; font-family: "Pook", var(--font-ui); font-weight: 400; font-size: clamp(30px, 6.4vh, 50px); line-height: 1; }
+.contents h2 { display: flex; align-items: center; gap: 10px; }
+.contents .hlogo { height: clamp(40px, 9vh, 64px); width: auto; filter: drop-shadow(0 3px 6px rgba(28, 52, 40, .16)); }
+.contents .bnum { display: grid; place-items: center; height: clamp(40px, 9vh, 60px); aspect-ratio: 1; border-radius: 50%; background: var(--accent); color: #fff;
+  font-size: clamp(28px, 6.4vh, 44px); box-shadow: 0 0 0 4px #fff, 0 4px 10px rgba(0,0,0,.18); }
 .gradepill { padding: 4px 12px 5px; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 800; font-size: 14px; }
 .contents .sub { color: var(--ink-dim); font-size: 14px; }
 .contents .grow { flex: 1; }
 .units {
-  --cw: min(calc((100% - 4 * var(--gapx)) / 5), calc(((100vh - 150px) / 2 - 40px) * 1.416));
+  --cw: min(calc((100% - 4 * var(--gapx)) / 5), calc(((100vh - 170px) / 2 - 40px) * 1.416));
   display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: var(--gapy) var(--gapx);
   width: min(100%, 1400px); margin: 0 auto;
 }

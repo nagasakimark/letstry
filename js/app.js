@@ -310,7 +310,8 @@ async function contents(bookId) {
     icon("play"), t("resume"), h("small", {}, `${t("unit")} ${ru} · p.${rp}`)) : null;
   const sec = h("section", { class: "contents" },
     h("header", {},
-      h("h2", {}, book.title), h("span", { class: "gradepill" }, t(BOOKS[bookId].grade)), h("span", { class: "sub" }, t("contents")),
+      h("h2", { "aria-label": book.title }, h("img", { class: "hlogo", src: "media/logo.webp", alt: "" }), h("span", { class: "bnum" }, bookId.slice(-1))),
+      h("span", { class: "gradepill" }, t(BOOKS[bookId].grade)), h("span", { class: "sub" }, t("contents")),
       h("span", { class: "grow" }), resume),
     grid);
   sec.style.setProperty("--accent", BOOKS[bookId].color);
