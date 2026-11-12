@@ -1,6 +1,7 @@
 // Audio bar, custom video player, chant player
 import { h, icon } from "./ui.js";
 import { openLayer } from "./layers.js";
+import { t } from "./i18n.js";
 
 const fmt = s => !isFinite(s) ? "0:00" : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 const RATES = [1, 0.75, 0.5];
@@ -45,15 +46,15 @@ audio.preload = "auto";
 let bar, mainBtn, rateBtn, currentEl = null, rateIdx = 0;
 
 function buildBar() {
-  mainBtn = h("button", { class: "ib main", type: "button", "aria-label": "Play or pause", onclick: () => audio.paused ? audio.play() : audio.pause() }, icon("pause"));
-  rateBtn = h("button", { class: "chip", type: "button", title: "Playback speed", onclick: () => {
+  mainBtn = h("button", { class: "ib main", type: "button", "aria-label": t("playPause"), onclick: () => audio.paused ? audio.play() : audio.pause() }, icon("pause"));
+  rateBtn = h("button", { class: "chip", type: "button", title: t("speed"), onclick: () => {
     rateIdx = (rateIdx + 1) % RATES.length; audio.playbackRate = RATES[rateIdx]; rateBtn.textContent = rateLabel(RATES[rateIdx]);
   } }, "1×");
   bar = h("div", { class: "audiobar", hidden: true, role: "region", "aria-label": "Audio" },
     mainBtn,
-    h("button", { class: "ib", type: "button", "aria-label": "Play again", title: "Play again", onclick: () => { audio.currentTime = 0; audio.play(); } }, icon("replay")),
+    h("button", { class: "ib", type: "button", "aria-label": t("again"), title: t("again"), onclick: () => { audio.currentTime = 0; audio.play(); } }, icon("replay")),
     scrubber(audio), rateBtn,
-    h("button", { class: "ib", type: "button", "aria-label": "Close", title: "Close", onclick: stopAudio }, icon("close")));
+    h("button", { class: "ib", type: "button", "aria-label": t("close"), title: t("close"), onclick: stopAudio }, icon("close")));
   document.body.append(bar);
   audio.addEventListener("play", () => mainBtn.replaceChildren(icon("pause")));
   audio.addEventListener("pause", () => mainBtn.replaceChildren(icon("play")));
@@ -88,20 +89,20 @@ export function stopAudio() {
 export function videoPlayer({ src, head = [], extra = [], rates = true, autoplay = true }) {
   const video = h("video", { playsinline: true, preload: "auto" });
   const frame = h("div", { class: "frame" }, video,
-    h("button", { class: "bigplay", type: "button", "aria-label": "Play" }, icon("play")), h("i", { class: "spin" }));
+    h("button", { class: "bigplay", type: "button", "aria-label": t("play") }, icon("play")), h("i", { class: "spin" }));
   const big = frame.querySelector(".bigplay");
   const root = h("div", { class: "vp" }, h("div", { class: "head" }, head), h("div", { class: "stage" }, frame));
-  const main = h("button", { class: "ib main", type: "button", "aria-label": "Play or pause" }, icon("play"));
+  const main = h("button", { class: "ib main", type: "button", "aria-label": t("playPause") }, icon("play"));
   const time = h("span", { class: "time" }, "0:00 / 0:00");
   let rIdx = 0;
-  const rateBtn = rates ? h("button", { class: "chip", type: "button", title: "Playback speed", onclick: () => {
+  const rateBtn = rates ? h("button", { class: "chip", type: "button", title: t("speed"), onclick: () => {
     rIdx = (rIdx + 1) % RATES.length; video.playbackRate = RATES[rIdx]; rateBtn.textContent = rateLabel(RATES[rIdx]);
   } }, "1×") : null;
-  const mute = h("button", { class: "ib", type: "button", "aria-label": "Mute", title: "Mute", onclick: () => { video.muted = !video.muted; mute.replaceChildren(icon(video.muted ? "mute" : "speaker")); } }, icon("speaker"));
-  const full = h("button", { class: "ib", type: "button", "aria-label": "Full screen", title: "Full screen", onclick: () => {
+  const mute = h("button", { class: "ib", type: "button", "aria-label": t("mute"), title: t("mute"), onclick: () => { video.muted = !video.muted; mute.replaceChildren(icon(video.muted ? "mute" : "speaker")); } }, icon("speaker"));
+  const full = h("button", { class: "ib", type: "button", "aria-label": t("full"), title: t("full"), onclick: () => {
     if (document.fullscreenElement === frame) document.exitFullscreen(); else frame.requestFullscreen().catch(() => {});
   } }, icon("full"));
-  const replay = h("button", { class: "ib", type: "button", "aria-label": "Start again", title: "Start again", onclick: () => { video.currentTime = 0; video.play(); } }, icon("replay"));
+  const replay = h("button", { class: "ib", type: "button", "aria-label": t("startAgain"), title: t("startAgain"), onclick: () => { video.currentTime = 0; video.play(); } }, icon("replay"));
   const vbar = h("div", { class: "vbar" }, main, replay, time, scrubber(video), rateBtn, ...extra, mute, full);
   root.append(vbar);
 
@@ -158,7 +159,7 @@ export function chantPlayer(screen) {
     return v[(st.mode === "karaoke" ? "karaoke-" : "") + st.speed] || v.normal || Object.values(v)[0];
   };
   const sing = /sing/.test(opts[0].base || "");
-  const banner = h("h2", { class: "title" }, h("span", { class: "tag" }, sing ? "うた" : "チャンツ"), sing ? "Let's Sing" : "Let's Chant");
+  const banner = h("h2", { class: "title" }, h("span", { class: "tag" }, sing ? t("song") : t("chant")), sing ? "Let's Sing" : "Let's Chant");
   const optSeg = h("div", { class: "seg", role: "group", "aria-label": "Chant number" });
   const speedSeg = h("div", { class: "seg", role: "group", "aria-label": "Speed" });
   const modeSeg = h("div", { class: "seg", role: "group", "aria-label": "Voice" });
@@ -169,8 +170,8 @@ export function chantPlayer(screen) {
     const v = opts[st.opt].variants;
     if (st.mode === "repeat" && !v.repeat) st.mode = "sing";
     fill(optSeg, opts.map((o, i) => [i, "①②③④⑤"[i] || String(i + 1), `Chant ${i + 1}`]), st.opt, i => { st.opt = i; change(); }, "num");
-    fill(speedSeg, [["normal", "ふつう", "Normal speed"], ["slow", "ゆっくり", "Slow"]], st.mode === "repeat" ? null : st.speed, s => { st.speed = s; if (st.mode === "repeat") st.mode = "sing"; change(); });
-    fill(modeSeg, [["sing", "うたあり", "With voice"], ["karaoke", "カラオケ", "Karaoke: no voice"], ...(v.repeat ? [["repeat", "リピート", "Repeat after"]] : [])], st.mode, m => { st.mode = m; change(); });
+    fill(speedSeg, [["normal", t("normal")], ["slow", t("slow")]], st.mode === "repeat" ? null : st.speed, s => { st.speed = s; if (st.mode === "repeat") st.mode = "sing"; change(); });
+    fill(modeSeg, [["sing", t("withVoice")], ["karaoke", t("karaoke")], ...(v.repeat ? [["repeat", t("repeat")]] : [])], st.mode, m => { st.mode = m; change(); });
   };
   const change = () => { render(); vp.setSrc(src(), true); };
   render();

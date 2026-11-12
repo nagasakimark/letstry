@@ -85,6 +85,10 @@ export function attachInk(sheetEl, key) {
   });
   cv.addEventListener("pointermove", e => {
     if (!cur) return;
+    if (document.body.classList.contains("pinching")) { // a second finger turned this into a pinch
+      if (!cur.erase) { const l = strokes(key); const i = l.indexOf(cur); if (i >= 0) l.splice(i, 1); redraw(); }
+      cur = null; return;
+    }
     const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
     if (cur.erase) { evs.forEach(ev => eraseAt(pt(ev))); return; }
     for (const ev of evs) cur.pts.push(pt(ev));

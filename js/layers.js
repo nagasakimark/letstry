@@ -1,6 +1,7 @@
 // Overlay stack: pop-up activities, video, spotlight images.
 // Esc or the X closes the top one; the browser Back button does too.
 import { h, icon } from "./ui.js";
+import { t } from "./i18n.js";
 
 const stack = [];
 let root;
@@ -11,7 +12,7 @@ function changed() { document.body.classList.toggle("layered", stack.length > 0)
 
 export function openLayer(content, { onClose, history: useHistory = true, tag } = {}) {
   root ||= document.getElementById("layer");
-  const closer = h("button", { class: "closer", type: "button", "aria-label": "Close", title: "Close (Esc)" }, icon("close"));
+  const closer = h("button", { class: "closer", type: "button", "aria-label": t("close"), title: t("close") }, icon("close"));
   const el = h("div", { class: "pop", role: "dialog", "aria-modal": "true" }, content, closer);
   const entry = { el, onClose, tag };
   closer.addEventListener("click", () => closeTop());
@@ -23,7 +24,11 @@ export function openLayer(content, { onClose, history: useHistory = true, tag } 
   });
   root.append(el);
   stack.push(entry);
-  if (useHistory) { history.pushState({ layer: stack.length }, ""); entry.hist = true; }
+  if (useHistory) {
+    // reuse a history entry left by a layer that was swapped out, so Back stays one press per layer
+    if (orphans > 0) orphans--; else history.pushState({ layer: stack.length }, "");
+    entry.hist = true;
+  }
   changed();
   setTimeout(() => closer.focus({ preventScroll: true }), 30);
   return entry;
@@ -38,8 +43,14 @@ export function closeTop(fromPop = false) {
   changed();
   return true;
 }
-// used when navigating: close everything without touching browser history
-export function closeAll() { while (stack.length) closeTop(true); }
+// close everything without touching browser history (used when navigating or swapping activities)
+let orphans = 0;
+export function closeAll({ keepHistory = true } = {}) {
+  let n = 0;
+  while (stack.length) { if (stack[stack.length - 1].hist) n++; closeTop(true); }
+  orphans = keepHistory ? orphans + n : 0;
+  return n;
+}
 export function layerCount() { return stack.length; }
 export function topLayer() { return stack[stack.length - 1]; }
 

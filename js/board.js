@@ -2,6 +2,7 @@
 // mode "once": each card moves (its home spot dims); mode "copy": unlimited copies.
 // Placed cards can be moved again; double-tap or drag off the page to remove.
 import { h, icon, place } from "./ui.js";
+import { t } from "./i18n.js";
 
 export function mountBoard(sheetEl, cfg) {
   const placed = []; // {el, piece, x, y}
@@ -103,8 +104,8 @@ export function mountBoard(sheetEl, cfg) {
   }
 
   const resetAll = () => [...placed].forEach(remove);
-  if (cfg.reset) sheetEl.append(place(h("button", { class: "hs", type: "button", "aria-label": "Clear all cards", title: "Clear all", onclick: resetAll }), cfg.reset));
-  else sheetEl.append(h("button", { class: "pill board-reset", type: "button", onclick: resetAll }, icon("reset"), "やりなおす"));
-  if (cfg.undo) sheetEl.append(place(h("button", { class: "hs", type: "button", "aria-label": "Remove last card", title: "Remove last", onclick: () => placed.length && remove(placed[placed.length - 1]) }), cfg.undo));
+  if (cfg.reset) sheetEl.append(place(h("button", { class: "hs", type: "button", "aria-label": t("clearCards"), title: t("clearCards"), onclick: resetAll }), cfg.reset));
+  else sheetEl.append(h("button", { class: "pill board-reset", type: "button", onclick: resetAll }, icon("reset"), t("reset")));
+  if (cfg.undo) sheetEl.append(place(h("button", { class: "hs", type: "button", "aria-label": t("removeLast"), title: t("removeLast"), onclick: () => placed.length && remove(placed[placed.length - 1]) }), cfg.undo));
   return () => [...placed].forEach(remove);
 }

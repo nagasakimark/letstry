@@ -3,6 +3,7 @@
 // with the arrow keys. Optional narration per page ("Read aloud").
 import { h, icon, preload } from "./ui.js";
 import { playAudio, stopAudio } from "./media.js";
+import { t } from "./i18n.js";
 
 export function flipbook({ title, pages, aspect, startPage = 0, onPage }) {
   // pages: [{img, audio?}]
@@ -13,13 +14,13 @@ export function flipbook({ title, pages, aspect, startPage = 0, onPage }) {
   const L = h("div", { class: "pg L" }), R = h("div", { class: "pg R" });
   spreadEl.append(L, R);
   const label = h("span", { class: "count" });
-  const prevBtn = h("button", { class: "pill ghost side l", type: "button", "aria-label": "Previous page", onclick: () => turn(-1) }, icon("left"));
-  const nextBtn = h("button", { class: "pill ghost side r", type: "button", "aria-label": "Next page", onclick: () => turn(1) }, icon("right"));
+  const prevBtn = h("button", { class: "pill ghost side l", type: "button", "aria-label": t("prev"), onclick: () => turn(-1) }, icon("left"));
+  const nextBtn = h("button", { class: "pill ghost side r", type: "button", "aria-label": t("next"), onclick: () => turn(1) }, icon("right"));
   const readBtn = hasAudio ? h("button", { class: "pill ghost", type: "button", "aria-pressed": "true", onclick: () => {
     st.readAloud = !st.readAloud; readBtn.setAttribute("aria-pressed", st.readAloud);
     readBtn.classList.toggle("ghost", !st.readAloud);
     if (st.readAloud) narrate(); else stopAudio();
-  } }, icon("speaker"), "よみきかせ") : null;
+  } }, icon("speaker"), t("readAloud")) : null;
   if (readBtn) readBtn.classList.remove("ghost");
   const grabL = h("div", { class: "grab l" }), grabR = h("div", { class: "grab r" });
   stageWrap.append(prevBtn, nextBtn, grabL, grabR);
