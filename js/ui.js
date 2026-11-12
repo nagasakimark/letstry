@@ -53,6 +53,7 @@ const P = {
   smile: '<circle cx="12" cy="12" r="8.5"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/><circle cx="9" cy="10" r=".8" fill="currentColor"/><circle cx="15" cy="10" r=".8" fill="currentColor"/>',
   count: '<path d="M5 18V7l-2 1.5"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-5 4.5-5 9h5"/><path d="M17.5 7.5h3.5l-2 3a2.5 2.5 0 1 1-2 4"/>',
   shapes: '<circle cx="7.5" cy="7.5" r="4"/><path d="m16.5 3.5 4.5 8h-9z"/><rect x="4" y="14" width="7" height="7" rx="1"/><path d="m17 13.5 1.2 2.6 2.8.3-2.1 1.9.6 2.7-2.5-1.5-2.5 1.5.6-2.7-2.1-1.9 2.8-.3z"/>',
+  moon: '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
   sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/>',
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/>',
   poll: '<path d="M4 20h16"/><rect x="5.5" y="11" width="3" height="7" rx="1"/><rect x="10.5" y="6" width="3" height="12" rx="1"/><rect x="15.5" y="13" width="3" height="5" rx="1"/>',

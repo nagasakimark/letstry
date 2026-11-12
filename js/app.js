@@ -43,6 +43,8 @@ addEventListener("resize", () => { const m = applyLayout(); if (m !== lastMode) 
 
 // rails: { top, body, mid, bot, extra } per side
 function fillRail(rail, spec = {}) {
+  // the wide labelled sidebar is only used when there's something to put in it
+  if (rail === railL) document.body.classList.toggle("slimrail", !spec.body);
   const grp = (items, cls = "grp") => items && items.filter(Boolean).length ? h("div", { class: cls }, items.filter(Boolean)) : null;
   rail.replaceChildren(...[grp(spec.top), spec.body || null, h("div", { class: "mid" }, grp(spec.mid, "grp bare")), grp(spec.bot), ...(spec.extra || [])].filter(Boolean));
 }
@@ -66,6 +68,17 @@ const fsBtn = () => {
 };
 const langBtn = () => h("button", { class: "ib langbtn", type: "button", "aria-label": t("langTip"), "data-tip": t("langTip"),
   onclick: () => setLang(getLang() === "ja" ? "en" : "ja") }, h("span", {}, getLang() === "ja" ? "EN" : "日本"));
+
+// light / dark (light by default); the choice is remembered on this device
+const getTheme = () => document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+function setTheme(th) {
+  document.documentElement.dataset.theme = th;
+  try { localStorage.setItem("theme", th); } catch {}
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", th === "dark" ? "#18302a" : "#f7faf6");
+  route();
+}
+const themeBtn = () => tbtn(getTheme() === "light" ? "moon" : "sun", getTheme() === "light" ? t("themeDark") : t("themeLight"),
+  () => setTheme(getTheme() === "light" ? "dark" : "light"));
 
 const zoomSubs = new Set();
 onZoom(z => zoomSubs.forEach(f => f(z)));
@@ -274,24 +287,34 @@ async function home() {
     : [d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })];
   setView(h("section", { class: "home chalkboard" + (ja ? " ja" : "") },
     h("header", { class: "chalkhead" },
-      h("h1", {}, "Let's Try!"), h("p", {}, t("subtitle")),
+      h("h1", {}, h("img", { class: "logo", src: "media/logo.webp", alt: "Let's Try!", width: 1200, height: 311 })),
+      h("p", {}, t("subtitle")),
       h("div", { class: "date", "aria-hidden": "true" }, ...date)),
     h("div", { class: "ledge-wrap" },
       h("div", { class: "shelf" }, tome("lt1", lt1, ja ? "3年" : "G3"), tome("lt2", lt2, ja ? "4年" : "G4"), storySlot),
       h("div", { class: "ledge", "aria-hidden": "true" })),
     h("p", { class: "foot" }, t("copyright"))),
-    {}, { top: [langBtn()], bot: [fsBtn()] });
+    {}, { top: [langBtn()], bot: [themeBtn(), fsBtn()] });
 }
 
 async function contents(bookId) {
   const book = await load(bookId);
+  let res = null;
+  try { res = localStorage.getItem("last:" + bookId); } catch {}
+  const [ru, rp] = res ? res.split("/").map(Number) : [];
   const grid = h("div", { class: "units" }, book.units.map(u =>
-    h("button", { class: "unit", type: "button", onclick: () => go(`#/${bookId}/${u.n}/1`) },
+    h("button", { class: "unit" + (u.n === ru ? " here" : ""), type: "button", onclick: () => go(`#/${bookId}/${u.n}/1`) },
       h("div", { class: "thumb" }, h("img", { src: `media/thumbs/${bookId}-u${u.n}.webp`, alt: "", loading: "lazy" })),
       h("div", { class: "t" }, h("span", { class: "n" }, u.n), h("span", { class: "ti" }, u.title)))));
-  setView(h("section", { class: "contents" },
-    h("header", {}, h("h2", {}, book.title), h("p", {}, `${t(BOOKS[bookId].grade)} · ${t("contents")}`)), grid),
-    { top: [tbtn("home", t("home"), () => go("#/"))] }, { top: [langBtn()], bot: [fsBtn()] });
+  const resume = res ? h("button", { class: "resume", type: "button", onclick: () => go(`#/${bookId}/${ru}/${rp}`) },
+    icon("play"), t("resume"), h("small", {}, `${t("unit")} ${ru} · p.${rp}`)) : null;
+  const sec = h("section", { class: "contents" },
+    h("header", {},
+      h("h2", {}, book.title), h("span", { class: "gradepill" }, t(BOOKS[bookId].grade)), h("span", { class: "sub" }, t("contents")),
+      h("span", { class: "grow" }), resume),
+    grid);
+  sec.style.setProperty("--accent", BOOKS[bookId].color);
+  setView(sec, { top: [tbtn("home", t("home"), () => go("#/"))] }, { top: [langBtn()], bot: [themeBtn(), fsBtn()] });
 }
 
 async function unitPage(bookId, un, pn) {
@@ -370,19 +393,21 @@ async function unitPage(bookId, un, pn) {
 async function stories(id) {
   const st = await load("stories");
   if (!id) {
-    const grid = h("div", { class: "units" }, st.stories.map(s =>
+    const grid = h("div", { class: "units few" }, st.stories.map(s =>
       h("button", { class: "unit", type: "button", onclick: () => go(`#/stories/${s.id}`) },
         h("div", { class: "thumb", style: { aspectRatio: "457/320" } }, h("img", { src: s.pages[0], alt: "" })),
         h("div", { class: "t" }, h("span", { class: "ti" }, s.title)))));
-    setView(h("section", { class: "contents" }, h("header", {}, h("h2", {}, t("storybooks")), h("p", {}, t("storybooksEn"))), grid),
-      { top: [tbtn("home", t("home"), () => go("#/"))] }, { top: [langBtn()], bot: [fsBtn()] });
+    const sec = h("section", { class: "contents" }, h("header", {}, h("h2", {}, t("storybooks")), h("span", { class: "sub" }, t("storybooksEn"))), grid);
+    sec.style.setProperty("--accent", BOOKS.stories.color);
+    setView(sec,
+      { top: [tbtn("home", t("home"), () => go("#/"))] }, { top: [langBtn()], bot: [themeBtn(), fsBtn()] });
     return;
   }
   const s = st.stories.find(x => x.id === id);
   if (!s) return go("#/stories");
   const fb = flipbook({ title: s.title, pages: s.pages.map(img => ({ img })), aspect: s.size[0] / s.size[1] });
   setView(fb.root, { top: [tbtn("home", t("home"), () => go("#/")), tbtn("grid", t("storybooks"), () => go("#/stories"))] },
-    { top: [timerButton(), pickerBtn(), langBtn()], bot: [fsBtn()] });
+    { top: [timerButton(), pickerBtn(), langBtn()], bot: [themeBtn(), fsBtn()] });
   current.destroy = fb.destroy;
 }
 
