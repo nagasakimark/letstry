@@ -1,0 +1,6919 @@
+{
+ "unit": "1-8",
+ "title": "Let's Try Plip 1",
+ "screens": [
+  {
+   "path": "#unit8-page1",
+   "cls": "main-image unit8-page1",
+   "id": "unit8-page1",
+   "image": "/letstrydata/letstry1/images/unit8/unit8-1.png",
+   "natural": [
+    1518,
+    1072
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "div:0>div:0>div:0>div:1",
+     "tag": "div",
+     "id": "",
+     "cls": "units-button unit8-play-1",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5555,
+      0.05,
+      0.3889,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit8-page1 closed",
+       "id": "unit8-page1",
+       "path": "#unit8-page1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/unit8-1.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image play-page unit8-play-1-page",
+       "id": "",
+       "path": "div:0>div:0>div:1",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play1.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "back-button",
+       "id": "",
+       "path": "div:0>div:0>div:1>div:0",
+       "added": [
+        "back-button"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "div:0>div:0>div:0>div:2",
+     "tag": "div",
+     "id": "",
+     "cls": "units-button unit8-chant",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5555,
+      0.84,
+      0.3889,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit8-page1 closed",
+       "id": "unit8-page1",
+       "path": "#unit8-page1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/unit8-1.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image chant-page unit8-chant-page",
+       "id": "",
+       "path": "div:0>div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/chant.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "back-button",
+       "id": "",
+       "path": "div:0>div:0>div:3>div:0",
+       "added": [
+        "back-button"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#unit8-page1-last",
+     "tag": "a",
+     "id": "unit8-page1-last",
+     "cls": "pages-button page-last",
+     "text": "",
+     "href": "/letstry1-7",
+     "data": {},
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#unit8-page1-next",
+     "tag": "div",
+     "id": "unit8-page1-next",
+     "cls": "pages-button page-next turn-pages-button",
+     "text": "",
+     "href": null,
+     "data": {
+      "target": "unit8-page2",
+      "origin": "unit8-page1"
+     },
+     "rect": [
+      0.9444,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit8-page1 closed",
+       "id": "unit8-page1",
+       "path": "#unit8-page1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/unit8-1.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit8-page2",
+       "id": "unit8-page2",
+       "path": "#unit8-page2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/unit8-2.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    }
+   ],
+   "layers": [],
+   "elements": {
+    "div:0>div:0>div:0>div:1": {
+     "id": "",
+     "tag": "div",
+     "cls": "units-button unit8-play-1",
+     "rect": [
+      0.5555,
+      0.05,
+      0.3889,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "div:0>div:0>div:0>div:2": {
+     "id": "",
+     "tag": "div",
+     "cls": "units-button unit8-chant",
+     "rect": [
+      0.5555,
+      0.84,
+      0.3889,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#unit8-page1-last": {
+     "id": "unit8-page1-last",
+     "tag": "a",
+     "cls": "pages-button page-last",
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#unit8-page1-next": {
+     "id": "unit8-page1-next",
+     "tag": "div",
+     "cls": "pages-button page-next turn-pages-button",
+     "rect": [
+      0.9444,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "div:0>div:0>div:1",
+   "cls": "page-image play-page unit8-play-1-page",
+   "id": "",
+   "image": "/letstrydata/letstry1/images/unit8/play1.png",
+   "natural": [
+    1724,
+    1080
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "div:0>div:0>div:1>div:0",
+     "tag": "div",
+     "id": "",
+     "cls": "back-button",
+     "text": "X",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "isClose": true,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#play-audio-8-1",
+     "tag": "div",
+     "id": "play-audio-8-1",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8444,
+      0.165,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-audio-8-1.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-2",
+     "tag": "div",
+     "id": "play-audio-8-2",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8444,
+      0.235,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-audio-8-2.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-3",
+     "tag": "div",
+     "id": "play-audio-8-3",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8444,
+      0.355,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-audio-8-3.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-4",
+     "tag": "div",
+     "id": "play-audio-8-4",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8444,
+      0.425,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-audio-8-4.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-5",
+     "tag": "div",
+     "id": "play-audio-8-5",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8444,
+      0.545,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-audio-8-5.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-6",
+     "tag": "div",
+     "id": "play-audio-8-6",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8444,
+      0.615,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-audio-8-6.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-7",
+     "tag": "div",
+     "id": "play-audio-8-7",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8444,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-audio-8-7.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-8",
+     "tag": "div",
+     "id": "play-audio-8-8",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8444,
+      0.805,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-audio-8-8.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-1",
+     "tag": "div",
+     "id": "play-answer-8-1",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "text": "",
+     "href": null,
+     "data": {
+      "image": "play1-answer-1"
+     },
+     "rect": [
+      0.9056,
+      0.165,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "unit8-play-1-layer-image",
+       "path": "div:0>div:0>div:2>img:2",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-1.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "div:0>div:0>div:2>div:4>img:0",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-1-big.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit8-play-1-image-layer",
+       "id": "",
+       "path": "div:0>div:0>div:2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play1-answer-1.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image play-page unit8-play-1-page closed",
+       "id": "",
+       "path": "div:0>div:0>div:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/play1.png",
+       "rect": null
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio unit8-play-1-audio-player",
+       "path": "div:0>div:0>div:2>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-1.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-2",
+     "tag": "div",
+     "id": "play-answer-8-2",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "text": "",
+     "href": null,
+     "data": {
+      "image": "play1-answer-1"
+     },
+     "rect": [
+      0.9056,
+      0.235,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "unit8-play-1-layer-image",
+       "path": "div:0>div:0>div:2>img:2",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-1.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "div:0>div:0>div:2>div:4>img:0",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-1-big.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit8-play-1-image-layer",
+       "id": "",
+       "path": "div:0>div:0>div:2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play1-answer-1.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image play-page unit8-play-1-page closed",
+       "id": "",
+       "path": "div:0>div:0>div:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/play1.png",
+       "rect": null
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio unit8-play-1-audio-player",
+       "path": "div:0>div:0>div:2>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-2.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-3",
+     "tag": "div",
+     "id": "play-answer-8-3",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "text": "",
+     "href": null,
+     "data": {
+      "image": "play1-answer-2"
+     },
+     "rect": [
+      0.9056,
+      0.355,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "unit8-play-1-layer-image",
+       "path": "div:0>div:0>div:2>img:2",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-2.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "div:0>div:0>div:2>div:4>img:0",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-2-big.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit8-play-1-image-layer",
+       "id": "",
+       "path": "div:0>div:0>div:2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play1-answer-2.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image play-page unit8-play-1-page closed",
+       "id": "",
+       "path": "div:0>div:0>div:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/play1.png",
+       "rect": null
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio unit8-play-1-audio-player",
+       "path": "div:0>div:0>div:2>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-3.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-4",
+     "tag": "div",
+     "id": "play-answer-8-4",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "text": "",
+     "href": null,
+     "data": {
+      "image": "play1-answer-2"
+     },
+     "rect": [
+      0.9056,
+      0.425,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "unit8-play-1-layer-image",
+       "path": "div:0>div:0>div:2>img:2",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-2.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "div:0>div:0>div:2>div:4>img:0",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-2-big.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit8-play-1-image-layer",
+       "id": "",
+       "path": "div:0>div:0>div:2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play1-answer-2.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image play-page unit8-play-1-page closed",
+       "id": "",
+       "path": "div:0>div:0>div:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/play1.png",
+       "rect": null
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio unit8-play-1-audio-player",
+       "path": "div:0>div:0>div:2>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-4.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-5",
+     "tag": "div",
+     "id": "play-answer-8-5",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "text": "",
+     "href": null,
+     "data": {
+      "image": "play1-answer-3"
+     },
+     "rect": [
+      0.9056,
+      0.545,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "unit8-play-1-layer-image",
+       "path": "div:0>div:0>div:2>img:2",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-3.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "div:0>div:0>div:2>div:4>img:0",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-3-big.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit8-play-1-image-layer",
+       "id": "",
+       "path": "div:0>div:0>div:2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play1-answer-3.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image play-page unit8-play-1-page closed",
+       "id": "",
+       "path": "div:0>div:0>div:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/play1.png",
+       "rect": null
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio unit8-play-1-audio-player",
+       "path": "div:0>div:0>div:2>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-5.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-6",
+     "tag": "div",
+     "id": "play-answer-8-6",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "text": "",
+     "href": null,
+     "data": {
+      "image": "play1-answer-3"
+     },
+     "rect": [
+      0.9056,
+      0.615,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "unit8-play-1-layer-image",
+       "path": "div:0>div:0>div:2>img:2",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-3.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "div:0>div:0>div:2>div:4>img:0",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-3-big.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit8-play-1-image-layer",
+       "id": "",
+       "path": "div:0>div:0>div:2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play1-answer-3.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image play-page unit8-play-1-page closed",
+       "id": "",
+       "path": "div:0>div:0>div:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/play1.png",
+       "rect": null
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio unit8-play-1-audio-player",
+       "path": "div:0>div:0>div:2>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-6.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-7",
+     "tag": "div",
+     "id": "play-answer-8-7",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "text": "",
+     "href": null,
+     "data": {
+      "image": "play1-answer-4"
+     },
+     "rect": [
+      0.9056,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "unit8-play-1-layer-image",
+       "path": "div:0>div:0>div:2>img:2",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-4.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "div:0>div:0>div:2>div:4>img:0",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-4-big.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit8-play-1-image-layer",
+       "id": "",
+       "path": "div:0>div:0>div:2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play1-answer-4.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image play-page unit8-play-1-page closed",
+       "id": "",
+       "path": "div:0>div:0>div:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/play1.png",
+       "rect": null
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio unit8-play-1-audio-player",
+       "path": "div:0>div:0>div:2>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-7.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-8",
+     "tag": "div",
+     "id": "play-answer-8-8",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "text": "",
+     "href": null,
+     "data": {
+      "image": "play1-answer-4"
+     },
+     "rect": [
+      0.9056,
+      0.805,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "unit8-play-1-layer-image",
+       "path": "div:0>div:0>div:2>img:2",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-4.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "div:0>div:0>div:2>div:4>img:0",
+       "src": "/letstrydata/letstry1/images/unit8/play1-answer-4-big.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit8-play-1-image-layer",
+       "id": "",
+       "path": "div:0>div:0>div:2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play1-answer-4.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image play-page unit8-play-1-page closed",
+       "id": "",
+       "path": "div:0>div:0>div:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/play1.png",
+       "rect": null
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio unit8-play-1-audio-player",
+       "path": "div:0>div:0>div:2>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-8.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    }
+   ],
+   "layers": [],
+   "elements": {
+    "div:0>div:0>div:1>div:0": {
+     "id": "",
+     "tag": "div",
+     "cls": "back-button",
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "1",
+     "text": ""
+    },
+    "div:0>div:0>div:1>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.9663,
+      0.02,
+      0.0401,
+      0.11
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "X"
+    },
+    "#play-audio-8-1": {
+     "id": "play-audio-8-1",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "rect": [
+      0.8444,
+      0.165,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-2": {
+     "id": "play-audio-8-2",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "rect": [
+      0.8444,
+      0.235,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-3": {
+     "id": "play-audio-8-3",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "rect": [
+      0.8444,
+      0.355,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-4": {
+     "id": "play-audio-8-4",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "rect": [
+      0.8444,
+      0.425,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-5": {
+     "id": "play-audio-8-5",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "rect": [
+      0.8444,
+      0.545,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-6": {
+     "id": "play-audio-8-6",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "rect": [
+      0.8444,
+      0.615,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-7": {
+     "id": "play-audio-8-7",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "rect": [
+      0.8444,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-8": {
+     "id": "play-audio-8-8",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-audio",
+     "rect": [
+      0.8444,
+      0.805,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-1": {
+     "id": "play-answer-8-1",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "rect": [
+      0.9056,
+      0.165,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-2": {
+     "id": "play-answer-8-2",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "rect": [
+      0.9056,
+      0.235,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-3": {
+     "id": "play-answer-8-3",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "rect": [
+      0.9056,
+      0.355,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-4": {
+     "id": "play-answer-8-4",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "rect": [
+      0.9056,
+      0.425,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-5": {
+     "id": "play-answer-8-5",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "rect": [
+      0.9056,
+      0.545,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-6": {
+     "id": "play-answer-8-6",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "rect": [
+      0.9056,
+      0.615,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-7": {
+     "id": "play-answer-8-7",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "rect": [
+      0.9056,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-8": {
+     "id": "play-answer-8-8",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-1-answer",
+     "rect": [
+      0.9056,
+      0.805,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "div:0>div:0>div:2",
+   "cls": "page-image unit8-play-1-image-layer",
+   "id": "",
+   "image": "",
+   "natural": [
+    0,
+    0
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "div:0>div:0>div:2>div:0",
+     "tag": "div",
+     "id": "",
+     "cls": "back-button unit8-image-layer-back",
+     "text": "X",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "isClose": true,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "div:0>div:0>div:2>div:1",
+     "tag": "div",
+     "id": "",
+     "cls": "unit8-image-layer-enlarge",
+     "text": "Full Image",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.3889,
+      0.1,
+      0.1111,
+      0.06
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "unit8-image-layer-enlarged-image",
+       "id": "",
+       "path": "div:0>div:0>div:2>div:4",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "",
+       "rect": [
+        0.0556,
+        0.1,
+        0.8889,
+        0.85
+       ]
+      }
+     ]
+    },
+    {
+     "path": "div:0>div:0>div:2>div:3",
+     "tag": "div",
+     "id": "",
+     "cls": "wat-audio-window unit8-play-1-audio-window",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.2778,
+      0.83,
+      0.3333,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": []
+    }
+   ],
+   "layers": [
+    {
+     "path": "div:0>div:0>div:2>div:3>audio:0",
+     "tag": "audio",
+     "cls": "wat-audio unit8-play-1-audio-player",
+     "id": "",
+     "src": "",
+     "visible": true,
+     "rect": [
+      0.2778,
+      0.83,
+      0.3333,
+      0.1
+     ]
+    },
+    {
+     "path": "div:0>div:0>div:2>div:4>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "",
+     "visible": false,
+     "rect": null
+    }
+   ],
+   "elements": {
+    "div:0>div:0>div:2>div:0": {
+     "id": "",
+     "tag": "div",
+     "cls": "back-button unit8-image-layer-back",
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "1",
+     "text": ""
+    },
+    "div:0>div:0>div:2>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.9663,
+      0.02,
+      0.0401,
+      0.11
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "X"
+    },
+    "div:0>div:0>div:2>div:1": {
+     "id": "",
+     "tag": "div",
+     "cls": "unit8-image-layer-enlarge",
+     "rect": [
+      0.3889,
+      0.1,
+      0.1111,
+      0.06
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:2>div:1>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.4197,
+      0.121,
+      0.0496,
+      0.018
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "Full Image"
+    },
+    "div:0>div:0>div:2>div:3": {
+     "id": "",
+     "tag": "div",
+     "cls": "wat-audio-window unit8-play-1-audio-window",
+     "rect": [
+      0.2778,
+      0.83,
+      0.3333,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(173, 216, 230)",
+     "bgImg": null,
+     "radius": "5px",
+     "opacity": "1",
+     "z": "5",
+     "text": ""
+    },
+    "div:0>div:0>div:2>div:3>audio:0": {
+     "id": "",
+     "tag": "audio",
+     "cls": "wat-audio unit8-play-1-audio-player",
+     "rect": [
+      0.2778,
+      0.83,
+      0.3333,
+      0.1
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:2>div:4": {
+     "id": "",
+     "tag": "div",
+     "cls": "unit8-image-layer-enlarged-image",
+     "rect": [
+      0.0556,
+      0.1,
+      0.8889,
+      0.85
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "6",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "div:0>div:0>div:3",
+   "cls": "page-image chant-page unit8-chant-page",
+   "id": "",
+   "image": "/letstrydata/letstry1/images/unit8/chant.png",
+   "natural": [
+    1724,
+    1080
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "div:0>div:0>div:3>div:0",
+     "tag": "div",
+     "id": "",
+     "cls": "back-button",
+     "text": "X",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "isClose": true,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "div:0>div:0>div:3>video:2",
+     "tag": "video",
+     "id": "",
+     "cls": "chant-video unit8-chant-video",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.0556,
+      0.15,
+      0.8889,
+      0.7
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#unit8-chant-option-1",
+     "tag": "div",
+     "id": "unit8-chant-option-1",
+     "cls": "chant-button unit8-chant-option",
+     "text": "1",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1923,
+      0.8925,
+      0.0962,
+      0.065
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#chant-normal",
+     "tag": "div",
+     "id": "chant-normal",
+     "cls": "chant-button unit8-chant-button",
+     "text": "NORMAL",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4808,
+      0.873,
+      0.1558,
+      0.039
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#chant-slow",
+     "tag": "div",
+     "id": "chant-slow",
+     "cls": "chant-button unit8-chant-button",
+     "text": "SLOW",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4808,
+      0.938,
+      0.1558,
+      0.039
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "video",
+       "cls": "chant-video unit8-chant-video",
+       "path": "div:0>div:0>div:3>video:2",
+       "src": "/letstrydata/letstry1/video/unit8/chant-slow.mp4",
+       "rect": [
+        0.0556,
+        0.15,
+        0.8889,
+        0.7
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#chant-karaoke-normal",
+     "tag": "div",
+     "id": "chant-karaoke-normal",
+     "cls": "chant-button unit8-chant-button",
+     "text": "KARAOKE(N)",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6539,
+      0.873,
+      0.1558,
+      0.039
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "video",
+       "cls": "chant-video unit8-chant-video",
+       "path": "div:0>div:0>div:3>video:2",
+       "src": "/letstrydata/letstry1/video/unit8/chant-karaoke-normal.mp4",
+       "rect": [
+        0.0556,
+        0.15,
+        0.8889,
+        0.7
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#chant-karaoke-slow",
+     "tag": "div",
+     "id": "chant-karaoke-slow",
+     "cls": "chant-button unit8-chant-button",
+     "text": "KARAOKE(S)",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6539,
+      0.938,
+      0.1558,
+      0.039
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "video",
+       "cls": "chant-video unit8-chant-video",
+       "path": "div:0>div:0>div:3>video:2",
+       "src": "/letstrydata/letstry1/video/unit8/chant-karaoke-slow.mp4",
+       "rect": [
+        0.0556,
+        0.15,
+        0.8889,
+        0.7
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#chant-repeat",
+     "tag": "div",
+     "id": "chant-repeat",
+     "cls": "chant-button unit8-chant-button",
+     "text": "REPEAT",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8269,
+      0.9055,
+      0.1558,
+      0.039
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "video",
+       "cls": "chant-video unit8-chant-video",
+       "path": "div:0>div:0>div:3>video:2",
+       "src": "/letstrydata/letstry1/video/unit8/chant-repeat.mp4",
+       "rect": [
+        0.0556,
+        0.15,
+        0.8889,
+        0.7
+       ]
+      }
+     ]
+    }
+   ],
+   "layers": [
+    {
+     "path": "div:0>div:0>div:3>video:2",
+     "tag": "video",
+     "cls": "chant-video unit8-chant-video",
+     "id": "",
+     "src": "/letstrydata/letstry1/video/unit8/chant-normal.mp4",
+     "visible": true,
+     "rect": [
+      0.0556,
+      0.15,
+      0.8889,
+      0.7
+     ]
+    }
+   ],
+   "elements": {
+    "div:0>div:0>div:3>div:0": {
+     "id": "",
+     "tag": "div",
+     "cls": "back-button",
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "1",
+     "text": ""
+    },
+    "div:0>div:0>div:3>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.9663,
+      0.02,
+      0.0401,
+      0.11
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "X"
+    },
+    "div:0>div:0>div:3>video:2": {
+     "id": "",
+     "tag": "video",
+     "cls": "chant-video unit8-chant-video",
+     "rect": [
+      0.0556,
+      0.15,
+      0.8889,
+      0.7
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:3>div:3": {
+     "id": "",
+     "tag": "div",
+     "cls": "chant-control-panel unit8-chant-control-panel",
+     "rect": [
+      0,
+      0.86,
+      1,
+      0.13
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 255, 255)",
+     "bgImg": null,
+     "radius": "5px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:3>div:3>div:0": {
+     "id": "",
+     "tag": "div",
+     "cls": "chant-option-select",
+     "rect": [
+      0,
+      0.86,
+      0.4808,
+      0.13
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#unit8-chant-option-1": {
+     "id": "unit8-chant-option-1",
+     "tag": "div",
+     "cls": "chant-button unit8-chant-option",
+     "rect": [
+      0.1923,
+      0.8925,
+      0.0962,
+      0.065
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:3>div:3>div:0>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.236,
+      0.9105,
+      0.0087,
+      0.029
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "1"
+    },
+    "div:0>div:0>div:3>div:3>div:1": {
+     "id": "",
+     "tag": "div",
+     "cls": "chant-speed-select repeat",
+     "rect": [
+      0.4808,
+      0.86,
+      0.1731,
+      0.13
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#chant-normal": {
+     "id": "chant-normal",
+     "tag": "div",
+     "cls": "chant-button unit8-chant-button",
+     "rect": [
+      0.4808,
+      0.873,
+      0.1558,
+      0.039
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:3>div:3>div:1>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.5252,
+      0.878,
+      0.067,
+      0.029
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "NORMAL"
+    },
+    "#chant-slow": {
+     "id": "chant-slow",
+     "tag": "div",
+     "cls": "chant-button unit8-chant-button",
+     "rect": [
+      0.4808,
+      0.938,
+      0.1558,
+      0.039
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:3>div:3>div:1>div:1>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.5356,
+      0.943,
+      0.0461,
+      0.029
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "SLOW"
+    },
+    "div:0>div:0>div:3>div:3>div:2": {
+     "id": "",
+     "tag": "div",
+     "cls": "chant-karaoke-select repeat",
+     "rect": [
+      0.6539,
+      0.86,
+      0.1731,
+      0.13
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#chant-karaoke-normal": {
+     "id": "chant-karaoke-normal",
+     "tag": "div",
+     "cls": "chant-button unit8-chant-button",
+     "rect": [
+      0.6539,
+      0.873,
+      0.1558,
+      0.039
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:3>div:3>div:2>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.683,
+      0.878,
+      0.0975,
+      0.029
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "KARAOKE(N)"
+    },
+    "#chant-karaoke-slow": {
+     "id": "chant-karaoke-slow",
+     "tag": "div",
+     "cls": "chant-button unit8-chant-button",
+     "rect": [
+      0.6539,
+      0.938,
+      0.1558,
+      0.039
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:3>div:3>div:2>div:1>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.6834,
+      0.943,
+      0.0966,
+      0.029
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "KARAOKE(S)"
+    },
+    "div:0>div:0>div:3>div:3>div:3": {
+     "id": "",
+     "tag": "div",
+     "cls": "chant-repeat",
+     "rect": [
+      0.8269,
+      0.86,
+      0.1731,
+      0.13
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#chant-repeat": {
+     "id": "chant-repeat",
+     "tag": "div",
+     "cls": "chant-button unit8-chant-button",
+     "rect": [
+      0.8269,
+      0.9055,
+      0.1558,
+      0.039
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:3>div:3>div:3>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.8741,
+      0.9105,
+      0.0615,
+      0.029
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "REPEAT"
+    }
+   }
+  },
+  {
+   "path": "#unit8-page2",
+   "cls": "main-image unit8-page2",
+   "id": "unit8-page2",
+   "image": "/letstrydata/letstry1/images/unit8/unit8-2.png",
+   "natural": [
+    1518,
+    1072
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "div:0>div:0>div:4>div:1",
+     "tag": "div",
+     "id": "",
+     "cls": "units-button unit8-play-2",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.0555,
+      0.05,
+      0.3889,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit8-page2 closed",
+       "id": "unit8-page2",
+       "path": "#unit8-page2",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/unit8-2.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image play-page unit8-play-2-page",
+       "id": "",
+       "path": "div:0>div:0>div:5",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play2.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "back-button",
+       "id": "",
+       "path": "div:0>div:0>div:5>div:0",
+       "added": [
+        "back-button"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "div:0>div:0>div:4>div:2",
+     "tag": "div",
+     "id": "",
+     "cls": "units-button unit8-activity unit8-3hints",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.0555,
+      0.61,
+      0.1111,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit8-page2 closed",
+       "id": "unit8-page2",
+       "path": "#unit8-page2",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/unit8-2.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image activity-page unit8-3hints-page",
+       "id": "",
+       "path": "div:0>div:0>div:6",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/3hints.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "back-button",
+       "id": "",
+       "path": "div:0>div:0>div:6>div:0",
+       "added": [
+        "back-button"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "div:0>div:0>div:4>div:3",
+     "tag": "div",
+     "id": "",
+     "cls": "units-button unit8-activity unit8-kanji",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5555,
+      0.05,
+      0.1111,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit8-page2 closed",
+       "id": "unit8-page2",
+       "path": "#unit8-page2",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/unit8-2.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image activity-page unit8-kanji-page",
+       "id": "",
+       "path": "div:0>div:0>div:7",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/kanji.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "back-button",
+       "id": "",
+       "path": "div:0>div:0>div:7>div:0",
+       "added": [
+        "back-button"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "div:0>div:0>div:4>div:4",
+     "tag": "div",
+     "id": "",
+     "cls": "units-button unit8-activity unit8-footprints",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5555,
+      0.295,
+      0.1111,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit8-page2 closed",
+       "id": "unit8-page2",
+       "path": "#unit8-page2",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/unit8-2.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image activity-page unit8-footprints-page",
+       "id": "",
+       "path": "div:0>div:0>div:8",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/footprints.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "back-button",
+       "id": "",
+       "path": "div:0>div:0>div:8>div:0",
+       "added": [
+        "back-button"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#unit8-page2-last",
+     "tag": "div",
+     "id": "unit8-page2-last",
+     "cls": "pages-button page-last turn-pages-button",
+     "text": "",
+     "href": null,
+     "data": {
+      "target": "unit8-page1",
+      "origin": "unit8-page2"
+     },
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit8-page2 closed",
+       "id": "unit8-page2",
+       "path": "#unit8-page2",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry1/images/unit8/unit8-2.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit8-page1",
+       "id": "unit8-page1",
+       "path": "#unit8-page1",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/unit8-1.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#unit8-page2-next",
+     "tag": "a",
+     "id": "unit8-page2-next",
+     "cls": "pages-button page-next",
+     "text": "",
+     "href": "/letstry1-9",
+     "data": {},
+     "rect": [
+      0.9444,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": []
+    }
+   ],
+   "layers": [],
+   "elements": {
+    "div:0>div:0>div:4>div:1": {
+     "id": "",
+     "tag": "div",
+     "cls": "units-button unit8-play-2",
+     "rect": [
+      0.0555,
+      0.05,
+      0.3889,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "div:0>div:0>div:4>div:2": {
+     "id": "",
+     "tag": "div",
+     "cls": "units-button unit8-activity unit8-3hints",
+     "rect": [
+      0.0555,
+      0.61,
+      0.1111,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "div:0>div:0>div:4>div:3": {
+     "id": "",
+     "tag": "div",
+     "cls": "units-button unit8-activity unit8-kanji",
+     "rect": [
+      0.5555,
+      0.05,
+      0.1111,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "div:0>div:0>div:4>div:4": {
+     "id": "",
+     "tag": "div",
+     "cls": "units-button unit8-activity unit8-footprints",
+     "rect": [
+      0.5555,
+      0.295,
+      0.1111,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#unit8-page2-last": {
+     "id": "unit8-page2-last",
+     "tag": "div",
+     "cls": "pages-button page-last turn-pages-button",
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#unit8-page2-next": {
+     "id": "unit8-page2-next",
+     "tag": "a",
+     "cls": "pages-button page-next",
+     "rect": [
+      0.9444,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "div:0>div:0>div:5",
+   "cls": "page-image play-page unit8-play-2-page",
+   "id": "",
+   "image": "/letstrydata/letstry1/images/unit8/play2.png",
+   "natural": [
+    1724,
+    1080
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "div:0>div:0>div:5>div:0",
+     "tag": "div",
+     "id": "",
+     "cls": "back-button",
+     "text": "X",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "isClose": true,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#play-audio-8-9",
+     "tag": "div",
+     "id": "play-audio-8-9",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1111,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-2-question.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-10",
+     "tag": "div",
+     "id": "play-audio-8-10",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.3278,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-2-question.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-11",
+     "tag": "div",
+     "id": "play-audio-8-11",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5444,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-2-question.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-12",
+     "tag": "div",
+     "id": "play-audio-8-12",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.7611,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-2-question.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-13",
+     "tag": "div",
+     "id": "play-audio-8-13",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1111,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-2-question.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-14",
+     "tag": "div",
+     "id": "play-audio-8-14",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.3278,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-2-question.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-15",
+     "tag": "div",
+     "id": "play-audio-8-15",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5444,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-2-question.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-audio-8-16",
+     "tag": "div",
+     "id": "play-audio-8-16",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.7611,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-2-question.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-9",
+     "tag": "div",
+     "id": "play-answer-8-9",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1689,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-play-2-answer-display",
+       "id": "play-answer-8-9-img",
+       "path": "#play-answer-8-9-img",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play2-answer-1img.png",
+       "rect": [
+        0.1167,
+        0.125,
+        0.1178,
+        0.261
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-9.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-10",
+     "tag": "div",
+     "id": "play-answer-8-10",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.3855,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-play-2-answer-display",
+       "id": "play-answer-8-10-img",
+       "path": "#play-answer-8-10-img",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play2-answer-2img.png",
+       "rect": [
+        0.3556,
+        0.142,
+        0.07,
+        0.238
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-10.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-11",
+     "tag": "div",
+     "id": "play-answer-8-11",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6055,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-play-2-answer-display",
+       "id": "play-answer-8-11-img",
+       "path": "#play-answer-8-11-img",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play2-answer-3img.png",
+       "rect": [
+        0.5555,
+        0.188,
+        0.1144,
+        0.148
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-11.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-12",
+     "tag": "div",
+     "id": "play-answer-8-12",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8222,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-play-2-answer-display",
+       "id": "play-answer-8-12-img",
+       "path": "#play-answer-8-12-img",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play2-answer-4img.png",
+       "rect": [
+        0.7855,
+        0.125,
+        0.08,
+        0.268
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-12.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-13",
+     "tag": "div",
+     "id": "play-answer-8-13",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1689,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-play-2-answer-display",
+       "id": "play-answer-8-13-img",
+       "path": "#play-answer-8-13-img",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play2-answer-5img.png",
+       "rect": [
+        0.1111,
+        0.58,
+        0.1244,
+        0.18
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-13.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-14",
+     "tag": "div",
+     "id": "play-answer-8-14",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.3855,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-play-2-answer-display",
+       "id": "play-answer-8-14-img",
+       "path": "#play-answer-8-14-img",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play2-answer-6img.png",
+       "rect": [
+        0.3389,
+        0.565,
+        0.1044,
+        0.208
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-14.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-15",
+     "tag": "div",
+     "id": "play-answer-8-15",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6055,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-play-2-answer-display",
+       "id": "play-answer-8-15-img",
+       "path": "#play-answer-8-15-img",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play2-answer-7img.png",
+       "rect": [
+        0.55,
+        0.578,
+        0.1167,
+        0.184
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-15.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#play-answer-8-16",
+     "tag": "div",
+     "id": "play-answer-8-16",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8222,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-play-2-answer-display",
+       "id": "play-answer-8-16-img",
+       "path": "#play-answer-8-16-img",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/play2-answer-8img.png",
+       "rect": [
+        0.7689,
+        0.58,
+        0.1155,
+        0.18
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/play-answer-8-16.mp3",
+       "rect": null
+      }
+     ]
+    }
+   ],
+   "layers": [
+    {
+     "path": "div:0>div:0>div:5>div:18>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/play2-answer-1img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:5>div:19>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/play2-answer-2img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:5>div:20>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/play2-answer-3img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:5>div:21>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/play2-answer-4img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:5>div:22>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/play2-answer-5img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:5>div:23>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/play2-answer-6img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:5>div:24>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/play2-answer-7img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:5>div:25>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/play2-answer-8img.png",
+     "visible": false,
+     "rect": null
+    }
+   ],
+   "elements": {
+    "div:0>div:0>div:5>div:0": {
+     "id": "",
+     "tag": "div",
+     "cls": "back-button",
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "1",
+     "text": ""
+    },
+    "div:0>div:0>div:5>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.9663,
+      0.02,
+      0.0401,
+      0.11
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "X"
+    },
+    "#play-audio-8-9": {
+     "id": "play-audio-8-9",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "rect": [
+      0.1111,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-10": {
+     "id": "play-audio-8-10",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "rect": [
+      0.3278,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-11": {
+     "id": "play-audio-8-11",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "rect": [
+      0.5444,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-12": {
+     "id": "play-audio-8-12",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "rect": [
+      0.7611,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-13": {
+     "id": "play-audio-8-13",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "rect": [
+      0.1111,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-14": {
+     "id": "play-audio-8-14",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "rect": [
+      0.3278,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-15": {
+     "id": "play-audio-8-15",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "rect": [
+      0.5444,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-audio-8-16": {
+     "id": "play-audio-8-16",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-audio",
+     "rect": [
+      0.7611,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-9": {
+     "id": "play-answer-8-9",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "rect": [
+      0.1689,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-10": {
+     "id": "play-answer-8-10",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "rect": [
+      0.3855,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-11": {
+     "id": "play-answer-8-11",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "rect": [
+      0.6055,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-12": {
+     "id": "play-answer-8-12",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "rect": [
+      0.8222,
+      0.44,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-13": {
+     "id": "play-answer-8-13",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "rect": [
+      0.1689,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-14": {
+     "id": "play-answer-8-14",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "rect": [
+      0.3855,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-15": {
+     "id": "play-answer-8-15",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "rect": [
+      0.6055,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-16": {
+     "id": "play-answer-8-16",
+     "tag": "div",
+     "cls": "small-activity-button unit8-play-2-answer",
+     "rect": [
+      0.8222,
+      0.848,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#play-answer-8-9-img": {
+     "id": "play-answer-8-9-img",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-play-2-answer-display",
+     "rect": [
+      0.1167,
+      0.125,
+      0.1178,
+      0.261
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "5px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:5>div:18>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.1167,
+      0.125,
+      0.1178,
+      0.261
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/play2-answer-1img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#play-answer-8-10-img": {
+     "id": "play-answer-8-10-img",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-play-2-answer-display",
+     "rect": [
+      0.3556,
+      0.142,
+      0.07,
+      0.238
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "5px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:5>div:19>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.3556,
+      0.142,
+      0.07,
+      0.238
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/play2-answer-2img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#play-answer-8-11-img": {
+     "id": "play-answer-8-11-img",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-play-2-answer-display",
+     "rect": [
+      0.5555,
+      0.188,
+      0.1144,
+      0.148
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "5px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:5>div:20>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.5555,
+      0.188,
+      0.1144,
+      0.148
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/play2-answer-3img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#play-answer-8-12-img": {
+     "id": "play-answer-8-12-img",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-play-2-answer-display",
+     "rect": [
+      0.7855,
+      0.125,
+      0.08,
+      0.268
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "5px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:5>div:21>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.7855,
+      0.125,
+      0.08,
+      0.268
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/play2-answer-4img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#play-answer-8-13-img": {
+     "id": "play-answer-8-13-img",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-play-2-answer-display",
+     "rect": [
+      0.1111,
+      0.58,
+      0.1244,
+      0.18
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "5px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:5>div:22>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.1111,
+      0.58,
+      0.1244,
+      0.18
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/play2-answer-5img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#play-answer-8-14-img": {
+     "id": "play-answer-8-14-img",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-play-2-answer-display",
+     "rect": [
+      0.3389,
+      0.565,
+      0.1044,
+      0.208
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "5px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:5>div:23>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.3389,
+      0.565,
+      0.1044,
+      0.208
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/play2-answer-6img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#play-answer-8-15-img": {
+     "id": "play-answer-8-15-img",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-play-2-answer-display",
+     "rect": [
+      0.55,
+      0.578,
+      0.1167,
+      0.184
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "5px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:5>div:24>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.55,
+      0.578,
+      0.1167,
+      0.184
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/play2-answer-7img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#play-answer-8-16-img": {
+     "id": "play-answer-8-16-img",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-play-2-answer-display",
+     "rect": [
+      0.7689,
+      0.58,
+      0.1155,
+      0.18
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "5px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:5>div:25>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.7689,
+      0.58,
+      0.1155,
+      0.18
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/play2-answer-8img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "div:0>div:0>div:6",
+   "cls": "page-image activity-page unit8-3hints-page",
+   "id": "",
+   "image": "/letstrydata/letstry1/images/unit8/3hints.png",
+   "natural": [
+    1724,
+    1080
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "div:0>div:0>div:6>div:0",
+     "tag": "div",
+     "id": "",
+     "cls": "back-button",
+     "text": "X",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "isClose": true,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#activity-audio-8-1",
+     "tag": "div",
+     "id": "activity-audio-8-1",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.0555,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-1.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-2",
+     "tag": "div",
+     "id": "activity-audio-8-2",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1667,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-2.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-3",
+     "tag": "div",
+     "id": "activity-audio-8-3",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.2667,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-3.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-4",
+     "tag": "div",
+     "id": "activity-audio-8-4",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.3722,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-4.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-5",
+     "tag": "div",
+     "id": "activity-audio-8-5",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4667,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-5.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-6",
+     "tag": "div",
+     "id": "activity-audio-8-6",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5722,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-6.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-7",
+     "tag": "div",
+     "id": "activity-audio-8-7",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6722,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-7.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-8",
+     "tag": "div",
+     "id": "activity-audio-8-8",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-8.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-9",
+     "tag": "div",
+     "id": "activity-audio-8-9",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1944,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-9.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-10",
+     "tag": "div",
+     "id": "activity-audio-8-10",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.3,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-10.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-11",
+     "tag": "div",
+     "id": "activity-audio-8-11",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.3889,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-11.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-12",
+     "tag": "div",
+     "id": "activity-audio-8-12",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5111,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-12.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-13",
+     "tag": "div",
+     "id": "activity-audio-8-13",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6055,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-13.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-14",
+     "tag": "div",
+     "id": "activity-audio-8-14",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.7,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-14.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-15",
+     "tag": "div",
+     "id": "activity-audio-8-15",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4,
+      0.745,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-15.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-16",
+     "tag": "div",
+     "id": "activity-audio-8-16",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4889,
+      0.745,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-16.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-17",
+     "tag": "div",
+     "id": "activity-audio-8-17",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5778,
+      0.745,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-17.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-18",
+     "tag": "div",
+     "id": "activity-audio-8-18",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4,
+      0.818,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-18.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-19",
+     "tag": "div",
+     "id": "activity-audio-8-19",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4889,
+      0.818,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-19.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-20",
+     "tag": "div",
+     "id": "activity-audio-8-20",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5778,
+      0.818,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-20.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-21",
+     "tag": "div",
+     "id": "activity-audio-8-21",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4,
+      0.89,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-21.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-22",
+     "tag": "div",
+     "id": "activity-audio-8-22",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4889,
+      0.89,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-22.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-23",
+     "tag": "div",
+     "id": "activity-audio-8-23",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5778,
+      0.89,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-23.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-answer-8-1",
+     "tag": "div",
+     "id": "activity-answer-8-1",
+     "cls": "wide-activity-button unit8-activity-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6611,
+      0.745,
+      0.1,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-3hints-answer-display",
+       "id": "activity-answer-8-1-display",
+       "path": "#activity-answer-8-1-display",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/3hints-answer-1.png",
+       "rect": [
+        0.3955,
+        0.43,
+        0.0778,
+        0.14
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-answer-8-1.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-answer-8-2",
+     "tag": "div",
+     "id": "activity-answer-8-2",
+     "cls": "wide-activity-button unit8-activity-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6611,
+      0.818,
+      0.1,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-3hints-answer-display",
+       "id": "activity-answer-8-2-display",
+       "path": "#activity-answer-8-2-display",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/3hints-answer-2.png",
+       "rect": [
+        0.3778,
+        0.205,
+        0.0778,
+        0.14
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-answer-8-2.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-answer-8-3",
+     "tag": "div",
+     "id": "activity-answer-8-3",
+     "cls": "wide-activity-button unit8-activity-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6611,
+      0.89,
+      0.1,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-3hints-answer-display",
+       "id": "activity-answer-8-3-display",
+       "path": "#activity-answer-8-3-display",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/3hints-answer-3.png",
+       "rect": [
+        0.7056,
+        0.43,
+        0.0778,
+        0.14
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-answer-8-3.mp3",
+       "rect": null
+      }
+     ]
+    }
+   ],
+   "layers": [
+    {
+     "path": "div:0>div:0>div:6>div:28>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/3hints-answer-1.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:6>div:29>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/3hints-answer-2.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:6>div:30>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/3hints-answer-3.png",
+     "visible": false,
+     "rect": null
+    }
+   ],
+   "elements": {
+    "div:0>div:0>div:6>div:0": {
+     "id": "",
+     "tag": "div",
+     "cls": "back-button",
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "1",
+     "text": ""
+    },
+    "div:0>div:0>div:6>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.9663,
+      0.02,
+      0.0401,
+      0.11
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "X"
+    },
+    "#activity-audio-8-1": {
+     "id": "activity-audio-8-1",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.0555,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-2": {
+     "id": "activity-audio-8-2",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.1667,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-3": {
+     "id": "activity-audio-8-3",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.2667,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-4": {
+     "id": "activity-audio-8-4",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.3722,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-5": {
+     "id": "activity-audio-8-5",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.4667,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-6": {
+     "id": "activity-audio-8-6",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.5722,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-7": {
+     "id": "activity-audio-8-7",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.6722,
+      0.35,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-8": {
+     "id": "activity-audio-8-8",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.1,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-9": {
+     "id": "activity-audio-8-9",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.1944,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-10": {
+     "id": "activity-audio-8-10",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.3,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-11": {
+     "id": "activity-audio-8-11",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.3889,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-12": {
+     "id": "activity-audio-8-12",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.5111,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-13": {
+     "id": "activity-audio-8-13",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.6055,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-14": {
+     "id": "activity-audio-8-14",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.7,
+      0.575,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-15": {
+     "id": "activity-audio-8-15",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.4,
+      0.745,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-16": {
+     "id": "activity-audio-8-16",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.4889,
+      0.745,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-17": {
+     "id": "activity-audio-8-17",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.5778,
+      0.745,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-18": {
+     "id": "activity-audio-8-18",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.4,
+      0.818,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-19": {
+     "id": "activity-audio-8-19",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.4889,
+      0.818,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-20": {
+     "id": "activity-audio-8-20",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.5778,
+      0.818,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-21": {
+     "id": "activity-audio-8-21",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.4,
+      0.89,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-22": {
+     "id": "activity-audio-8-22",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.4889,
+      0.89,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-23": {
+     "id": "activity-audio-8-23",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.5778,
+      0.89,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-1": {
+     "id": "activity-answer-8-1",
+     "tag": "div",
+     "cls": "wide-activity-button unit8-activity-answer",
+     "rect": [
+      0.6611,
+      0.745,
+      0.1,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-2": {
+     "id": "activity-answer-8-2",
+     "tag": "div",
+     "cls": "wide-activity-button unit8-activity-answer",
+     "rect": [
+      0.6611,
+      0.818,
+      0.1,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-3": {
+     "id": "activity-answer-8-3",
+     "tag": "div",
+     "cls": "wide-activity-button unit8-activity-answer",
+     "rect": [
+      0.6611,
+      0.89,
+      0.1,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-1-display": {
+     "id": "activity-answer-8-1-display",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-3hints-answer-display",
+     "rect": [
+      0.3955,
+      0.43,
+      0.0778,
+      0.14
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:6>div:28>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.3955,
+      0.43,
+      0.0778,
+      0.14
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/3hints-answer-1.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#activity-answer-8-2-display": {
+     "id": "activity-answer-8-2-display",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-3hints-answer-display",
+     "rect": [
+      0.3778,
+      0.205,
+      0.0778,
+      0.14
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:6>div:29>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.3778,
+      0.205,
+      0.0778,
+      0.14
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/3hints-answer-2.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#activity-answer-8-3-display": {
+     "id": "activity-answer-8-3-display",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-3hints-answer-display",
+     "rect": [
+      0.7056,
+      0.43,
+      0.0778,
+      0.14
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:6>div:30>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.7056,
+      0.43,
+      0.0778,
+      0.14
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/3hints-answer-3.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "div:0>div:0>div:7",
+   "cls": "page-image activity-page unit8-kanji-page",
+   "id": "",
+   "image": "/letstrydata/letstry1/images/unit8/kanji.png",
+   "natural": [
+    1724,
+    1080
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "div:0>div:0>div:7>div:0",
+     "tag": "div",
+     "id": "",
+     "cls": "back-button",
+     "text": "X",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "isClose": true,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#activity-audio-8-24",
+     "tag": "div",
+     "id": "activity-audio-8-24",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1111,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-24.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-25",
+     "tag": "div",
+     "id": "activity-audio-8-25",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4389,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-25.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-26",
+     "tag": "div",
+     "id": "activity-audio-8-26",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.7611,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-26.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-answer-8-4",
+     "tag": "div",
+     "id": "activity-answer-8-4",
+     "cls": "small-activity-button unit8-activity-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1689,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-kanji-answer-display",
+       "id": "activity-answer-8-4-display",
+       "path": "#activity-answer-8-4-display",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/kanji-answer-1-img.png",
+       "rect": [
+        0.0667,
+        0.255,
+        0.1889,
+        0.4
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-answer-8-4.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-answer-8-5",
+     "tag": "div",
+     "id": "activity-answer-8-5",
+     "cls": "small-activity-button unit8-activity-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4967,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-kanji-answer-display",
+       "id": "activity-answer-8-5-display",
+       "path": "#activity-answer-8-5-display",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/kanji-answer-2-img.png",
+       "rect": [
+        0.4,
+        0.255,
+        0.1889,
+        0.4
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-answer-8-5.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-answer-8-6",
+     "tag": "div",
+     "id": "activity-answer-8-6",
+     "cls": "small-activity-button unit8-activity-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8189,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-kanji-answer-display",
+       "id": "activity-answer-8-6-display",
+       "path": "#activity-answer-8-6-display",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/kanji-answer-3-img.png",
+       "rect": [
+        0.7333,
+        0.255,
+        0.1889,
+        0.4
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-answer-8-6.mp3",
+       "rect": null
+      }
+     ]
+    }
+   ],
+   "layers": [
+    {
+     "path": "div:0>div:0>div:7>div:8>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/kanji-answer-1-img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:7>div:9>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/kanji-answer-2-img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:7>div:10>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/kanji-answer-3-img.png",
+     "visible": false,
+     "rect": null
+    }
+   ],
+   "elements": {
+    "div:0>div:0>div:7>div:0": {
+     "id": "",
+     "tag": "div",
+     "cls": "back-button",
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "1",
+     "text": ""
+    },
+    "div:0>div:0>div:7>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.9663,
+      0.02,
+      0.0401,
+      0.11
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "X"
+    },
+    "#activity-audio-8-24": {
+     "id": "activity-audio-8-24",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.1111,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-25": {
+     "id": "activity-audio-8-25",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.4389,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-26": {
+     "id": "activity-audio-8-26",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.7611,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-4": {
+     "id": "activity-answer-8-4",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-answer",
+     "rect": [
+      0.1689,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-5": {
+     "id": "activity-answer-8-5",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-answer",
+     "rect": [
+      0.4967,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-6": {
+     "id": "activity-answer-8-6",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-answer",
+     "rect": [
+      0.8189,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-4-display": {
+     "id": "activity-answer-8-4-display",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-kanji-answer-display",
+     "rect": [
+      0.0667,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": "rgb(255, 255, 255)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:7>div:8>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.0667,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/kanji-answer-1-img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#activity-answer-8-5-display": {
+     "id": "activity-answer-8-5-display",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-kanji-answer-display",
+     "rect": [
+      0.4,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": "rgb(255, 255, 255)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:7>div:9>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.4,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/kanji-answer-2-img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#activity-answer-8-6-display": {
+     "id": "activity-answer-8-6-display",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-kanji-answer-display",
+     "rect": [
+      0.7333,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": "rgb(255, 255, 255)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:7>div:10>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.7333,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/kanji-answer-3-img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "div:0>div:0>div:8",
+   "cls": "page-image activity-page unit8-footprints-page",
+   "id": "",
+   "image": "/letstrydata/letstry1/images/unit8/footprints.png",
+   "natural": [
+    1724,
+    1080
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "div:0>div:0>div:8>div:0",
+     "tag": "div",
+     "id": "",
+     "cls": "back-button",
+     "text": "X",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "isClose": true,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#activity-audio-8-27",
+     "tag": "div",
+     "id": "activity-audio-8-27",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1111,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-27.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-28",
+     "tag": "div",
+     "id": "activity-audio-8-28",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4389,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-28.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-audio-8-29",
+     "tag": "div",
+     "id": "activity-audio-8-29",
+     "cls": "small-activity-button unit8-activity-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.7611,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-audio-8-29.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-answer-8-7",
+     "tag": "div",
+     "id": "activity-answer-8-7",
+     "cls": "small-activity-button unit8-activity-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1689,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-footprints-answer-display",
+       "id": "activity-answer-8-7-display",
+       "path": "#activity-answer-8-7-display",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/footprints-answer-1-img.png",
+       "rect": [
+        0.0667,
+        0.255,
+        0.1889,
+        0.4
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-answer-8-7.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-answer-8-8",
+     "tag": "div",
+     "id": "activity-answer-8-8",
+     "cls": "small-activity-button unit8-activity-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.4967,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-footprints-answer-display",
+       "id": "activity-answer-8-8-display",
+       "path": "#activity-answer-8-8-display",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/footprints-answer-2-img.png",
+       "rect": [
+        0.4,
+        0.255,
+        0.1889,
+        0.4
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-answer-8-8.mp3",
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#activity-answer-8-9",
+     "tag": "div",
+     "id": "activity-answer-8-9",
+     "cls": "small-activity-button unit8-activity-answer",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8189,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "listen-answer-display unit8-footprints-answer-display",
+       "id": "activity-answer-8-9-display",
+       "path": "#activity-answer-8-9-display",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry1/images/unit8/footprints-answer-3-img.png",
+       "rect": [
+        0.7333,
+        0.255,
+        0.1889,
+        0.4
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry1/audio/unit8/activity-answer-8-9.mp3",
+       "rect": null
+      }
+     ]
+    }
+   ],
+   "layers": [
+    {
+     "path": "div:0>div:0>div:8>div:8>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/footprints-answer-1-img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:8>div:9>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/footprints-answer-2-img.png",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:8>div:10>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry1/images/unit8/footprints-answer-3-img.png",
+     "visible": false,
+     "rect": null
+    }
+   ],
+   "elements": {
+    "div:0>div:0>div:8>div:0": {
+     "id": "",
+     "tag": "div",
+     "cls": "back-button",
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "1",
+     "text": ""
+    },
+    "div:0>div:0>div:8>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.9663,
+      0.02,
+      0.0401,
+      0.11
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "X"
+    },
+    "#activity-audio-8-27": {
+     "id": "activity-audio-8-27",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.1111,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-28": {
+     "id": "activity-audio-8-28",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.4389,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-audio-8-29": {
+     "id": "activity-audio-8-29",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-audio",
+     "rect": [
+      0.7611,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-7": {
+     "id": "activity-answer-8-7",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-answer",
+     "rect": [
+      0.1689,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-8": {
+     "id": "activity-answer-8-8",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-answer",
+     "rect": [
+      0.4967,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-9": {
+     "id": "activity-answer-8-9",
+     "tag": "div",
+     "cls": "small-activity-button unit8-activity-answer",
+     "rect": [
+      0.8189,
+      0.735,
+      0.0555,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#activity-answer-8-7-display": {
+     "id": "activity-answer-8-7-display",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-footprints-answer-display",
+     "rect": [
+      0.0667,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": "rgb(255, 255, 255)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:8>div:8>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.0667,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/footprints-answer-1-img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#activity-answer-8-8-display": {
+     "id": "activity-answer-8-8-display",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-footprints-answer-display",
+     "rect": [
+      0.4,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": "rgb(255, 255, 255)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:8>div:9>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.4,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/footprints-answer-2-img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#activity-answer-8-9-display": {
+     "id": "activity-answer-8-9-display",
+     "tag": "div",
+     "cls": "listen-answer-display unit8-footprints-answer-display",
+     "rect": [
+      0.7333,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": true,
+     "img": null,
+     "bg": "rgb(255, 255, 255)",
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:8>div:10>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.7333,
+      0.255,
+      0.1889,
+      0.4
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry1/images/unit8/footprints-answer-3-img.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    }
+   }
+  }
+ ]
+}

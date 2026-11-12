@@ -1,0 +1,3711 @@
+{
+ "unit": "2-9",
+ "title": "Let's Try Plip 2",
+ "screens": [
+  {
+   "path": "#unit9-page1",
+   "cls": "main-image unit9-page1",
+   "id": "unit9-page1",
+   "image": "/letstrydata/letstry2/images/unit9/unit9-1.png",
+   "natural": [
+    1518,
+    1072
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "#book-page-1",
+     "tag": "div",
+     "id": "book-page-1",
+     "cls": "picture-book-select picture-book-select-half",
+     "text": "",
+     "href": null,
+     "data": {
+      "origin": "unit9-page1",
+      "back": "book-page-1",
+      "next": "book-page-2"
+     },
+     "rect": [
+      0.0555,
+      0.05,
+      0.4444,
+      0.9
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "#picture-book-page-image",
+       "src": "/letstrydata/letstry2/images/unit9/book-page-1.png",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio picture-book-audio-player",
+       "path": "div:0>div:0>div:4>audio:6",
+       "src": "/letstrydata/letstry2/audio/unit9/book-page-1.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page1 closed",
+       "id": "unit9-page1",
+       "path": "#unit9-page1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-1.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit9-book-view",
+       "id": "",
+       "path": "div:0>div:0>div:4",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/book-viewer.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#book-page-2",
+     "tag": "div",
+     "id": "book-page-2",
+     "cls": "picture-book-select picture-book-select-half",
+     "text": "",
+     "href": null,
+     "data": {
+      "origin": "unit9-page1",
+      "back": "book-page-1",
+      "next": "book-page-3"
+     },
+     "rect": [
+      0.5,
+      0.05,
+      0.4444,
+      0.9
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "#picture-book-page-image",
+       "src": "/letstrydata/letstry2/images/unit9/book-page-2.png",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio picture-book-audio-player",
+       "path": "div:0>div:0>div:4>audio:6",
+       "src": "/letstrydata/letstry2/audio/unit9/book-page-2.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page1 closed",
+       "id": "unit9-page1",
+       "path": "#unit9-page1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-1.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit9-book-view",
+       "id": "",
+       "path": "div:0>div:0>div:4",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/book-viewer.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-1",
+     "tag": "div",
+     "id": "audio-9-1",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1889,
+      0.25,
+      0.2,
+      0.18
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-1.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-2",
+     "tag": "div",
+     "id": "audio-9-2",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1667,
+      0.85,
+      0.1556,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-2.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-3",
+     "tag": "div",
+     "id": "audio-9-3",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1555,
+      0.48,
+      0.1444,
+      0.1
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-3.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-4",
+     "tag": "div",
+     "id": "audio-9-4",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6111,
+      0.773,
+      0.2111,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-4.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-5",
+     "tag": "div",
+     "id": "audio-9-5",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6889,
+      0.05,
+      0.1111,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-5.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-6",
+     "tag": "div",
+     "id": "audio-9-6",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6111,
+      0.825,
+      0.2222,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-6.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-7",
+     "tag": "div",
+     "id": "audio-9-7",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6444,
+      0.32,
+      0.1222,
+      0.09
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-7.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-8",
+     "tag": "div",
+     "id": "audio-9-8",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6111,
+      0.876,
+      0.2778,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-8.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#unit9-page1-last",
+     "tag": "a",
+     "id": "unit9-page1-last",
+     "cls": "pages-button page-last",
+     "text": "",
+     "href": "/letstry2-8",
+     "data": {},
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#unit9-page1-next",
+     "tag": "div",
+     "id": "unit9-page1-next",
+     "cls": "pages-button page-next turn-pages-button",
+     "text": "",
+     "href": null,
+     "data": {
+      "target": "unit9-page2",
+      "origin": "unit9-page1"
+     },
+     "rect": [
+      0.9444,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page1 closed",
+       "id": "unit9-page1",
+       "path": "#unit9-page1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-1.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page2",
+       "id": "unit9-page2",
+       "path": "#unit9-page2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-2.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    }
+   ],
+   "layers": [],
+   "elements": {
+    "#book-page-1": {
+     "id": "book-page-1",
+     "tag": "div",
+     "cls": "picture-book-select picture-book-select-half",
+     "rect": [
+      0.0555,
+      0.05,
+      0.4444,
+      0.9
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#book-page-2": {
+     "id": "book-page-2",
+     "tag": "div",
+     "cls": "picture-book-select picture-book-select-half",
+     "rect": [
+      0.5,
+      0.05,
+      0.4444,
+      0.9
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-1": {
+     "id": "audio-9-1",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.1889,
+      0.25,
+      0.2,
+      0.18
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-2": {
+     "id": "audio-9-2",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.1667,
+      0.85,
+      0.1556,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-3": {
+     "id": "audio-9-3",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.1555,
+      0.48,
+      0.1444,
+      0.1
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-4": {
+     "id": "audio-9-4",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.6111,
+      0.773,
+      0.2111,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-5": {
+     "id": "audio-9-5",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.6889,
+      0.05,
+      0.1111,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-6": {
+     "id": "audio-9-6",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.6111,
+      0.825,
+      0.2222,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-7": {
+     "id": "audio-9-7",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.6444,
+      0.32,
+      0.1222,
+      0.09
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-8": {
+     "id": "audio-9-8",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.6111,
+      0.876,
+      0.2778,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#unit9-page1-last": {
+     "id": "unit9-page1-last",
+     "tag": "a",
+     "cls": "pages-button page-last",
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#unit9-page1-next": {
+     "id": "unit9-page1-next",
+     "tag": "div",
+     "cls": "pages-button page-next turn-pages-button",
+     "rect": [
+      0.9444,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "#unit9-page2",
+   "cls": "main-image unit9-page2",
+   "id": "unit9-page2",
+   "image": "/letstrydata/letstry2/images/unit9/unit9-2.png",
+   "natural": [
+    1518,
+    1072
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "#book-page-3",
+     "tag": "div",
+     "id": "book-page-3",
+     "cls": "picture-book-select picture-book-select-half",
+     "text": "",
+     "href": null,
+     "data": {
+      "origin": "unit9-page2",
+      "back": "book-page-2",
+      "next": "book-page-4"
+     },
+     "rect": [
+      0.0555,
+      0.05,
+      0.4444,
+      0.9
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "#picture-book-page-image",
+       "src": "/letstrydata/letstry2/images/unit9/book-page-3.png",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio picture-book-audio-player",
+       "path": "div:0>div:0>div:4>audio:6",
+       "src": "/letstrydata/letstry2/audio/unit9/book-page-3.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page2 closed",
+       "id": "unit9-page2",
+       "path": "#unit9-page2",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-2.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit9-book-view",
+       "id": "",
+       "path": "div:0>div:0>div:4",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/book-viewer.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#book-page-4",
+     "tag": "div",
+     "id": "book-page-4",
+     "cls": "picture-book-select picture-book-select-half",
+     "text": "",
+     "href": null,
+     "data": {
+      "origin": "unit9-page2",
+      "back": "book-page-3",
+      "next": "book-page-5"
+     },
+     "rect": [
+      0.5,
+      0.05,
+      0.4444,
+      0.9
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "#picture-book-page-image",
+       "src": "/letstrydata/letstry2/images/unit9/book-page-4.png",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio picture-book-audio-player",
+       "path": "div:0>div:0>div:4>audio:6",
+       "src": "/letstrydata/letstry2/audio/unit9/book-page-4.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page2 closed",
+       "id": "unit9-page2",
+       "path": "#unit9-page2",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-2.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit9-book-view",
+       "id": "",
+       "path": "div:0>div:0>div:4",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/book-viewer.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-9",
+     "tag": "div",
+     "id": "audio-9-9",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1,
+      0.773,
+      0.2278,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-9.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-10",
+     "tag": "div",
+     "id": "audio-9-10",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1222,
+      0.04,
+      0.1333,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-10.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-11",
+     "tag": "div",
+     "id": "audio-9-11",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.0278,
+      0.2,
+      0.1278,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-11.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-12",
+     "tag": "div",
+     "id": "audio-9-12",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1,
+      0.825,
+      0.3055,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-12.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-13",
+     "tag": "div",
+     "id": "audio-9-13",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.2167,
+      0.4,
+      0.2611,
+      0.11
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-13.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-14",
+     "tag": "div",
+     "id": "audio-9-14",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1,
+      0.876,
+      0.2444,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-14.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-15",
+     "tag": "div",
+     "id": "audio-9-15",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6389,
+      0.04,
+      0.1444,
+      0.1
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-15.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-16",
+     "tag": "div",
+     "id": "audio-9-16",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6,
+      0.825,
+      0.3055,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-16.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-17",
+     "tag": "div",
+     "id": "audio-9-17",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.7778,
+      0.2,
+      0.1,
+      0.075
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-17.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-18",
+     "tag": "div",
+     "id": "audio-9-18",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.8889,
+      0.32,
+      0.1111,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-18.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-19",
+     "tag": "div",
+     "id": "audio-9-19",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.5333,
+      0.515,
+      0.1556,
+      0.085
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-19.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-20",
+     "tag": "div",
+     "id": "audio-9-20",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.7667,
+      0.535,
+      0.0667,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-20.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-21",
+     "tag": "div",
+     "id": "audio-9-21",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6,
+      0.876,
+      0.2778,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-21.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#unit9-page2-last",
+     "tag": "div",
+     "id": "unit9-page2-last",
+     "cls": "pages-button page-last turn-pages-button",
+     "text": "",
+     "href": null,
+     "data": {
+      "target": "unit9-page1",
+      "origin": "unit9-page2"
+     },
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page2 closed",
+       "id": "unit9-page2",
+       "path": "#unit9-page2",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-2.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page1",
+       "id": "unit9-page1",
+       "path": "#unit9-page1",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-1.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#unit9-page2-next",
+     "tag": "div",
+     "id": "unit9-page2-next",
+     "cls": "pages-button page-next turn-pages-button",
+     "text": "",
+     "href": null,
+     "data": {
+      "target": "unit9-page3",
+      "origin": "unit9-page2"
+     },
+     "rect": [
+      0.9444,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page2 closed",
+       "id": "unit9-page2",
+       "path": "#unit9-page2",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-2.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page3",
+       "id": "unit9-page3",
+       "path": "#unit9-page3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-3.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    }
+   ],
+   "layers": [],
+   "elements": {
+    "#book-page-3": {
+     "id": "book-page-3",
+     "tag": "div",
+     "cls": "picture-book-select picture-book-select-half",
+     "rect": [
+      0.0555,
+      0.05,
+      0.4444,
+      0.9
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#book-page-4": {
+     "id": "book-page-4",
+     "tag": "div",
+     "cls": "picture-book-select picture-book-select-half",
+     "rect": [
+      0.5,
+      0.05,
+      0.4444,
+      0.9
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-9": {
+     "id": "audio-9-9",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.1,
+      0.773,
+      0.2278,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-10": {
+     "id": "audio-9-10",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.1222,
+      0.04,
+      0.1333,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-11": {
+     "id": "audio-9-11",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.0278,
+      0.2,
+      0.1278,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-12": {
+     "id": "audio-9-12",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.1,
+      0.825,
+      0.3055,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-13": {
+     "id": "audio-9-13",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.2167,
+      0.4,
+      0.2611,
+      0.11
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-14": {
+     "id": "audio-9-14",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.1,
+      0.876,
+      0.2444,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-15": {
+     "id": "audio-9-15",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.6389,
+      0.04,
+      0.1444,
+      0.1
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-16": {
+     "id": "audio-9-16",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.6,
+      0.825,
+      0.3055,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-17": {
+     "id": "audio-9-17",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.7778,
+      0.2,
+      0.1,
+      0.075
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-18": {
+     "id": "audio-9-18",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.8889,
+      0.32,
+      0.1111,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-19": {
+     "id": "audio-9-19",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.5333,
+      0.515,
+      0.1556,
+      0.085
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-20": {
+     "id": "audio-9-20",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.7667,
+      0.535,
+      0.0667,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-21": {
+     "id": "audio-9-21",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.6,
+      0.876,
+      0.2778,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#unit9-page2-last": {
+     "id": "unit9-page2-last",
+     "tag": "div",
+     "cls": "pages-button page-last turn-pages-button",
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#unit9-page2-next": {
+     "id": "unit9-page2-next",
+     "tag": "div",
+     "cls": "pages-button page-next turn-pages-button",
+     "rect": [
+      0.9444,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "#unit9-page3",
+   "cls": "main-image unit9-page3",
+   "id": "unit9-page3",
+   "image": "/letstrydata/letstry2/images/unit9/unit9-3.png",
+   "natural": [
+    1518,
+    1072
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "#book-page-5",
+     "tag": "div",
+     "id": "book-page-5",
+     "cls": "picture-book-select picture-book-select-full",
+     "text": "",
+     "href": null,
+     "data": {
+      "origin": "unit9-page3",
+      "back": "book-page-4",
+      "next": "book-page-6"
+     },
+     "rect": [
+      0.0555,
+      0.05,
+      0.8889,
+      0.9
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "#picture-book-page-image",
+       "src": "/letstrydata/letstry2/images/unit9/book-page-5.png",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio picture-book-audio-player",
+       "path": "div:0>div:0>div:4>audio:6",
+       "src": "/letstrydata/letstry2/audio/unit9/book-page-5.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page3 closed",
+       "id": "unit9-page3",
+       "path": "#unit9-page3",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-3.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit9-book-view",
+       "id": "",
+       "path": "div:0>div:0>div:4",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/book-viewer.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-22",
+     "tag": "div",
+     "id": "audio-9-22",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1667,
+      0.85,
+      0.1556,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-22.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-23",
+     "tag": "div",
+     "id": "audio-9-23",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.3722,
+      0.145,
+      0.0778,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-23.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-24",
+     "tag": "div",
+     "id": "audio-9-24",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6556,
+      0.2,
+      0.1444,
+      0.1
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-24.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-25",
+     "tag": "div",
+     "id": "audio-9-25",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.6111,
+      0.87,
+      0.2667,
+      0.055
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-25.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#unit9-page3-last",
+     "tag": "div",
+     "id": "unit9-page3-last",
+     "cls": "pages-button page-last turn-pages-button",
+     "text": "",
+     "href": null,
+     "data": {
+      "target": "unit9-page2",
+      "origin": "unit9-page3"
+     },
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page3 closed",
+       "id": "unit9-page3",
+       "path": "#unit9-page3",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-3.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page2",
+       "id": "unit9-page2",
+       "path": "#unit9-page2",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-2.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#unit9-page3-next",
+     "tag": "div",
+     "id": "unit9-page3-next",
+     "cls": "pages-button page-next turn-pages-button",
+     "text": "",
+     "href": null,
+     "data": {
+      "target": "unit9-page4",
+      "origin": "unit9-page3"
+     },
+     "rect": [
+      0.9444,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page3 closed",
+       "id": "unit9-page3",
+       "path": "#unit9-page3",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-3.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page4",
+       "id": "unit9-page4",
+       "path": "#unit9-page4",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-4.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    }
+   ],
+   "layers": [],
+   "elements": {
+    "#book-page-5": {
+     "id": "book-page-5",
+     "tag": "div",
+     "cls": "picture-book-select picture-book-select-full",
+     "rect": [
+      0.0555,
+      0.05,
+      0.8889,
+      0.9
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-22": {
+     "id": "audio-9-22",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.1667,
+      0.85,
+      0.1556,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-23": {
+     "id": "audio-9-23",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.3722,
+      0.145,
+      0.0778,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-24": {
+     "id": "audio-9-24",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.6556,
+      0.2,
+      0.1444,
+      0.1
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-25": {
+     "id": "audio-9-25",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.6111,
+      0.87,
+      0.2667,
+      0.055
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#unit9-page3-last": {
+     "id": "unit9-page3-last",
+     "tag": "div",
+     "cls": "pages-button page-last turn-pages-button",
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#unit9-page3-next": {
+     "id": "unit9-page3-next",
+     "tag": "div",
+     "cls": "pages-button page-next turn-pages-button",
+     "rect": [
+      0.9444,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "#unit9-page4",
+   "cls": "main-image unit9-page4",
+   "id": "unit9-page4",
+   "image": "/letstrydata/letstry2/images/unit9/unit9-4.png",
+   "natural": [
+    1518,
+    1072
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "#book-page-6",
+     "tag": "div",
+     "id": "book-page-6",
+     "cls": "picture-book-select picture-book-select-half",
+     "text": "",
+     "href": null,
+     "data": {
+      "origin": "unit9-page4",
+      "back": "book-page-5",
+      "next": "book-page-6"
+     },
+     "rect": [
+      0.0555,
+      0.05,
+      0.4444,
+      0.9
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "#picture-book-page-image",
+       "src": "/letstrydata/letstry2/images/unit9/book-page-6.png",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio picture-book-audio-player",
+       "path": "div:0>div:0>div:4>audio:6",
+       "src": "/letstrydata/letstry2/audio/unit9/book-page-6.mp3",
+       "rect": [
+        Infinity,
+        Infinity,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page4 closed",
+       "id": "unit9-page4",
+       "path": "#unit9-page4",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-4.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "page-image unit9-book-view",
+       "id": "",
+       "path": "div:0>div:0>div:4",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/book-viewer.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      },
+      {
+       "kind": "class",
+       "tag": "a",
+       "cls": "contents-return-button closed",
+       "id": "",
+       "path": "div:0>a:1",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": null,
+       "rect": null
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-26",
+     "tag": "div",
+     "id": "audio-9-26",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.0667,
+      0.825,
+      0.3055,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-26.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-27",
+     "tag": "div",
+     "id": "audio-9-27",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.0222,
+      0.04,
+      0.1222,
+      0.08
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-27.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-28",
+     "tag": "div",
+     "id": "audio-9-28",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1889,
+      0.15,
+      0.0778,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-28.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-29",
+     "tag": "div",
+     "id": "audio-9-29",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.0667,
+      0.876,
+      0.3667,
+      0.05
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-29.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-30",
+     "tag": "div",
+     "id": "audio-9-30",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.2667,
+      0.175,
+      0.1111,
+      0.065
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-30.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#audio-9-31",
+     "tag": "div",
+     "id": "audio-9-31",
+     "cls": "picture-book-audio",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.1944,
+      0.335,
+      0.1556,
+      0.22
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "wat-audio-window main-audio-window",
+       "id": "",
+       "path": "div:0>div:3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": null,
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.2
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio main-audio-player",
+       "path": "div:0>div:3>audio:0",
+       "src": "/letstrydata/letstry2/audio/unit9/audio-9-31.mp3",
+       "rect": [
+        0.3333,
+        0.1,
+        0.3333,
+        0.1
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#unit9-page4-last",
+     "tag": "div",
+     "id": "unit9-page4-last",
+     "cls": "pages-button page-last turn-pages-button",
+     "text": "",
+     "href": null,
+     "data": {
+      "target": "unit9-page3",
+      "origin": "unit9-page4"
+     },
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page4 closed",
+       "id": "unit9-page4",
+       "path": "#unit9-page4",
+       "added": [
+        "closed"
+       ],
+       "removed": [],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-4.png",
+       "rect": null
+      },
+      {
+       "kind": "class",
+       "tag": "div",
+       "cls": "main-image unit9-page3",
+       "id": "unit9-page3",
+       "path": "#unit9-page3",
+       "added": [],
+       "removed": [
+        "closed"
+       ],
+       "img": "/letstrydata/letstry2/images/unit9/unit9-3.png",
+       "rect": [
+        Infinity,
+        NaN,
+        Infinity,
+        Infinity
+       ]
+      }
+     ]
+    }
+   ],
+   "layers": [],
+   "elements": {
+    "#book-page-6": {
+     "id": "book-page-6",
+     "tag": "div",
+     "cls": "picture-book-select picture-book-select-half",
+     "rect": [
+      0.0555,
+      0.05,
+      0.4444,
+      0.9
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-26": {
+     "id": "audio-9-26",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.0667,
+      0.825,
+      0.3055,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-27": {
+     "id": "audio-9-27",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.0222,
+      0.04,
+      0.1222,
+      0.08
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-28": {
+     "id": "audio-9-28",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.1889,
+      0.15,
+      0.0778,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-29": {
+     "id": "audio-9-29",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.0667,
+      0.876,
+      0.3667,
+      0.05
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-30": {
+     "id": "audio-9-30",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.2667,
+      0.175,
+      0.1111,
+      0.065
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#audio-9-31": {
+     "id": "audio-9-31",
+     "tag": "div",
+     "cls": "picture-book-audio",
+     "rect": [
+      0.1944,
+      0.335,
+      0.1556,
+      0.22
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "8px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#unit9-page4-last": {
+     "id": "unit9-page4-last",
+     "tag": "div",
+     "cls": "pages-button page-last turn-pages-button",
+     "rect": [
+      -0.0111,
+      0.88,
+      0.0667,
+      0.12
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    }
+   }
+  },
+  {
+   "path": "div:0>div:0>div:4",
+   "cls": "page-image unit9-book-view",
+   "id": "",
+   "image": "/letstrydata/letstry2/images/unit9/book-viewer.png",
+   "natural": [
+    1724,
+    1080
+   ],
+   "imgRect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "hotspots": [
+    {
+     "path": "div:0>div:0>div:4>div:0",
+     "tag": "div",
+     "id": "",
+     "cls": "back-button unit9-book-view-back",
+     "text": "X",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "isClose": true,
+     "innerImg": null,
+     "effects": []
+    },
+    {
+     "path": "#book-page-back",
+     "tag": "div",
+     "id": "book-page-back",
+     "cls": "wide-activity-button unit9-book-control",
+     "text": "",
+     "href": null,
+     "data": {
+      "target": "book-page-5"
+     },
+     "rect": [
+      0.1444,
+      0.91,
+      0.1111,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "#picture-book-page-image",
+       "src": "/letstrydata/letstry2/images/unit9/book-page-5.png",
+       "rect": [
+        0.1667,
+        0.12,
+        0.6667,
+        0.78
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio picture-book-audio-player",
+       "path": "div:0>div:0>div:4>audio:6",
+       "src": "/letstrydata/letstry2/audio/unit9/book-page-5.mp3",
+       "rect": [
+        0.2778,
+        0.915,
+        0.4444,
+        0.07
+       ]
+      }
+     ]
+    },
+    {
+     "path": "#book-page-next",
+     "tag": "div",
+     "id": "book-page-next",
+     "cls": "wide-activity-button unit9-book-control",
+     "text": "",
+     "href": null,
+     "data": {
+      "target": "book-page-6"
+     },
+     "rect": [
+      0.7467,
+      0.91,
+      0.1111,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": [
+      {
+       "kind": "src",
+       "tag": "img",
+       "cls": "",
+       "path": "#picture-book-page-image",
+       "src": "/letstrydata/letstry2/images/unit9/book-page-6.png",
+       "rect": [
+        0.3269,
+        0.12,
+        0.3461,
+        0.78
+       ]
+      },
+      {
+       "kind": "src",
+       "tag": "audio",
+       "cls": "wat-audio picture-book-audio-player",
+       "path": "div:0>div:0>div:4>audio:6",
+       "src": "/letstrydata/letstry2/audio/unit9/book-page-6.mp3",
+       "rect": [
+        0.2778,
+        0.915,
+        0.4444,
+        0.07
+       ]
+      }
+     ]
+    },
+    {
+     "path": "div:0>div:0>div:4>audio:6",
+     "tag": "audio",
+     "id": "",
+     "cls": "wat-audio picture-book-audio-player",
+     "text": "",
+     "href": null,
+     "data": {},
+     "rect": [
+      0.2778,
+      0.915,
+      0.4444,
+      0.07
+     ],
+     "isClose": false,
+     "innerImg": null,
+     "effects": []
+    }
+   ],
+   "layers": [
+    {
+     "path": "#picture-book-page-image",
+     "tag": "img",
+     "cls": "",
+     "id": "picture-book-page-image",
+     "src": "",
+     "visible": false,
+     "rect": null
+    },
+    {
+     "path": "div:0>div:0>div:4>div:3>img:0",
+     "tag": "img",
+     "cls": "",
+     "id": "",
+     "src": "/letstrydata/letstry2/images/unit9/control-bar.png",
+     "visible": true,
+     "rect": [
+      0.1389,
+      0.91,
+      0.7222,
+      0.07
+     ]
+    },
+    {
+     "path": "div:0>div:0>div:4>audio:6",
+     "tag": "audio",
+     "cls": "wat-audio picture-book-audio-player",
+     "id": "",
+     "src": "",
+     "visible": true,
+     "rect": [
+      0.2778,
+      0.915,
+      0.4444,
+      0.07
+     ]
+    }
+   ],
+   "elements": {
+    "div:0>div:0>div:4>div:0": {
+     "id": "",
+     "tag": "div",
+     "cls": "back-button unit9-book-view-back",
+     "rect": [
+      0.9394,
+      0,
+      0.094,
+      0.15
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": "rgb(255, 165, 0)",
+     "bgImg": null,
+     "radius": "10px",
+     "opacity": "1",
+     "z": "1",
+     "text": ""
+    },
+    "div:0>div:0>div:4>div:0>span:0": {
+     "id": "",
+     "tag": "span",
+     "cls": "",
+     "rect": [
+      0.9663,
+      0.02,
+      0.0401,
+      0.11
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": "X"
+    },
+    "div:0>div:0>div:4>div:2": {
+     "id": "",
+     "tag": "div",
+     "cls": "picture-book-page-view-window",
+     "rect": [
+      0.1667,
+      0.12,
+      0.6667,
+      0.78
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:4>div:3": {
+     "id": "",
+     "tag": "div",
+     "cls": "book-view-control-bar",
+     "rect": [
+      0.1389,
+      0.91,
+      0.7222,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "div:0>div:0>div:4>div:3>img:0": {
+     "id": "",
+     "tag": "img",
+     "cls": "",
+     "rect": [
+      0.1389,
+      0.91,
+      0.7222,
+      0.07
+     ],
+     "hidden": false,
+     "img": "/letstrydata/letstry2/images/unit9/control-bar.png",
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    },
+    "#book-page-back": {
+     "id": "book-page-back",
+     "tag": "div",
+     "cls": "wide-activity-button unit9-book-control",
+     "rect": [
+      0.1444,
+      0.91,
+      0.1111,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "#book-page-next": {
+     "id": "book-page-next",
+     "tag": "div",
+     "cls": "wide-activity-button unit9-book-control",
+     "rect": [
+      0.7467,
+      0.91,
+      0.1111,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "2",
+     "text": ""
+    },
+    "div:0>div:0>div:4>audio:6": {
+     "id": "",
+     "tag": "audio",
+     "cls": "wat-audio picture-book-audio-player",
+     "rect": [
+      0.2778,
+      0.915,
+      0.4444,
+      0.07
+     ],
+     "hidden": false,
+     "img": null,
+     "bg": null,
+     "bgImg": null,
+     "radius": "0px",
+     "opacity": "1",
+     "z": "auto",
+     "text": ""
+    }
+   }
+  }
+ ]
+}

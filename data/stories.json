@@ -1,0 +1,88 @@
+{
+ "stories": [
+  {
+   "id": "autumn",
+   "title": "In the Autumn Forest",
+   "size": [
+    457,
+    320
+   ],
+   "pages": [
+    "media/stories/autumn/img1.webp",
+    "media/stories/autumn/img2.webp",
+    "media/stories/autumn/img3.webp",
+    "media/stories/autumn/img4.webp",
+    "media/stories/autumn/img5.webp",
+    "media/stories/autumn/img6.webp",
+    "media/stories/autumn/img7.webp",
+    "media/stories/autumn/img8.webp",
+    "media/stories/autumn/img9.webp",
+    "media/stories/autumn/img10.webp",
+    "media/stories/autumn/img11.webp",
+    "media/stories/autumn/img12.webp",
+    "media/stories/autumn/img13.webp",
+    "media/stories/autumn/img14.webp",
+    "media/stories/autumn/img15.webp",
+    "media/stories/autumn/img16.webp",
+    "media/stories/autumn/img17.webp",
+    "media/stories/autumn/img18.webp",
+    "media/stories/autumn/img19.webp",
+    "media/stories/autumn/img20.webp",
+    "media/stories/autumn/img21.webp",
+    "media/stories/autumn/img22.webp",
+    "media/stories/autumn/img23.webp",
+    "media/stories/autumn/img24.webp",
+    "media/stories/autumn/img25.webp",
+    "media/stories/autumn/img26.webp",
+    "media/stories/autumn/img27.webp",
+    "media/stories/autumn/img28.webp",
+    "media/stories/autumn/img29.webp",
+    "media/stories/autumn/img30.webp",
+    "media/stories/autumn/img31.webp",
+    "media/stories/autumn/img32.webp"
+   ]
+  },
+  {
+   "id": "morning",
+   "title": "Good Morning",
+   "size": [
+    457,
+    320
+   ],
+   "pages": [
+    "media/stories/morning/img1.webp",
+    "media/stories/morning/img2.webp",
+    "media/stories/morning/img3.webp",
+    "media/stories/morning/img4.webp",
+    "media/stories/morning/img5.webp",
+    "media/stories/morning/img6.webp",
+    "media/stories/morning/img7.webp",
+    "media/stories/morning/img8.webp",
+    "media/stories/morning/img9.webp",
+    "media/stories/morning/img10.webp",
+    "media/stories/morning/img11.webp",
+    "media/stories/morning/img12.webp",
+    "media/stories/morning/img13.webp",
+    "media/stories/morning/img14.webp",
+    "media/stories/morning/img15.webp",
+    "media/stories/morning/img16.webp",
+    "media/stories/morning/img17.webp",
+    "media/stories/morning/img18.webp",
+    "media/stories/morning/img19.webp",
+    "media/stories/morning/img20.webp",
+    "media/stories/morning/img21.webp",
+    "media/stories/morning/img22.webp",
+    "media/stories/morning/img23.webp",
+    "media/stories/morning/img24.webp",
+    "media/stories/morning/img25.webp",
+    "media/stories/morning/img26.webp",
+    "media/stories/morning/img27.webp",
+    "media/stories/morning/img28.webp",
+    "media/stories/morning/img29.webp",
+    "media/stories/morning/img30.webp",
+    "media/stories/morning/img31.webp",
+    "media/stories/morning/img32.webp"
+   ]
+  }
+ ]
+}
