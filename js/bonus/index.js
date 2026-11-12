@@ -12,6 +12,9 @@ const DEFS = {
   cardmaker: { label: "b_cardmaker", icon: "shapes", load: () => import("./cardmaker.js") },
   weather: { label: "b_weather", icon: "sun", load: () => import("./weather.js") },
   clock: { label: "b_clock", icon: "timer", load: () => import("./clock.js") },
+  pencilcase: { label: "b_pencilcase", icon: "pouch", load: () => import("./pencilcase.js") },
+  parfait: { label: "b_parfait", icon: "parfait", load: () => import("./parfait.js") },
+  gettingaround: { label: "b_gettingaround", icon: "route", load: () => import("./gettingaround.js") },
   hidden: { label: "b_hidden", icon: "search", url: `${GAMES}/hiddenletters/` },
   "poll:colors": { label: "b_poll_colors", icon: "poll", url: `${GAMES}/poll/#colors` },
   "poll:fruits": { label: "b_poll_fruits", icon: "poll", url: `${GAMES}/poll/#fruits` },
@@ -22,11 +25,20 @@ const DEFS = {
 };
 const BY_UNIT = {
   lt1: { 2: ["feelings"], 3: ["howmany"], 4: ["poll:colors"], 5: ["poll:fruits", "poll:sports", "poll:animals"], 6: ["hidden"], 7: ["cardmaker"] },
-  lt2: { 2: ["weather"], 3: ["poll:days"], 4: ["clock"], 7: ["poll:fruits", "poll:vegetables"] },
+  lt2: { 2: ["weather"], 3: ["poll:days"], 4: ["clock"], 5: ["pencilcase"], 7: ["parfait", "poll:fruits", "poll:vegetables"], 8: ["gettingaround"] },
 };
+// Vocabulary games: every unit gets all five, opening with that unit's words
+export const WORD_GAMES = {
+  flashcards: { label: "g_flashcards", icon: "cards", load: () => import("./flashcards.js") },
+  mystery: { label: "g_mystery", icon: "question", load: () => import("./mystery.js") },
+  memory: { label: "g_memory", icon: "pairs", load: () => import("./memory.js") },
+  flashgame: { label: "g_flashgame", icon: "bolt", load: () => import("./flashgame.js") },
+  soundmatch: { label: "g_soundmatch", icon: "ear", load: () => import("./soundmatch.js") },
+};
+export const wordGamesFor = (bookId, unit) => Object.entries(WORD_GAMES).map(([id, d]) => ({ id, ...d, ctx: { book: bookId, unit } }));
 
 export function bonusFor(bookId, unit) {
-  return (BY_UNIT[bookId] && BY_UNIT[bookId][unit] || []).map(id => ({ id, ...DEFS[id] }));
+  return (BY_UNIT[bookId] && BY_UNIT[bookId][unit] || []).map(id => ({ id, ...DEFS[id], ctx: { book: bookId, unit } }));
 }
 export const bonusLabel = d => t(d.label);
 
@@ -35,7 +47,7 @@ export async function openBonus(d) {
   const title = h("h2", { class: "btitle" }, t(d.label));
   const tools = h("div", { class: "btools" });
   const stage = h("div", { class: "bstage" });
-  const root = h("div", { class: "bonus" }, h("div", { class: "bhead" }, title, tools), stage);
+  const root = h("div", { class: "bonus b-" + (d.id || "x") }, h("div", { class: "bhead" }, title, tools), stage);
   let destroy = () => {};
   openLayer(root, { onClose: () => { destroy(); } });
   if (d.url) {
@@ -51,7 +63,7 @@ export async function openBonus(d) {
   try {
     const mod = await d.load();
     stage.replaceChildren();
-    destroy = mod.mount(stage, { tools, title }) || destroy;
+    destroy = (await mod.mount(stage, { tools, title, ctx: d.ctx })) || destroy;
   } catch (e) {
     console.error(e);
     stage.replaceChildren(h("p", { class: "bnote" }, t("loadErr")));

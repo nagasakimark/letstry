@@ -17,6 +17,8 @@ for name in ("lt1", "lt2", "stories"):
     walk(d, files)
     if name != "stories":
         files |= {f"media/thumbs/{name}-u{u}.webp" for u in range(1, 10)}
+        # the word games, pencil case, parfait and getting-around pictures and sounds
+        walk(json.load(open(os.path.join(ROOT, "data", "words.json"))), files)
     else:
         files.add("media/thumbs/stories.webp")
     # the interface fonts, so Japanese text looks right with no connection

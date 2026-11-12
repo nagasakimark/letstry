@@ -1,0 +1,70 @@
+{
+ "stationery": [
+  "magnet"
+ ],
+ "sports": [
+  "archery",
+  "boxing",
+  "canoe",
+  "climbing",
+  "football"
+ ],
+ "things": [
+  "letter",
+  "postbox"
+ ],
+ "describe": [
+  "furry",
+  "round",
+  "scary",
+  "shiny"
+ ],
+ "countries": [
+  "america",
+  "australia",
+  "brazil",
+  "canada",
+  "china",
+  "egypt",
+  "france",
+  "germany",
+  "ghana",
+  "india",
+  "italy",
+  "japan",
+  "kenya",
+  "korea",
+  "mongolia",
+  "morocco",
+  "norway",
+  "peru",
+  "russia",
+  "singapore",
+  "spain",
+  "sweden",
+  "thailand",
+  "turkey",
+  "u.k.",
+  "vietnam",
+  "finland"
+ ],
+ "clothes": [
+  "shorts"
+ ],
+ "times": [
+  "dream time"
+ ],
+ "daily": [
+  "check my schoolbag",
+  "leave my house",
+  "put away my futon",
+  "wash my face"
+ ],
+ "school": [
+  "arts and crafts room",
+  "cooking room",
+  "lunch room",
+  "school office",
+  "science room"
+ ]
+}
