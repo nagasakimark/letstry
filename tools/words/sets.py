@@ -42,7 +42,7 @@ ALIASES = {
     "teachers office": "teachers_ office", "teachers office.": "teachers_ office",
     "wake up time": "get up", "breakfast time": "breakfast", "lunch time": "lunch", "snack time": "snack",
     "homework time": "do my homework", "dinner time": "dinner", "bath time": "take a bath", "bed time": "go to bed",
-    "finish my dinner": "have dinner", "study time": "study english", "u.k.": None, "shorts": None,
+    "finish my dinner": "have dinner", "study time": "study english", "u.k.": None, "shorts": None, "football": "soccer",
 }
 # Which picture folder to prefer when a name appears in several (e.g. "orange" the fruit vs the colour).
 PREFER = {
