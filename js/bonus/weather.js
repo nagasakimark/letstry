@@ -11,6 +11,16 @@ const s = (tag, attrs = {}, ...kids) => {
   return el;
 };
 const KINDS = ["sunny", "cloudy", "rainy", "snowy"];
+const MAP = { w: 1536, h: 1024, img: "media/bonus/weather/japan.webp" };
+// [English, hiragana, x, y, bubble dx, bubble dy, label side, climate zone]
+const CITIES = [
+  ["Sapporo", "さっぽろ", 1197, 205, -60, -112, "b", "north"], ["Sendai", "せんだい", 1192, 447, 118, -10, "b", "north"],
+  ["Niigata", "にいがた", 1030, 482, -96, -96, "b", "snow"], ["Tokyo", "とうきょう", 1012, 614, 122, 122, "b", "pacific"],
+  ["Nagoya", "なごや", 800, 627, 18, 138, "t", "pacific"], ["Osaka", "おおさか", 667, 640, -6, -134, "l", "pacific"],
+  ["Hiroshima", "ひろしま", 520, 615, -26, -136, "l", "pacific"], ["Kochi", "こうち", 562, 700, 14, 124, "l", "pacific"],
+  ["Fukuoka", "ふくおか", 330, 656, -86, -100, "b", "pacific"], ["Nagasaki", "ながさき", 282, 738, -132, 2, "b", "pacific"],
+  ["Kagoshima", "かごしま", 312, 806, 112, 98, "b", "pacific"], ["Naha", "なは", 66, 912, 140, 40, "t", "south"],
+].map(([en, ja, x, y, dx, dy, side, zone]) => ({ en, ja, x, y, dx, dy, side, zone }));
 const JA = { sunny: "はれ", cloudy: "くもり", rainy: "あめ", snowy: "ゆき" };
 // relative chances by season and region  [sunny, cloudy, rainy, snowy]
 const W = {
@@ -55,7 +65,7 @@ function iconSvg(kind) {
 
 export function mount(stage, { tools }) {
   const st = { season: seasonNow(), hidden: false, weather: {}, shown: {}, asking: null };
-  const svg = s("svg", { class: "wmap", viewBox: "0 0 1000 760", role: "img", "aria-label": "Japan weather map" });
+  const svg = s("svg", { class: "wmap", viewBox: `0 0 ${MAP.w} ${MAP.h}`, role: "img", "aria-label": "Japan weather map" });
   const caption = h("div", { class: "wcap", hidden: true });
   const wrap = h("div", { class: "wwrap" }, svg, caption);
   const ja = getLang() === "ja";
@@ -66,46 +76,25 @@ export function mount(stage, { tools }) {
   const rollBtn = btn("dice", t("w_new"), () => newWeather(), "pill");
   stage.append(h("div", { class: "bpanel" }, wrap, h("div", { class: "bbar" }, rollBtn, hideBtn, askBtn, seasonSeg)));
 
-  let cities = [], els = {};
-  fetch("data/japan-map.json").then(r => r.json()).then(d => {
-    cities = d.cities;
-    const defs = s("defs", {},
-      s("linearGradient", { id: "sea", x1: 0, y1: 0, x2: 0, y2: 1 }, s("stop", { offset: 0, "stop-color": "#8fd3f4" }), s("stop", { offset: 1, "stop-color": "#5bb7e5" })),
-      s("pattern", { id: "waves", width: 60, height: 34, patternUnits: "userSpaceOnUse" },
-        s("path", { d: "M2,20 q7,-8 14,0 t14,0", stroke: "rgba(255,255,255,.35)", "stroke-width": 2.5, fill: "none", "stroke-linecap": "round" })));
-    const land = (paths, cls) => s("g", { class: cls }, paths.map(p => s("path", { d: p })));
-    const b = d.okinawaBox;
-    svg.append(defs,
-      s("rect", { width: 1000, height: 760, fill: "url(#sea)" }), s("rect", { width: 1000, height: 760, fill: "url(#waves)" }),
-      s("g", { transform: "translate(5 7)", class: "landshadow" }, land(d.land), land(d.okinawa)),
-      land(d.land, "land"),
-      s("rect", { x: b[0][0], y: b[0][1], width: b[1][0] - b[0][0], height: b[1][1] - b[0][1], rx: 16, class: "inset" }),
-      land(d.okinawa, "land"),
-      s("text", { x: b[0][0] + 12, y: b[1][1] - 12, class: "insetlabel" }, document.createTextNode("Okinawa")),
-      s("text", { x: 990, y: 750, "text-anchor": "end", class: "credit" }, document.createTextNode(d.credit)));
-    const layer = s("g", { class: "cities" });
-    svg.append(layer);
-    // hand-placed bubbles over the sea, with a short line back to the pin: [dx, dy, label side]
-    const OFF = { Sapporo: [-6, -78, "r"], Sendai: [84, -36, "b"], Niigata: [-84, -54, "b"], Tokyo: [84, 26, "b"], Nagoya: [-8, 96, "l"],
-      Osaka: [-16, -88, "b"], Hiroshima: [-34, -92, "b"], Kochi: [16, 88, "r"], Fukuoka: [-80, -70, "r"], Nagasaki: [-96, 4, "b"],
-      Kagoshima: [-88, 62, "r"], Naha: [70, -6, "b"] };
-    for (const c of cities) {
-      const [dx, dy, side] = OFF[c.en] || [0, -80, "r"];
-      const bx = c.x + dx, by = c.y + dy;
-      const lp = { r: [c.x + 13, c.y + 7, "start"], l: [c.x - 13, c.y + 7, "end"], b: [c.x, c.y + 30, "middle"], t: [c.x, c.y - 16, "middle"] }[side];
-      const badge = s("g", { class: "badge", transform: `translate(${bx - 34} ${by - 34}) scale(.68)` });
-      const g = s("g", { class: "city", tabindex: 0, role: "button", "aria-label": c.en },
-        s("line", { x1: c.x, y1: c.y, x2: bx, y2: by, class: "leader" }),
-        s("circle", { cx: c.x, cy: c.y, r: 9, class: "pin" }),
-        s("text", { x: lp[0], y: lp[1], "text-anchor": lp[2], class: "cname" }, document.createTextNode(c.en)),
-        badge);
-      g.addEventListener("click", () => tapCity(c));
-      g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tapCity(c); } });
-      layer.append(g);
-      els[c.en] = { g, badge };
-    }
-    newWeather(true);
-  });
+  const cities = CITIES, els = {};
+  svg.append(s("image", { href: MAP.img, x: 0, y: 0, width: MAP.w, height: MAP.h }));
+  const layer = s("g", { class: "cities" });
+  svg.append(layer);
+  for (const c of cities) {
+    const bx = c.x + c.dx, by = c.y + c.dy;
+    const lp = { r: [c.x + 16, c.y + 11, "start"], l: [c.x - 16, c.y + 11, "end"], b: [c.x, c.y + 44, "middle"], t: [c.x, c.y - 20, "middle"] }[c.side];
+    const badge = s("g", { class: "badge", transform: `translate(${bx - 48} ${by - 48}) scale(.96)` });
+    const g = s("g", { class: "city", tabindex: 0, role: "button", "aria-label": c.en },
+      s("line", { x1: c.x, y1: c.y, x2: bx, y2: by, class: "leader" }),
+      s("circle", { cx: c.x, cy: c.y, r: 12, class: "pin" }),
+      s("text", { x: lp[0], y: lp[1], "text-anchor": lp[2], class: "cname" }, document.createTextNode(c.ja)),
+      badge);
+    g.addEventListener("click", () => tapCity(c));
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tapCity(c); } });
+    layer.append(g);
+    els[c.en] = { g, badge };
+  }
+  newWeather(true);
 
   function drawBadge(c) {
     const { badge } = els[c.en];
