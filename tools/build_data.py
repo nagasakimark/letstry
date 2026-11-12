@@ -291,6 +291,39 @@ def apply_overrides(book, unit, pages, screens):
     def els(key):
         return rs[key]["elements"]
 
+    # Activities with two quiz modes. In the original each mode button SETS a state (picture,
+    # covers, what the picture buttons say); the recorder only saw changes, so they're written out here.
+    if U == "1-5":
+        sc = screens["unit5-play-page"]
+        sc["modes"] = {"single": {"image": img("play1-1.png")}, "plural": {"image": img("play1-2.png")}}
+        for h in sc["hotspots"]:
+            i = h.get("id", "")
+            if i == "play-audio-5-1-random":
+                h["a"] = [{"t": "mode", "m": "single"}, {"t": "random", "list": [aud(f"play-audio-5-{n}.mp3") for n in range(1, 21)]}]
+            elif i == "play-audio-5-2-random":
+                h["a"] = [{"t": "mode", "m": "plural"}, {"t": "random", "list": [aud(f"play-audio-5-{n}-s.mp3") for n in range(1, 21)]}]
+            elif re.fullmatch(r"play-audio-5-\d+", i):
+                h["a"] = [{"t": "audio", "src": aud(f"{i}.mp3"), "m": {"plural": aud(f"{i}-p.mp3")}}]
+    if U == "1-7":
+        sc = screens["unit7-play-1-page"]
+        shapes, animals, words = ["L1", "L2", "L3", "L4", "L5"], ["L11", "L12", "L13", "L14", "L15"], ["L6", "L7", "L8", "L9", "L10"]
+        sc["modes"] = {"shapes": {"image": img("play-1-1.png"), "show": shapes + words, "hide": animals},
+                       "animals": {"image": img("play-1-2.png"), "show": animals + words, "hide": shapes}}
+        hs = [h for h in sc["hotspots"] if not (h["r"][0] > .8 and h["r"][1] > .67)]
+        for h in hs:
+            i = h.get("id", "")
+            m = re.fullmatch(r"shape-(\d)", i)
+            if m:
+                n = int(m[1]); h["a"] = [{"t": "toggle", "l": shapes[n - 1], "m": {"animals": animals[n - 1]}}]
+            m = re.fullmatch(r"play-answer-7-(\d)", i)
+            if m:
+                n = int(m[1])
+                h["a"] = [{"t": "toggle", "l": words[n - 1]},   # the word is said as it's uncovered
+                          {"t": "audio", "src": aud(f"{i}.mp3"), "m": {"animals": aud(f"{i}b.mp3")}, "ifHidden": words[n - 1]}]
+        hs.append({"r": [0.8067, 0.685, 0.1667, 0.07], "a": [{"t": "mode", "m": "shapes"}], "k": "mode", "id": "mode-shapes"})
+        hs.append({"r": [0.8067, 0.762, 0.1667, 0.07], "a": [{"t": "mode", "m": "animals"}], "k": "mode", "id": "mode-animals"})
+        sc["hotspots"] = hs
+
     if U == "1-3":
         # rock-paper-scissors game
         sc = screens["unit3-play-2-2-page"]
