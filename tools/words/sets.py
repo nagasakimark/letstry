@@ -17,7 +17,7 @@ SETS = {
     "animals":     ("lt-animals", "Animals", "動物", {}),
     "describe":    ("lt-descriptions", "Describing words", "ようすをあらわすことば", {}),
     "opposites":   ("conditions", "Opposites", "反対のことば", {}),
-    "countries":   ("countries", "Countries", "国", {}),
+    "countries":   ("countries", "Countries", "国", {"flags": True}),
     "timesofday":  ("timesofday", "Times of day", "一日の時間", {}),
     "weather":     ("lt-weather", "Weather", "天気", {}),
     "clothes":     ("lt-clothes", "Clothes", "服", {}),
@@ -34,6 +34,11 @@ UNITS = {
     "lt2": {1: ["timesofday", "countries"], 2: ["weather", "clothes"], 3: ["days"], 4: ["times", "daily"],
             5: ["stationery"], 6: ["ABC", "abc"], 7: ["fruitveg"], 8: ["school", "directions"], 9: ["daily"]},
 }
+# Country flags (flag-icons, MIT licence, in tools/words/flags/)
+FLAGS = {"america": "us", "australia": "au", "brazil": "br", "canada": "ca", "china": "cn", "egypt": "eg", "france": "fr",
+         "germany": "de", "ghana": "gh", "india": "in", "italy": "it", "japan": "jp", "kenya": "ke", "korea": "kr",
+         "mongolia": "mn", "morocco": "ma", "norway": "no", "peru": "pe", "russia": "ru", "singapore": "sg", "spain": "es",
+         "sweden": "se", "thailand": "th", "turkey": "tr", "u.k.": "gb", "vietnam": "vn", "finland": "fi"}
 # The picture to use when the word itself isn't a picture name in the dictionary.
 ALIASES = {
     "brocolli": "broccoli", "tshirt": "t-shirt", "glove": "gloves", "pudding": "puddin", "beef steak": "beef",

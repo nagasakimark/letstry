@@ -2,18 +2,20 @@
 // Drag fruit from the tray into the glass and put it anywhere. Tap a piece to turn it round,
 // drag it back to the tray to take it out. The sentence builds itself from what's in the glass.
 // Orders: a customer asks for three things. Make it, then press Done.
+// Audio is the textbook's own (Activity 1 page): the example conversation and each ingredient.
 import { h, icon } from "../ui.js";
-import { stopAudio } from "../media.js";
+import { playAudio, stopAudio } from "../media.js";
 import { btn, seg, shuffle, wait } from "./common.js";
-import { loadWords, card, say, tx } from "./words.js";
+import { say, tx } from "./words.js";
 
 const ART = "media/parfait/";
-// word, art file, set the word's audio comes from, piece width in glass widths
+const SND = n => `media/lt2/audio/unit7/activity-audio-7-${n}.mp3`;
+const EXAMPLE = SND(1);
+// word, art file, textbook audio number, piece width in glass widths (in the textbook's order)
 const FRUIT = [
-  ["strawberry", "strawberry", "fruitveg", .27], ["banana", "banana", "fruitveg", .32], ["kiwi fruit", "kiwi", "fruitveg", .32],
-  ["peach", "peach", "fruitveg", .32], ["melon", "melon", "fruitveg", .38], ["cherry", "cherry", "fruitveg", .27],
-  ["orange", "orange", "fruitveg", .36], ["pineapple", "pineapple", "fruitveg", .34], ["apple", "apple", "fruitveg", .4],
-  ["ice cream", "icecream", "foods", .42],
+  ["cherry", "cherry", 2, .27], ["kiwi fruit", "kiwi", 3, .32], ["strawberry", "strawberry", 4, .27],
+  ["banana", "banana", 5, .32], ["orange", "orange", 6, .36], ["pineapple", "pineapple", 7, .34],
+  ["melon", "melon", 8, .38], ["peach", "peach", 9, .32], ["apple", "apple", 10, .4], ["ice cream", "icecream", 11, .42],
 ];
 const UNCOUNT = new Set(["ice cream", "melon", "pineapple"]);
 const plural = w => UNCOUNT.has(w) ? w : w === "kiwi fruit" ? "kiwi fruit" : w.endsWith("y") ? w.slice(0, -1) + "ies" : w.endsWith("ch") ? w + "es" : w + "s";
@@ -21,18 +23,17 @@ const list = ws => ws.length <= 1 ? ws.join("") : ws.slice(0, -1).join(", ") + "
 const MAX = 40;
 
 export async function mount(stage) {
-  const DATA = await loadWords();
-  const fruits = FRUIT.map(([w, file, set, size]) => {
-    const item = DATA.sets[set].words.find(x => x.w === w) || { w };
-    return { w, file, size, item };
-  });
+  const fruits = FRUIT.map(([w, file, n, size]) => ({ w, file, size, item: { w, audio: SND(n) } }));
   let mode = "make", pieces = [], order = [], served = 0, z = 1;
 
   const tray = h("div", { class: "pftray", title: tx("ここにもどすと消えるよ", "Drag a piece back here to take it out") });
   const back = h("img", { class: "pfback", src: ART + "glass.webp", alt: "", draggable: "false" });
   const tint = h("img", { class: "pftint", src: ART + "glass.webp", alt: "", draggable: "false" });
   const box = h("div", { class: "pfbox" }, back, tint);
-  const scene = h("div", { class: "pfscene" }, box);
+  const example = h("button", { type: "button", class: "pfex", title: tx("お手本の会話を聞く", "Listen to the example conversation"),
+    onclick: () => example.classList.contains("playing") ? stopAudio() : playAudio(EXAMPLE, example) },
+    h("img", { src: ART + "example.webp", alt: "" }), h("span", {}, icon("play"), tx("お手本", "Example")));
+  const scene = h("div", { class: "pfscene" }, box, example);
   const sentence = h("div", { class: "pcsay" });
   const ticket = h("div", { class: "pfticket" });
 

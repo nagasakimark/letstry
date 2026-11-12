@@ -9,7 +9,7 @@ Run:  python3 tools/words/build_words.py <picture-dictionary-folder>
 import json, os, re, sys, urllib.request
 from PIL import Image, ImageOps
 sys.path.insert(0, os.path.dirname(__file__))
-from sets import SETS, UNITS, ALIASES, PREFER, GA
+from sets import SETS, UNITS, ALIASES, PREFER, GA, FLAGS
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PD = sys.argv[1]
@@ -98,6 +98,16 @@ def drawn_shape(word):
             return f"media/words/{name}"
     return None
 
+def flag(word):
+    """A flag-icons SVG with a thin frame, so white flags (Japan, Finland) still show their edge."""
+    code = FLAGS.get(word)
+    if not code: return None
+    svg = open(os.path.join(os.path.dirname(__file__), "flags", code + ".svg")).read().rstrip()
+    svg = svg[:svg.rindex("</svg>")] + '<rect width="640" height="480" fill="none" stroke="#3336" stroke-width="10"/></svg>'
+    name = f"flag-{code}.svg"
+    open(os.path.join(OUT_IMG, name), "w").write(svg)
+    return f"media/words/{name}"
+
 out = {"sets": {}, "units": UNITS, "places": {}}
 missing = {}
 for sid, (topic, en, ja, opt) in SETS.items():
@@ -110,6 +120,9 @@ for sid, (topic, en, ja, opt) in SETS.items():
         item = {"w": w, "audio": audio(topic, i)}
         if opt.get("letters"): item["letter"] = True
         elif opt.get("drawn"): item["img"] = drawn_shape(w)
+        elif opt.get("flags"):
+            item["img"] = flag(w)
+            if not item["img"]: missing.setdefault(sid, []).append(w)
         else:
             f = find(sid, w)
             item["img"] = picture(f) if f else None

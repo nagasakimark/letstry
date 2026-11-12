@@ -292,3 +292,12 @@ body[data-layout="dock"] .wpicker { inset: 8px; }
   .gagame, .pcwrap { grid-template-columns: 1fr; }
   .wpbody { grid-template-columns: 1fr; }
 }
+.pfex { position: absolute; z-index: 2; top: 10px; left: 10px; width: clamp(110px, 21cqw, 170px); display: grid; gap: 4px; padding: 6px 6px 8px; border: 0; border-radius: 16px;
+  background: rgba(255, 255, 255, .88); color: #4a3520; cursor: pointer; box-shadow: 0 2px 8px rgba(0, 0, 0, .12); font: 700 14px "Pook", sans-serif; transition: transform .15s var(--ease); }
+.pfex:hover { transform: scale(1.03); }
+.pfex img { width: 100%; height: auto; max-height: 34cqh; object-fit: contain; }
+.pfex span { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.pfex svg { width: 18px; height: 18px; padding: 3px; border-radius: 7px; background: #e8642c; color: #fff; }
+.pfex.playing { box-shadow: 0 0 0 4px #e8642c; }
+.pfgame.ordering .pfex { width: clamp(84px, 18cqw, 150px); font-size: 12px; }
+.pfgame.ordering .pfbox { left: 57%; }
