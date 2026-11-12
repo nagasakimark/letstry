@@ -22,7 +22,10 @@ export function renderScreen(screen, ctx) {
     layerEls[id] = el;
     sh.append(el);
   }
-  for (const hs of screen.hotspots || []) sh.append(hotspot(hs, sh, layerEls, ctx));
+  // pictures the original drew on the page itself (answers, path steps, swaps)
+  const over = inPlace(sh);
+  cleanups.push(over.clear);
+  for (const hs of screen.hotspots || []) sh.append(hotspot(hs, sh, layerEls, ctx, over));
   if (screen.kind === "board") cleanups.push(mountBoard(sh, screen.board));
   if (screen.kind === "rps") cleanups.push(mountRps(sh, screen.rps));
   cleanups.push(attachInk(sh, ctx.inkKey));
@@ -31,23 +34,17 @@ export function renderScreen(screen, ctx) {
   return { fit, sheet: sh, zoom, destroy: () => cleanups.forEach(f => f && f()) };
 }
 
-function hotspot(hs, sh, layerEls, ctx) {
-  const book = hs.k === "book";
-  const b = h("button", { class: "hs" + (book ? " book-btn" : "") + (hs.k === "swap" ? " swap" : ""), type: "button",
+function hotspot(hs, sh, layerEls, ctx, over) {
+  const b = h("button", { class: "hs" + (hs.k === "swap" ? " swap" : ""), type: "button",
     "data-k": hs.k, "aria-label": t("k_" + hs.k), title: t("k_" + hs.k) });
-  if (book) {
-    b.append(icon("book"), " " + t("readBook"));
-    b.style.display = "inline-flex"; b.style.gap = "6px"; b.style.alignItems = "center";
-    b.style.right = (1 - hs.r[0] - hs.r[2]) * 100 + 1 + "%";
-    b.style.bottom = (1 - hs.r[1] - hs.r[3]) * 100 + 1 + "%";
-  } else place(b, hs.r);
+  place(b, hs.r);
   const opener = hs.a.find(a => a.t === "open" || a.t === "book");
   if (opener) b.dataset.open = opener.t === "book" ? "book" : opener.s;
   let swapState = 0;
   if (hs.k === "swap") b.append(h("img", { src: hs.a[0].imgs[0], alt: "" }));
   b.addEventListener("click", () => {
     ringAt(sh, hs.r);
-    for (const a of hs.a) run(a, b, { layerEls, ctx, setSwap: () => { swapState ^= 1; b.firstChild.src = a.imgs[swapState]; } });
+    for (const a of hs.a) run(a, b, { layerEls, ctx, over, setSwap: () => { swapState ^= 1; b.firstChild.src = a.imgs[swapState]; } });
   });
   return b;
 }
@@ -64,10 +61,43 @@ function run(a, btn, env) {
     case "toggle": { const el = env.layerEls[a.l]; if (el) el.hidden = !el.hidden; return; }
     case "swap": return env.setSwap();
     case "open": return openPopup(a.s, env.ctx);
-    case "spot": return spotlight(a);
-    case "steps": return steps(a.steps);
+    case "spot": return a.r ? env.over.show(a, btn) : spotlight(a);
+    case "steps": return a.r ? env.over.step(a, btn) : steps(a.steps);
+    case "clear": stopAudio(); return env.over.clear();
     case "book": return openPictureBook(env.ctx.unit, a.page);
   }
+}
+
+// One drawing surface per rectangle: a new picture in the same place replaces the old one,
+// tapping the same button again takes it away, step buttons advance one step per tap.
+function inPlace(sh) {
+  const slots = new Map();
+  const slot = r => {
+    const k = r.join();
+    if (!slots.has(k)) {
+      const el = place(h("div", { class: "lay over", hidden: true }, h("img", { alt: "", draggable: "false" })), r);
+      sh.insertBefore(el, sh.querySelector(".hs"));
+      slots.set(k, { el, img: el.firstChild, owner: null, i: -1 });
+    }
+    return slots.get(k);
+  };
+  const hide = s => { s.el.hidden = true; s.owner = null; s.i = -1; };
+  return {
+    show(a, btn) {
+      const s = slot(a.r);
+      if (!a.stay && s.owner === btn && !s.el.hidden) { hide(s); stopAudio(); return; }
+      s.img.src = a.img; s.el.hidden = false; s.owner = btn; s.i = -1;
+      if (a.audio) playAudio(a.audio, btn);
+    },
+    step(a, btn) {
+      const s = slot(a.r);
+      const i = s.owner === btn ? s.i + 1 : 0;
+      if (i >= a.steps.length) { hide(s); stopAudio(); return; }
+      s.img.src = a.steps[i].img; s.el.hidden = false; s.owner = btn; s.i = i;
+      if (a.steps[i].audio) playAudio(a.steps[i].audio, btn);
+    },
+    clear() { slots.forEach(hide); },
+  };
 }
 
 export const popupState = { key: null, subs: new Set() };

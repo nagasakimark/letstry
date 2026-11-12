@@ -59,6 +59,9 @@ function buildBar() {
   audio.addEventListener("play", () => mainBtn.replaceChildren(icon("pause")));
   audio.addEventListener("pause", () => mainBtn.replaceChildren(icon("play")));
   audio.addEventListener("ended", () => markPlaying(null));
+  // progress ring on the play button (used when the bar sits in the side rail)
+  audio.addEventListener("timeupdate", () => bar.style.setProperty("--p", audio.duration ? audio.currentTime / audio.duration : 0));
+  audio.addEventListener("emptied", () => bar.style.setProperty("--p", 0));
 }
 function markPlaying(el) {
   if (currentEl) currentEl.classList.remove("playing");

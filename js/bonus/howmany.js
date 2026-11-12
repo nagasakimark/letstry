@@ -2,7 +2,7 @@
 // Objects flash up for a moment; students say how many; reveal counts them together.
 import { h } from "../ui.js";
 import { t, getLang } from "../i18n.js";
-import { speak, seg, btn, pick, wait, numWord } from "./common.js";
+import { seg, btn, pick, wait } from "./common.js";
 
 const THINGS = [["🍎", "apples"], ["⚽", "balls"], ["⭐", "stars"], ["🐟", "fish"], ["🍓", "strawberries"], ["🎈", "balloons"],
   ["🐱", "cats"], ["🌸", "flowers"], ["🍩", "donuts"], ["🚗", "cars"], ["🐶", "dogs"], ["🍌", "bananas"], ["✏️", "pencils"], ["🐸", "frogs"]];
@@ -50,7 +50,6 @@ export function mount(stage) {
     big.hidden = true;
     items = layout(st.n);
     againBtn.disabled = answerBtn.disabled = false;
-    speak("How many?");
     hideAfter(run);
   }
   async function hideAfter(run) {
@@ -71,12 +70,10 @@ export function mount(stage) {
       if (run !== st.run) return;
       items[i].classList.add("counted");
       items[i].dataset.n = i + 1;
-      speak(numWord(i + 1), { rate: 1 });
       await wait(st.n > 12 ? 520 : 650);
     }
     if (run !== st.run) return;
     big.hidden = false; big.className = "hmbig answer"; big.textContent = st.n;
-    speak(`${numWord(st.n)} ${st.n === 1 ? st.thing[1].replace(/ies$/, "y").replace(/s$/, "") : st.thing[1]}!`);
   }
   return () => { st.run++; };
 }

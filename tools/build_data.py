@@ -207,6 +207,7 @@ def build_unit(book, unit, raw):
                             continue
                         spot = spot or {}
                         spot["img"] = M(src)
+                        spot["_r"] = e.get("rect")
                     continue
                 if k == "added" and e.get("imgs"):
                     if is_page:
@@ -224,6 +225,7 @@ def build_unit(book, unit, raw):
                     if big and e.get("img"):
                         spot = spot or {}
                         spot.setdefault("img", M(e["img"]))
+                        spot.setdefault("_r", r)
                         continue
                     lid = add_layer(e["path"], e)
                     if lid:
@@ -236,6 +238,13 @@ def build_unit(book, unit, raw):
                 aud = [a for a in acts if a["t"] == "audio"]
                 acts = [a for a in acts if a["t"] != "audio"]
                 spot["t"] = "spot"
+                # the original drew this picture on the page itself -> draw it in place
+                pr = spot.pop("_r", None)
+                if (finite(pr) and pr[0] > -0.03 and pr[1] > -0.03 and pr[0] + pr[2] < 1.03 and pr[1] + pr[3] < 1.03
+                        and "shimen" not in key and "highlight" not in hid):
+                    spot["r"] = [round(min(max(v, 0), 1), 4) + 0 for v in pr]
+                if any(a["t"] == "random" for a in acts):
+                    spot["stay"] = True  # each tap is a new random question; the picture stays
                 if aud:
                     spot["audio"] = aud[0]["src"]
                 acts.append(spot)
@@ -376,8 +385,10 @@ def apply_overrides(book, unit, pages, screens):
                     n += 1
                 for hh in sc["hotspots"]:
                     if hh.get("id") == h["id"] or hh["r"] == r4(h["rect"]):
-                        hh["a"] = [{"t": "steps", "steps": steps}]
+                        hh["a"] = [{"t": "steps", "steps": steps, "r": [0, 0, 1, 1]}]
                         hh["k"] = "spot"
+        # the printed "clear" button wipes the drawn path
+        sc["hotspots"].append({"r": [0.517, 0.906, 0.1, 0.07], "a": [{"t": "clear"}], "k": "other", "id": "clear"})
     if unit == 9:
         # picture book: pages book-page-1..6 with narration
         n = 1

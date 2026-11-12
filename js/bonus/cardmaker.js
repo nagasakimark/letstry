@@ -1,7 +1,7 @@
 // Card maker (Let's Try! 1, Unit 7 "This is for you."): build a card from shapes and colours.
 import { h, icon } from "../ui.js";
 import { t, getLang } from "../i18n.js";
-import { speak, btn } from "./common.js";
+import { btn } from "./common.js";
 
 const SHAPES = {
   circle: "M50,6 a44,44 0 1 1 -0.1,0 z",
@@ -59,7 +59,6 @@ export function mount(stage) {
   function say(it) {
     const words = `${article(it.color[0])} ${it.color[0]} ${it.shape}, please.`;
     caption.replaceChildren(h("b", {}, words), getLang() === "ja" ? h("small", {}, `${it.color[0]} の ${SHAPE_JA[it.shape]}`) : null);
-    speak(words);
   }
   function select(it) {
     st.sel = it;
@@ -121,7 +120,6 @@ export function mount(stage) {
     select(null);
     card.classList.remove("give"); void card.offsetWidth; card.classList.add("give");
     caption.replaceChildren(h("b", {}, "This is for you!"), h("small", {}, "Thank you!"));
-    speak("This is for you!");
   }
   function sync() { swatches.querySelectorAll(".sw").forEach((b, i) => b.setAttribute("aria-pressed", String(COLORS[i] === st.color))); }
   return () => {};

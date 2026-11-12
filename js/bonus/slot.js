@@ -1,7 +1,7 @@
 // Feelings slot machine (Let's Try! 1, Unit 2): "How are you?" "I'm sleepy."
 import { h } from "../ui.js";
 import { t, getLang } from "../i18n.js";
-import { speak, btn, wait } from "./common.js";
+import { btn, wait } from "./common.js";
 
 const FEELINGS = [["fine", "🙂", "げんき"], ["happy", "😄", "うれしい"], ["good", "😊", "いい"], ["great", "🤩", "さいこう"],
   ["sleepy", "😪", "ねむい"], ["hungry", "😋", "おなかがすいた"], ["tired", "😫", "つかれた"], ["sad", "😢", "かなしい"]];
@@ -44,7 +44,6 @@ export function mount(stage) {
     if (busy) return;
     busy = true; lever.classList.add("pull"); setTimeout(() => lever.classList.remove("pull"), 450);
     result.replaceChildren(h("b", {}, "How are you?"));
-    speak("How are you?");
     const l = list();
     const target = Math.floor(Math.random() * l.length);
     const loops = 3 + Math.floor(Math.random() * 2);
@@ -63,7 +62,6 @@ export function mount(stage) {
     const f = l[idx];
     reel.classList.add("win"); setTimeout(() => reel.classList.remove("win"), 900);
     result.replaceChildren(h("b", {}, `I'm ${f[0]}.`), h("small", {}, ja ? f[2] : ""));
-    speak(`I'm ${f[0]}.`);
     busy = false;
   }
   lever.onclick = spin;

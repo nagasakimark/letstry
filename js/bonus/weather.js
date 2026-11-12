@@ -1,7 +1,7 @@
 // Japan weather map (Let's Try! 2, Unit 2): "How's the weather in Sapporo?" "It's snowy."
 import { h, icon } from "../ui.js";
 import { t, getLang } from "../i18n.js";
-import { speak, seg, btn, pick } from "./common.js";
+import { seg, btn, pick } from "./common.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const s = (tag, attrs = {}, ...kids) => {
@@ -95,6 +95,19 @@ export function mount(stage, { tools }) {
     els[c.en] = { g, badge };
   }
   newWeather(true);
+  // white rounded label behind each place name, sized to the text once the font is in
+  const tags = () => {
+    for (const t of layer.querySelectorAll("text.cname")) {
+      const b = t.getBBox();
+      if (!b.width) { requestAnimationFrame(tags); return; }
+      const px = 12, py = 4;
+      const r = t.previousSibling?.classList?.contains("ctag") ? t.previousSibling : s("rect", { class: "ctag" });
+      Object.entries({ x: b.x - px, y: b.y - py, width: b.width + px * 2, height: b.height + py * 2, rx: (b.height + py * 2) / 2 })
+        .forEach(([k, v]) => r.setAttribute(k, v));
+      if (!r.parentNode) t.before(r);
+    }
+  };
+  (document.fonts?.ready || Promise.resolve()).then(() => requestAnimationFrame(tags));
 
   function drawBadge(c) {
     const { badge } = els[c.en];
@@ -128,7 +141,6 @@ export function mount(stage, { tools }) {
     const k = st.weather[c.en];
     caption.hidden = false;
     caption.replaceChildren(h("b", {}, `It's ${k} in ${c.en}.`), h("small", {}, `${c.ja}は ${JA[k]}`));
-    speak(`It's ${k} in ${c.en}.`);
   }
   function tapCity(c) {
     Object.values(els).forEach(e => e.g.classList.remove("asked"));
@@ -145,7 +157,6 @@ export function mount(stage, { tools }) {
     els[c.en].g.classList.add("asked");
     caption.hidden = false;
     caption.replaceChildren(h("b", {}, `How's the weather in ${c.en}?`), h("small", {}, `${c.ja}の天気は？`));
-    speak(`How's the weather in ${c.en}?`);
   }
   return () => {};
 }

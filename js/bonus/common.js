@@ -2,38 +2,6 @@
 import { h, icon } from "../ui.js";
 import { t } from "../i18n.js";
 
-// ---- English speech (device voice). Teachers can switch it off; the choice is remembered.
-let voiceOn = true;
-try { voiceOn = localStorage.getItem("bonusVoice") !== "off"; } catch {}
-let voice = null;
-function pickVoice() {
-  const vs = speechSynthesis.getVoices().filter(v => /^en(-|_)/i.test(v.lang));
-  voice = vs.find(v => /Google US English/i.test(v.name)) || vs.find(v => /en-US/i.test(v.lang) && /natural|neural|samantha|aria|jenny/i.test(v.name))
-    || vs.find(v => /en-US/i.test(v.lang)) || vs[0] || null;
-}
-if ("speechSynthesis" in window) { pickVoice(); speechSynthesis.addEventListener?.("voiceschanged", pickVoice); }
-export function speak(text, { rate = 0.88, onend } = {}) {
-  if (!voiceOn || !("speechSynthesis" in window)) { onend && setTimeout(onend, 300); return; }
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  if (voice) u.voice = voice;
-  u.lang = voice ? voice.lang : "en-US";
-  u.rate = rate;
-  if (onend) u.onend = onend;
-  speechSynthesis.speak(u);
-}
-export const hush = () => { try { speechSynthesis.cancel(); } catch {} };
-export function voiceToggle() {
-  const b = h("button", { class: "ib", type: "button", "data-tip": t("voice"), "aria-label": t("voice") }, icon(voiceOn ? "speaker" : "mute"));
-  b.setAttribute("aria-pressed", String(voiceOn));
-  b.onclick = () => {
-    voiceOn = !voiceOn;
-    try { localStorage.setItem("bonusVoice", voiceOn ? "on" : "off"); } catch {}
-    b.replaceChildren(icon(voiceOn ? "speaker" : "mute")); b.setAttribute("aria-pressed", String(voiceOn));
-    if (!voiceOn) hush();
-  };
-  return b;
-}
 
 // ---- small UI builders
 export function seg(items, cur, onPick, cls = "") {

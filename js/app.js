@@ -294,13 +294,14 @@ async function unitPage(bookId, un, pn) {
     if (Math.abs(dx) > 80 && Math.abs(dx) > Math.abs(dy) * 2) dx < 0 ? goNext() : goPrev();
   });
 
-  let firstBookPage = 0;
+  let firstBookPage = null;
   outer: for (const hs of page.hotspots) for (const a of hs.a) if (a.t === "book") { firstBookPage = a.page; break outer; }
   const acts = activityList(page, ctx, firstBookPage, bonusFor(bookId, un));
   const where = h("div", { class: "where", title: `Unit ${un} · ${pIdx + 1} / ${unit.pages.length}` },
     h("small", {}, t("unit")), h("b", {}, un), h("small", {}, `${pIdx + 1} / ${unit.pages.length}`));
   const penc = penControls();
-  const right = { top: [penc.toggle, revealBtn(), zoomBtn(), timerButton(), pickerBtn()], bot: [langBtn(), fsBtn()], extra: [penc.panel] };
+  const bookBtn = firstBookPage !== null ? tbtn("book", t("readBook"), () => openPictureBook(unit, firstBookPage), { cls: "accent" }) : null;
+  const right = { top: [bookBtn, penc.toggle, revealBtn(), zoomBtn(), timerButton(), pickerBtn()], bot: [langBtn(), fsBtn()], extra: [penc.panel] };
   const homeBtn = () => tbtn("home", t("home"), () => go("#/"));
   const contentsBtn = () => tbtn("grid", t("contents"), () => go(`#/${bookId}`));
 

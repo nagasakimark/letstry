@@ -3,7 +3,6 @@ import { h, icon } from "../ui.js";
 import { t } from "../i18n.js";
 import { openLayer, closeAll } from "../layers.js";
 import { stopAudio } from "../media.js";
-import { hush, voiceToggle } from "./common.js";
 
 const GAMES = "https://nagasakimark.github.io";
 // Each entry: id, label key, icon, and either a module loader or an external URL
@@ -38,7 +37,7 @@ export async function openBonus(d) {
   const stage = h("div", { class: "bstage" });
   const root = h("div", { class: "bonus" }, h("div", { class: "bhead" }, title, tools), stage);
   let destroy = () => {};
-  openLayer(root, { onClose: () => { hush(); destroy(); } });
+  openLayer(root, { onClose: () => { destroy(); } });
   if (d.url) {
     root.classList.add("embed");
     if (!navigator.onLine) { stage.append(h("p", { class: "bnote" }, t("needsOnline"))); return; }
@@ -52,7 +51,6 @@ export async function openBonus(d) {
   try {
     const mod = await d.load();
     stage.replaceChildren();
-    tools.append(voiceToggle());
     destroy = mod.mount(stage, { tools, title }) || destroy;
   } catch (e) {
     console.error(e);

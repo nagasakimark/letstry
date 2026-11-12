@@ -201,13 +201,8 @@ body[data-layout="dock"] .penpanel { right: 8px; top: auto; bottom: calc(100% + 
 .hs.swap { border-radius: 50%; clip-path: circle(48%); }
 .hs.swap:hover { box-shadow: none; background: rgba(246, 207, 74, .25); }
 .hs.swap img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
-.hs.book-btn {
-  inset: auto; width: auto; height: auto; padding: 7px 14px 8px; display: inline-flex; gap: 6px; align-items: center;
-  background: var(--bg); color: var(--ink); border-radius: 999px; font-weight: 700; white-space: nowrap;
-  font-size: clamp(11px, 1.7cqh, 17px); box-shadow: 0 4px 12px rgba(0,0,0,.3);
-}
-.hs.book-btn svg { width: 1.3em; height: 1.3em; }
-.hs.book-btn:hover { background: var(--bg-3); }
+.ib.accent { background: var(--sun); color: #2a2410; box-shadow: 0 0 0 3px rgba(246, 207, 74, .3); }
+.ib.accent:hover { background: #ffdc66; }
 .ring { position: absolute; z-index: 6; pointer-events: none; border-radius: 50%; border: 3px solid var(--sun); animation: ring .45s ease-out forwards; }
 @keyframes ring { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
 
@@ -314,6 +309,19 @@ body[data-layout="dock"] .vp { padding: 60px 8px 10px; }
 .audiobar .ib.main { background: var(--sun); color: var(--sun-ink); }
 .audiobar .scrub { width: clamp(100px, 22vw, 240px); flex: none; }
 .audiobar .chip { height: 30px; }
+/* with side rails the player lives in the right rail, so it never covers the page */
+body:not([data-layout="dock"]) .audiobar {
+  left: auto; right: 6px; bottom: 118px; transform: none; width: calc(var(--rail) - 12px);
+  flex-direction: column; gap: 8px; padding: 8px 0; border-radius: 26px; animation: fadein .2s var(--ease);
+}
+body:not([data-layout="dock"]) .audiobar .scrub { display: none; }
+body:not([data-layout="dock"]) .audiobar .ib.main {
+  width: 42px; height: 42px;
+  background: radial-gradient(closest-side, var(--sun) 82%, transparent 84% 100%),
+              conic-gradient(#fff calc(var(--p, 0) * 360deg), rgba(255, 255, 255, .18) 0);
+}
+body:not([data-layout="dock"]) .audiobar .chip { height: 26px; padding: 0 8px; }
+@keyframes fadein { from { opacity: 0; } }
 
 .toast {
   position: fixed; left: 50%; top: 14px; z-index: 80; transform: translateX(-50%);
@@ -545,7 +553,9 @@ body[data-layout="dock"] .btools { margin-right: 54px; }
 .wmap .inset { fill: rgba(255,255,255,.18); stroke: #2f5233; stroke-width: 3; stroke-dasharray: 10 7; }
 .wmap .insetlabel, .wmap .cname { font-family: "Pook", var(--font-ui); font-weight: 700; fill: #23362a; paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
 .wmap .insetlabel { font-size: 20px; }
-.wmap .cname { font-size: 34px; font-family: "Klee One", var(--font-ui); font-weight: 600; stroke-width: 7px; }
+.wmap .cname { font-size: 34px; font-family: "Klee One", var(--font-ui); font-weight: 600; fill: #1d2b22; stroke: none; }
+.wmap .ctag { fill: #fff; stroke: #2f4a39; stroke-width: 2.5px; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .25)); }
+.wmap .city.asked .ctag { fill: #fff3b8; stroke: #c99a12; stroke-width: 3.5px; }
 .wmap .credit { font-size: 11px; fill: rgba(20,40,50,.6); font-family: var(--font-ui); }
 .wmap .city { cursor: pointer; outline: none; }
 .wmap .pin { fill: #e53935; stroke: #fff; stroke-width: 4.5; }

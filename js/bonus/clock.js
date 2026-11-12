@@ -1,7 +1,7 @@
 // What time is it? (Let's Try! 2, Unit 4). Clock art: いらすとや (irasutoya.com)
 import { h, icon } from "../ui.js";
 import { t, getLang } from "../i18n.js";
-import { speak, seg, btn, numWord } from "./common.js";
+import { seg, btn } from "./common.js";
 
 // measured from the irasutoya parts (486×486 face; hands pivot on their black dot)
 const FACE = { w: 486, cx: 239.5, cy: 240.6 };
@@ -32,12 +32,11 @@ export function mount(stage) {
   const side = h("div", { class: "ckside" }, q, sky, answer);
   const nextBtn = btn("dice", t("ck_new"), () => newTime(), "pill");
   const ansBtn = btn("check", t("ck_answer"), () => reveal(), "pill ghost");
-  const askBtn = btn("speaker", "What time is it?", () => speak("What time is it?"), "pill ghost");
   const stepSeg = seg([[60, ja ? "ちょうど" : "o'clock"], [30, ja ? "30分" : ":30"], [5, ja ? "5分" : "5 min"]], st.step, v => {
     st.step = v; try { localStorage.setItem("clockStep", v); } catch {}
   }, "small");
   stage.append(h("div", { class: "bpanel ckpanel" }, h("div", { class: "ckarea" }, h("div", { class: "dialbox" }, dial), side),
-    h("div", { class: "bbar" }, nextBtn, ansBtn, askBtn, stepSeg),
+    h("div", { class: "bbar" }, nextBtn, ansBtn, stepSeg),
     h("div", { class: "credit2" }, "時計のイラスト: いらすとや")));
 
   function draw(animate) {
@@ -51,9 +50,8 @@ export function mount(stage) {
   }
   function words() {
     const h12 = st.h24 % 12 || 12, ap = st.h24 < 12 ? "a.m." : "p.m.";
-    const spoken = st.m === 0 ? `It's ${numWord(h12)} ${ap === "a.m." ? "a.m." : "p.m."}` : `It's ${numWord(h12)} ${st.m < 10 ? "oh " + numWord(st.m) : st.m} ${ap}`;
     const text = st.m === 0 ? `It's ${h12} ${ap}` : `It's ${h12}:${String(st.m).padStart(2, "0")} ${ap}`;
-    return { text, spoken, digital: `${h12}:${String(st.m).padStart(2, "0")}`, ap };
+    return { text, digital: `${h12}:${String(st.m).padStart(2, "0")}`, ap };
   }
   function newTime(first = false) {
     answer.hidden = true; st.shown = false;
@@ -65,14 +63,12 @@ export function mount(stage) {
     let add = (want - cur + 720) % 720; if (add < 60 && !first) add += 720;
     st.h24 = h24; st.m = m; st.total = first ? want : from + add;
     draw(!first);
-    if (!first) speak("What time is it?");
   }
   function reveal() {
     const w = words();
     const r = ROUTINE[st.h24] && st.m === 0 ? ROUTINE[st.h24] : null;
     answer.hidden = false;
     answer.replaceChildren(h("div", { class: "digital" }, w.digital, h("small", {}, w.ap)), h("b", {}, /\.$/.test(w.text) ? w.text : w.text + "."), r ? h("small", {}, `It's ${r}.`) : null);
-    speak(w.spoken + (r ? `. It's ${r}.` : ""));
   }
   newTime(true);
   return () => {};
