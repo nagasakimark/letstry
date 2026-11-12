@@ -13,6 +13,8 @@ import { activeZoom, onZoom } from "./zoom.js";
 import { timerButton } from "./timer.js";
 import { t, getLang, setLang, onLang } from "./i18n.js";
 import { offlineState, onOffline, download, remove, checkAll } from "./offline.js";
+import { bonusFor, openBonus } from "./bonus/index.js";
+import { openPicker } from "./bonus/picker.js";
 
 const view = $("#view"), railL = $("#railL"), railR = $("#railR");
 const cache = {};
@@ -120,6 +122,8 @@ function penControls() {
   return { toggle, panel };
 }
 
+const pickerBtn = () => tbtn("dice", t("picker"), openPicker);
+
 function revealBtn() {
   const b = tbtn("eye", t("reveal"), () => {
     const on = !document.body.classList.contains("reveal");
@@ -150,7 +154,8 @@ function pageActivities(page) {
   const order = r => (r[0] + r[2] / 2 >= 0.5 ? 1 : 0) * 10 + r[1];
   return [...first.keys()].sort((a, b) => order(first.get(a)) - order(first.get(b)));
 }
-function activityList(page, ctx, firstBookPage) {
+const BONUS_ICON = { smile: "smile", count: "count", shapes: "shapes", sun: "sun", timer: "timer", search: "search", poll: "poll" };
+function activityList(page, ctx, firstBookPage, bonus = []) {
   const items = pageActivities(page).map(k => {
     const { label, type } = activityLabel(k);
     const b = h("button", { class: "act", type: "button", "data-key": k, "data-type": type },
@@ -162,7 +167,14 @@ function activityList(page, ctx, firstBookPage) {
     b.addEventListener("click", () => hint(false));
     return b;
   });
-  const list = h("div", { class: "acts" }, items.length ? items : h("p", { class: "none" }, t("noActivities")));
+  const bitems = bonus.map(d => {
+    const b = h("button", { class: "act bonusact", type: "button", "data-type": "bonus" },
+      h("span", { class: "ai" }, icon(BONUS_ICON[d.icon] || "star")), h("span", { class: "al" }, t(d.label)), d.url ? icon("external") : null);
+    b.onclick = () => openBonus(d);
+    return b;
+  });
+  const list = h("div", { class: "acts" }, items.length ? items : h("p", { class: "none" }, t("noActivities")),
+    bitems.length ? h("div", { class: "acthead bonushead" }, t("bonus")) : null, bitems);
   const sync = key => items.forEach(b => b.setAttribute("aria-current", String(b.dataset.key === key)));
   popupState.subs.clear(); popupState.subs.add(sync);
   return { list, count: items.length };
@@ -284,11 +296,11 @@ async function unitPage(bookId, un, pn) {
 
   let firstBookPage = 0;
   outer: for (const hs of page.hotspots) for (const a of hs.a) if (a.t === "book") { firstBookPage = a.page; break outer; }
-  const acts = activityList(page, ctx, firstBookPage);
+  const acts = activityList(page, ctx, firstBookPage, bonusFor(bookId, un));
   const where = h("div", { class: "where", title: `Unit ${un} · ${pIdx + 1} / ${unit.pages.length}` },
     h("small", {}, t("unit")), h("b", {}, un), h("small", {}, `${pIdx + 1} / ${unit.pages.length}`));
   const penc = penControls();
-  const right = { top: [penc.toggle, revealBtn(), zoomBtn(), timerButton()], bot: [langBtn(), fsBtn()], extra: [penc.panel] };
+  const right = { top: [penc.toggle, revealBtn(), zoomBtn(), timerButton(), pickerBtn()], bot: [langBtn(), fsBtn()], extra: [penc.panel] };
   const homeBtn = () => tbtn("home", t("home"), () => go("#/"));
   const contentsBtn = () => tbtn("grid", t("contents"), () => go(`#/${bookId}`));
 
@@ -337,7 +349,7 @@ async function stories(id) {
   if (!s) return go("#/stories");
   const fb = flipbook({ title: s.title, pages: s.pages.map(img => ({ img })), aspect: s.size[0] / s.size[1] });
   setView(fb.root, { top: [tbtn("home", t("home"), () => go("#/")), tbtn("grid", t("storybooks"), () => go("#/stories"))] },
-    { top: [timerButton(), langBtn()], bot: [fsBtn()] });
+    { top: [timerButton(), pickerBtn(), langBtn()], bot: [fsBtn()] });
   current.destroy = fb.destroy;
 }
 
