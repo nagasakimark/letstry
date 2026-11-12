@@ -1,17 +1,4 @@
 {
- "stationery": [
-  "magnet"
- ],
- "sports": [
-  "archery",
-  "boxing",
-  "canoe",
-  "climbing"
- ],
- "things": [
-  "letter",
-  "postbox"
- ],
  "describe": [
   "furry",
   "round",
@@ -46,24 +33,5 @@
   "u.k.",
   "vietnam",
   "finland"
- ],
- "clothes": [
-  "shorts"
- ],
- "times": [
-  "dream time"
- ],
- "daily": [
-  "check my schoolbag",
-  "leave my house",
-  "put away my futon",
-  "wash my face"
- ],
- "school": [
-  "arts and crafts room",
-  "cooking room",
-  "lunch room",
-  "school office",
-  "science room"
  ]
 }

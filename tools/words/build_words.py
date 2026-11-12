@@ -2,7 +2,8 @@
 
 Pictures: Mark's picture dictionary (cards are cropped above the ruled lines, so the word
 isn't printed on the picture; the games draw the word themselves). Audio: the word sounds
-from the original site, downloaded once into media/words/audio/.
+from the original site, downloaded once into media/words/audio/. Pictures in tools/words/extra/
+fill gaps in the dictionary and are used as they are.
 Run:  python3 tools/words/build_words.py <picture-dictionary-folder>
 """
 import json, os, re, sys, urllib.request
@@ -22,6 +23,9 @@ files = []
 for d, _, fs in os.walk(PD):
     for f in fs:
         if f.lower().endswith(".png"): files.append(os.path.relpath(os.path.join(d, f), PD))
+EXTRA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "extra")   # extra pictures, already cut (no ruled lines)
+for f in sorted(os.listdir(EXTRA)):
+    if f.lower().endswith(".png"): files.append("Extra/" + f)
 by = {}
 for f in files: by.setdefault(norm(os.path.splitext(os.path.basename(f))[0]), []).append(f)
 NUM = "one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty".split()
@@ -33,7 +37,7 @@ def find(sid, w):
     c = list(by.get(norm(key), [])) or by.get(norm(key)[:-1], []) if norm(key).endswith("s") else list(by.get(norm(key), []))
     c = c or by.get(norm(key) + "s", [])
     pref = PREFER.get(sid, [])
-    c = sorted(c, key=lambda f: (0 if any(f.startswith(p + "/") for p in pref) else 1, f.count("/"), f))
+    c = sorted(c, key=lambda f: (0 if f.startswith("Extra/") else 1, 0 if any(f.startswith(p + "/") for p in pref) else 1, f.count("/"), f))
     return c[0] if c else None
 
 done = {}
@@ -43,9 +47,10 @@ def picture(rel):
     name = slug(os.path.splitext(rel)[0].replace("/", "-")) + ".webp"
     dst = os.path.join(OUT_IMG, name)
     if not os.path.exists(dst):
-        im = Image.open(os.path.join(PD, rel)).convert("RGB")
+        extra = rel.startswith("Extra/")
+        im = Image.open(os.path.join(EXTRA, rel[6:]) if extra else os.path.join(PD, rel)).convert("RGB")
         w, h = im.size
-        art = im.crop((0, 0, w, int(h * 0.79)))          # ruled lines start at 0.8 of the card
+        art = im if extra else im.crop((0, 0, w, int(h * 0.79)))   # ruled lines start at 0.8 of the card
         bbox = ImageOps.invert(art.convert("L")).point(lambda v: 255 if v > 18 else 0).getbbox() or (0, 0, *art.size)
         art = art.crop(bbox)
         side = int(max(art.size) * 1.08)

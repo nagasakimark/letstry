@@ -205,15 +205,13 @@ body[data-layout="dock"] .wpicker { inset: 8px; }
 
 /* ---- pencil case + parfait */
 .pcwrap { min-height: 0; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 16px; }
-.pctray, .pfshelf { min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; align-content: start; padding: 4px; }
+.pctray { min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; align-content: start; padding: 4px; }
 .pcitem { padding: 0; border: 0; background: none; cursor: pointer; aspect-ratio: 1; border-radius: 16px; transition: transform .15s var(--ease); }
 .pcitem:hover { transform: translateY(-2px); }
 .pcitem .wcard { box-shadow: 0 2px 6px rgba(0,0,0,.12); }
 .pcitem.in .wcard { opacity: .35; }
 .pcitem.yes .wcard { box-shadow: 0 0 0 4px #3bb26a; } .pcitem.no .wcard { opacity: .3; filter: grayscale(1); }
-.pcright, .pfright { min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 10px; }
-.pfright { grid-template-rows: auto minmax(0, 1fr) auto; }
-.pfright > .pfticket { grid-row: 1; } .pfright > .pfglass { grid-row: 2; } .pfright > .pcsay { grid-row: 3; }
+.pcright { min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 10px; }
 .pccase { min-height: 0; display: grid; place-items: center; container-type: size; }
 .pcbody { position: relative; width: min(100cqw, 100cqh * 1.6); aspect-ratio: 1.6; border-radius: 34px; padding: 14% 5% 6%;
   background: linear-gradient(160deg, #6fc0e8, #2a8fd0); box-shadow: inset 0 -10px 0 rgba(0,0,0,.12), var(--shadow); }
@@ -232,24 +230,46 @@ body[data-layout="dock"] .wpicker { inset: 8px; }
 :root[data-theme="dark"] .pcsay .ok { color: #9be3b0; } :root[data-theme="dark"] .pcsay .ng { color: #ff9c90; }
 .pccount { font-size: 13px; color: var(--ink-dim); }
 
+.pfticket[hidden] { display: none; }
 .pfticket { display: grid; gap: 6px; padding: 10px 14px; border-radius: 16px; background: #fffbe9; color: #3a2e10; box-shadow: var(--shadow); border-top: 6px dotted #f08a3c; }
 .pfticket > b { font: 700 clamp(17px, 3.2vh, 24px) "Pook", sans-serif; }
 .pfwho { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #a06a10; }
 .pfwho svg { width: 16px; height: 16px; }
-.pforder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; height: clamp(64px, 13vh, 104px); }
-.pforder .wword { font-size: 14px; }
-.pfglass { min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto auto; justify-items: center; container-type: size; }
-.pfcup { position: relative; height: 100%; aspect-ratio: .9; max-width: 100%; clip-path: polygon(0 0, 100% 0, 84% 100%, 16% 100%);
-  background: rgba(220, 240, 250, .55); box-shadow: inset 0 0 0 4px rgba(150, 190, 210, .7); display: flex; flex-direction: column-reverse; padding: 4% 14% 2%; }
-.pflayers { display: flex; flex-direction: column-reverse; gap: 2px; }
-.pflayer { display: flex; justify-content: space-evenly; gap: 0; width: 100%; height: calc((100cqh - 40px) / 6.4); border: 0; padding: 0; background: rgba(255,255,255,.55); border-radius: 10px; cursor: pointer; animation: drop .35s var(--ease); }
-.pflayer img { flex: 1 1 0; min-width: 0; height: 100%; object-fit: contain; }
-@keyframes drop { from { transform: translateY(-80px); opacity: 0; } }
-.pfshine { position: absolute; top: 6%; left: 10%; width: 9%; height: 70%; border-radius: 99px; background: linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,0)); pointer-events: none; }
-.pfstem { width: 12%; height: 22px; background: rgba(170, 205, 220, .9); }
-.pffoot { width: 46%; height: 12px; border-radius: 50%; background: rgba(150, 190, 210, .9); }
-.pfglass.full .pfcup { animation: shake .35s; }
-.pfglass.party .pfcup { animation: matchpop .6s var(--ease) 2; }
+.pforder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.pfo { display: grid; justify-items: center; gap: 2px; padding: 6px 2px 4px; border: 0; border-radius: 12px; background: rgba(240, 138, 60, .12); color: inherit; cursor: pointer; font: 700 13px "Pook", sans-serif; }
+.pfo img { height: clamp(40px, 9vh, 70px); width: 100%; object-fit: contain; }
+
+/* Parfait maker: fruit tray | the glass on a café table | (order ticket); the sentence under the glass */
+.pfwrap { min-height: 0; display: grid; grid-template-columns: clamp(170px, 19vw, 230px) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: 10px; }
+.pfgame.ordering .pfwrap { grid-template-columns: clamp(170px, 19vw, 230px) minmax(0, 1fr) clamp(200px, 22vw, 280px); }
+.pftray { grid-row: 1 / 3; min-height: 0; overflow: auto; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(0, 1fr); gap: 6px; padding: 8px;
+  border-radius: 18px; background: var(--panel); border: 1px solid var(--line); }
+.pffruit { min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; justify-items: center; align-items: center; gap: 1px; padding: 4px 2px 3px;
+  border: 0; border-radius: 14px; background: rgba(255, 255, 255, .7); color: #4a3520; cursor: grab; touch-action: none; font: 700 12px "Pook", sans-serif;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .1); transition: transform .15s var(--ease); }
+:root[data-theme="dark"] .pffruit { background: rgba(255, 255, 255, .9); }
+.pffruit:hover { transform: scale(1.05); }
+.pffruit img { width: 100%; height: 100%; min-height: 0; object-fit: contain; pointer-events: none; }
+.pfscene { position: relative; min-height: 0; overflow: hidden; border-radius: 22px; container-type: size;
+  background: radial-gradient(circle at 50% 38%, #fffaf0 0, #ffe9ef 55%, #fcd6e1 100%); }
+.pfscene::after { content: ""; position: absolute; inset: auto 0 0; height: 9%; background: linear-gradient(#e7b98c, #d39d6c); box-shadow: inset 0 3px 0 rgba(255,255,255,.35); }
+:root[data-theme="dark"] .pfscene { background: radial-gradient(circle at 50% 38%, #4a3f58 0, #3a3148 60%, #2c2538 100%); }
+.pfbox { position: absolute; z-index: 1; left: 50%; bottom: 6%; translate: -50% 0; width: min(80cqw, 72cqh * 1.037); aspect-ratio: 390 / 376; }
+.pfback, .pftint { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; user-select: none; }
+.pftint { z-index: 100000; opacity: .32; }
+.pfpiece { position: absolute; translate: -50% -50%; rotate: var(--r, 0deg); cursor: grab; touch-action: none; user-select: none;
+  filter: drop-shadow(0 2px 2px rgba(80, 40, 20, .18)); transition: scale .15s var(--ease), opacity .2s; }
+.pfpiece img { display: block; width: 100%; height: auto; pointer-events: none; }
+.pfpiece.held { cursor: grabbing; scale: 1.1; filter: drop-shadow(0 8px 8px rgba(80, 40, 20, .3)); }
+.pfpiece.bin { opacity: .45; }
+.pfpiece.gone { opacity: 0; scale: .4; }
+.pfpiece.fall { animation: pffall .45s cubic-bezier(.3, 1.4, .5, 1); }
+.pfpiece.flip { animation: pfflip .3s var(--ease); }
+@keyframes pffall { from { translate: -50% -260%; opacity: 0; } 60% { opacity: 1; } }
+@keyframes pfflip { 50% { scale: .2 1; } }
+.pfscene.party .pfbox { animation: matchpop .6s var(--ease) 2; }
+.pfwrap > .pfticket { grid-column: 3; grid-row: 1 / 3; align-self: start; max-height: 100%; overflow: auto; }
+.pfwrap > .pcsay { grid-column: 2; grid-row: 2; }
 
 /* ---- sidebar: word-game tiles */
 .gtiles { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 2px 0 6px; }
