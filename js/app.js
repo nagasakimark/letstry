@@ -6,7 +6,7 @@
 import { $, h, icon, tbtn, preload, toast } from "./ui.js";
 import { renderScreen, openPopup, openPictureBook, popupState } from "./viewer.js";
 import { stopAudio } from "./media.js";
-import { closeAll, layerCount } from "./layers.js";
+import { closeAll, layerCount, onLayersChange } from "./layers.js";
 import { pen, setPen, COLORS, SIZES, TEXT_SIZES, undo, clearInk, hasInk, isTyping } from "./pen.js";
 import { flipbook } from "./flipbook.js";
 import { activeZoom, onZoom } from "./zoom.js";
@@ -39,7 +39,19 @@ function layoutMode() {
 }
 function applyLayout() { const m = layoutMode(); document.body.dataset.layout = m; return m; }
 let lastMode = applyLayout();
-addEventListener("resize", () => { const m = applyLayout(); if (m !== lastMode) { lastMode = m; route(); } });
+// Switching layout rebuilds the page, which would also close any open window. So while a window
+// is open or something is fullscreen (going fullscreen resizes the window: 1366x598 -> 1366x768
+// on a Chromebook), wait and switch once the window is closed and fullscreen has ended.
+function relayout() {
+  const m = layoutMode();
+  if (m === lastMode) return;
+  if (layerCount() || document.fullscreenElement && document.fullscreenElement !== document.documentElement) return;
+  document.body.dataset.layout = lastMode = m;
+  route();
+}
+addEventListener("resize", relayout);
+onLayersChange(n => { if (!n) relayout(); });
+document.addEventListener("fullscreenchange", () => setTimeout(relayout, 50));
 
 // rails: { top, body, mid, bot, extra } per side
 function fillRail(rail, spec = {}) {
