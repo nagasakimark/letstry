@@ -1,1 +1,21 @@
-{"name":"Let's Try! デジタル教科書","short_name":"Let's Try!","start_url":"./","display":"fullscreen","background_color":"#22403a","theme_color":"#22403a","icons":[{"src":"icons/icon.svg","sizes":"any","type":"image/svg+xml"}]}
+{
+  "id": "./",
+  "name": "Let's Try! デジタル教科書",
+  "short_name": "Let's Try!",
+  "description": "Let's Try! 1・2 のデジタル教科書。音声・動画・ゲーム付き。インストールするとインターネットなしで使えます。",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "landscape",
+  "background_color": "#22403a",
+  "theme_color": "#22403a",
+  "categories": ["education"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

@@ -1,9 +1,10 @@
 // Service worker
 // - The app shell is cached on install so the site opens without a connection.
 // - Images, audio and font pieces are cached as they're used.
-// - Books saved with "Use offline" live in their own caches (letstry-offline-*),
-//   including videos, which are served here with byte-range support so they can seek.
-const VERSION = "letstry-v21";
+// - Books saved with "Use offline", and the whole app after "Install the app", live in their own
+//   caches (letstry-offline-*), which updates never delete. Videos are served here with
+//   byte-range support so they can seek.
+const VERSION = "letstry-v22";
 const SHELL = ["./", "index.html", "css/app.css", "css/fonts.css", "css/games.css", "data/words.json", "media/logo.webp", "js/app.js", "js/ui.js", "js/media.js", "js/layers.js",
   "js/viewer.js", "js/pen.js", "js/board.js", "js/rps.js", "js/flipbook.js", "js/zoom.js", "js/timer.js",
   "js/offline.js", "js/i18n.js", "fonts/Pook.woff2",
@@ -11,7 +12,8 @@ const SHELL = ["./", "index.html", "css/app.css", "css/fonts.css", "css/games.cs
   "js/bonus/cardmaker.js", "js/bonus/clock.js", "js/bonus/picker.js", "js/bonus/words.js", "js/bonus/flashcards.js", "js/bonus/mystery.js", "js/bonus/memory.js", "js/bonus/flashgame.js", "js/bonus/soundmatch.js", "js/bonus/pencilcase.js", "js/bonus/parfait.js", "js/bonus/gettingaround.js", ...["glass", "example", ...["apple", "banana", "cherry", "icecream", "kiwi", "melon", "orange", "peach", "pineapple", "strawberry"].flatMap(f => [f + "-left", f + "-right"])].map(f => `media/parfait/${f}.webp`), "media/bonus/weather/japan.webp",
   "media/bonus/clock/face.webp", "media/bonus/clock/hour.webp", "media/bonus/clock/minute.webp",
   "data/lt1.json", "data/lt2.json", "data/stories.json",
-  "data/offline-lt1.json", "data/offline-lt2.json", "data/offline-stories.json", "icons/icon.svg", "manifest.webmanifest"];
+  "data/offline-lt1.json", "data/offline-lt2.json", "data/offline-stories.json", "data/offline-app.json",
+  "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "manifest.webmanifest"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -59,9 +61,34 @@ self.addEventListener("fetch", e => {
     })());
     return;
   }
-  // app files: network first, cache when offline
-  e.respondWith(fetch(req).then(res => {
-    if (res.ok) { const copy = res.clone(); caches.open(VERSION).then(c => c.put(req, copy)); }
-    return res;
-  }).catch(() => caches.match(req, { ignoreSearch: true }).then(r => r || caches.match("index.html"))));
+  // app files: network first; with no connection (or a very slow one) use the saved copy,
+  // preferring the newest: this version's cache, then the installed app's offline copy.
+  e.respondWith((async () => {
+    const saved = async () => {
+      const opts = { ignoreSearch: true };
+      const own = await (await caches.open(VERSION)).match(req, opts);
+      if (own) return own;
+      const app = await (await caches.open("letstry-offline-app")).match(req, opts);
+      if (app) return app;
+      const any = await caches.match(req, opts);
+      if (any) return any;
+      if (req.mode === "navigate") {                         // the page itself, whatever address it was opened at
+        return (await caches.match("index.html")) || (await caches.match(new URL("./", location.href).href));
+      }
+      return undefined;
+    };
+    const net = fetch(req).then(res => {
+      if (res.ok) { const copy = res.clone(); caches.open(VERSION).then(c => c.put(req, copy)); }
+      return res;
+    });
+    net.catch(() => {});                                     // (a late failure is handled below)
+    // school Wi-Fi can hang rather than fail: after 4s, answer from the saved copy if there is one
+    const slow = new Promise(r => setTimeout(r, 4000)).then(saved);
+    try {
+      const first = await Promise.race([net, slow.then(r => r || net)]);
+      return first;
+    } catch {
+      return (await saved()) || Response.error();
+    }
+  })());
 });

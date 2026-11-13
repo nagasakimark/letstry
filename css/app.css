@@ -902,3 +902,42 @@ body[data-layout="dock"] .btools { margin-right: 54px; }
 .hs.icon img { width: 100%; height: 100%; display: block; pointer-events: none; border-radius: 22%; box-shadow: 0 2px 5px rgba(0, 0, 0, .3); transition: transform .15s var(--ease); }
 .hs.icon:hover img { transform: scale(1.1); }
 .hs.icon.playing img, .hs.icon[aria-pressed="true"] img { box-shadow: 0 0 0 3px #fff, 0 0 0 6px #e8642c; }
+
+/* ---- home: install the app / everything offline */
+.appbtn { position: absolute; left: 0; top: 2px; display: flex; align-items: center; gap: 8px; padding: 7px 14px 7px 10px; max-width: 220px;
+  border: 2px dashed color-mix(in srgb, var(--ink) 55%, transparent); border-radius: 14px; background: color-mix(in srgb, var(--ink) 6%, transparent);
+  color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: background .15s, transform .15s var(--ease); }
+.appbtn:hover { background: color-mix(in srgb, var(--ink) 14%, transparent); transform: translateY(-1px); }
+.appbtn:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+.appbtn svg { flex: none; width: 22px; height: 22px; }
+.appbtn span { display: grid; line-height: 1.2; }
+.appbtn b { font-family: var(--font-head); font-size: 14px; font-weight: 700; }
+.appbtn small { font-size: 11px; color: var(--ink-dim); }
+.appbtn.ok { border-style: solid; border-color: color-mix(in srgb, var(--ok) 70%, transparent); }
+.appbtn.ok svg { color: var(--ok); }
+.appsheet { position: absolute; left: 50%; top: 50%; translate: -50% -50%; animation: pop .22s var(--ease);
+  width: min(580px, 88vw); max-height: calc(100% - 24px); overflow: auto; padding: 18px 24px 14px; border-radius: 18px;
+  background: var(--panel); color: var(--ink); box-shadow: 0 18px 50px rgba(0, 0, 0, .35); }
+.apppanel h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 4px; font-family: var(--font-head); font-size: 22px; }
+.apppanel h2 svg { width: 24px; height: 24px; color: var(--sun); }
+.apppanel .lead { margin: 0 0 10px; font-size: 13px; line-height: 1.5; color: var(--ink-dim); }
+.applist { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 3px; }
+.applist li { display: grid; grid-template-columns: 22px 1fr auto; align-items: center; column-gap: 8px; padding: 5px 10px; border-radius: 10px; background: color-mix(in srgb, var(--ink) 5%, transparent); font-size: 14px; }
+.applist li small.long { grid-column: 2 / 4; text-align: left; }
+.applist li.todo svg { color: var(--ink-dim); }
+.applist li svg { width: 18px; height: 18px; }
+.applist li small { font-size: 12px; color: var(--ink-dim); text-align: right; }
+.applist li.ok svg { color: var(--ok); }
+.applist li.no svg { color: var(--warn); }
+.applist li.busy svg { color: var(--sun); }
+.appacts .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.appgo { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border: 0; border-radius: 12px; background: var(--sun); color: #2a2216;
+  font: 700 15px var(--font-head); cursor: pointer; box-shadow: 0 3px 0 color-mix(in srgb, var(--sun) 60%, #000); transition: transform .12s; }
+.appgo:hover { transform: translateY(-1px); }
+.appgo svg { width: 18px; height: 18px; }
+.appok { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--ok); }
+.appok svg { width: 18px; height: 18px; }
+.appbusy { display: grid; gap: 6px; font-size: 13px; }
+.apperr { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; color: var(--warn); font-size: 13px; }
+.apperr svg { width: 16px; height: 16px; }
+.appnote { margin: 10px 0 0; font-size: 12px; line-height: 1.5; color: var(--ink-dim); }

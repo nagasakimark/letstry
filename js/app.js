@@ -6,13 +6,13 @@
 import { $, h, icon, tbtn, preload, toast } from "./ui.js";
 import { renderScreen, openPopup, openPictureBook, popupState } from "./viewer.js";
 import { stopAudio } from "./media.js";
-import { closeAll, layerCount, onLayersChange } from "./layers.js";
+import { closeAll, layerCount, onLayersChange, openLayer } from "./layers.js";
 import { pen, setPen, COLORS, SIZES, TEXT_SIZES, undo, clearInk, hasInk, isTyping } from "./pen.js";
 import { flipbook } from "./flipbook.js";
 import { activeZoom, onZoom } from "./zoom.js";
 import { timerButton } from "./timer.js";
 import { t, getLang, setLang, onLang } from "./i18n.js";
-import { offlineState, onOffline, download, remove, checkAll } from "./offline.js";
+import { offlineState, onOffline, download, remove, checkAll, PARTS, sizeOf, installAll, installAllState, onInstallAll, allReady, isProtected, storageUse, verify } from "./offline.js";
 import { bonusFor, openBonus, wordGamesFor, classGamesFor } from "./bonus/index.js";
 import { openPicker } from "./bonus/picker.js";
 
@@ -260,9 +260,94 @@ function offlinePanel(id) {
   return box;
 }
 onOffline((id, st) => {
+  refreshApp();
   document.querySelectorAll(`.offline[data-book="${id}"]`).forEach(b => b.render && b.render());
-  if (st && st.justDone) toast(t("offlineDone", { book: BOOKS[id].name }), 4000);
+  if (st && st.justDone && BOOKS[id] && !installAllState().busy) toast(t("offlineDone", { book: BOOKS[id].name }), 4000);
 });
+
+// ------------------------------------------------------------------ home: install the app (everything offline)
+let installPrompt = null;
+addEventListener("beforeinstallprompt", e => { e.preventDefault(); installPrompt = e; refreshApp(); });
+addEventListener("appinstalled", () => { installPrompt = null; try { localStorage.setItem("app:installed", "1"); } catch {} refreshApp(); });
+const runningAsApp = () => matchMedia("(display-mode: standalone), (display-mode: minimal-ui), (display-mode: window-controls-overlay)").matches
+  || (matchMedia("(display-mode: fullscreen)").matches && !document.fullscreenElement && (() => { try { return localStorage.getItem("app:installed") === "1"; } catch { return false; } })());
+const isInstalled = () => runningAsApp() || (() => { try { return localStorage.getItem("app:installed") === "1"; } catch { return false; } })();
+if (runningAsApp()) { try { localStorage.setItem("app:installed", "1"); } catch {} }
+const PART_NAME = id => id === "app" ? t("appPartApp") : id === "stories" ? t("storybooks") : BOOKS[id].name;
+const mbOf = b => Math.max(1, Math.round(b / 1e6));
+const refreshers = new Set();
+function refreshApp() { refreshers.forEach(f => f()); }
+onInstallAll(refreshApp);
+
+function appButton() {
+  const b = h("button", { class: "appbtn", type: "button", onclick: openAppPanel });
+  const render = () => {
+    const ok = allReady();
+    b.classList.toggle("ok", ok);
+    b.replaceChildren(icon(ok ? "check" : "download"), h("span", {}, h("b", {}, ok ? t("appBtnOk") : t("appBtn")), h("small", {}, ok ? t("appAllOk") : t("appBtnSub"))));
+  };
+  render();
+  refreshers.add(render);
+  return b;
+}
+
+async function openAppPanel() {
+  const body = h("div", { class: "apppanel" });
+  const sizes = Object.fromEntries(await Promise.all(PARTS.map(async id => [id, await sizeOf(id)])));
+  const total = Object.values(sizes).reduce((a, b) => a + b, 0);
+  let prot = await isProtected(), est = await storageUse(), checking = false;
+  // ok: true (done) | "busy" | "todo" (not saved yet) | false (a problem)
+  const row = (ok, text, sub, long) => h("li", { class: ok === true ? "ok" : ok === "busy" ? "busy" : ok === "todo" ? "todo" : "no" },
+    icon(ok === true ? "check" : ok === "busy" || ok === "todo" ? "download" : "warn"), h("span", {}, text), sub ? h("small", { class: long ? "long" : "" }, sub) : null);
+  const render = () => {
+    const all = installAllState();
+    const ready = allReady(), installed = isInstalled();
+    const parts = PARTS.map(id => {
+      const st = offlineState(id);
+      const sub = st.status === "busy" ? Math.floor((st.progress || 0) * 100) + "%" : t("offlineSize", { mb: mbOf(sizes[id] || 0) });
+      return row(st.status === "ready" ? true : st.status === "busy" ? "busy" : st.status === "none" ? "todo" : false, PART_NAME(id), sub);
+    });
+    let action;
+    if (all.busy) {
+      const p = Math.floor((all.progress || 0) * 100);
+      const fill = h("i"); fill.style.width = p + "%";
+      action = h("div", { class: "appbusy" }, h("div", { class: "obar", role: "progressbar", "aria-valuenow": p }, fill), h("span", {}, t("appBusy", { p, part: PART_NAME(all.part) })));
+    } else {
+      const go = async () => {
+        if (installPrompt) { const ev = installPrompt; installPrompt = null; ev.prompt(); ev.userChoice.then(c => { if (c.outcome === "accepted") { try { localStorage.setItem("app:installed", "1"); } catch {} } refreshApp(); }).catch(() => {}); }
+        await installAll();
+        prot = await isProtected(); est = await storageUse(); refreshApp();
+      };
+      const check = async () => {
+        checking = true; render();
+        await checkAll({}, (m, ms) => toast(m, ms));
+        await Promise.all(PARTS.map(verify));
+        checking = false; prot = await isProtected(); est = await storageUse(); refreshApp();
+      };
+      const btns = [];
+      if (!ready || (installPrompt && !installed)) btns.push(h("button", { class: "appgo", type: "button", onclick: go }, icon("download"), installPrompt && !installed ? t("appGo") : t("appSave")));
+      if (ready) btns.push(h("span", { class: "appok" }, icon("check"), t("appAllOk")));
+      btns.push(h("button", { class: "olink", type: "button", disabled: checking, onclick: check }, checking ? t("appChecking") : t("appCheck")));
+      const err = all.error ? h("p", { class: "apperr" }, icon("warn"), all.error === "space" ? t("appNoSpace", { mb: mbOf(total) }) : t("appFail")) : null;
+      action = h("div", { class: "appacts" }, err, h("div", { class: "row" }, ...btns));
+    }
+    const fmt = b => b >= 1e9 ? (b / 1e9).toFixed(1) + " GB" : mbOf(b) + " MB";
+    body.replaceChildren(...[
+      h("h2", {}, icon("download"), t("appTitle")),
+      h("p", { class: "lead" }, t("appLead", { mb: mbOf(total) })),
+      h("ul", { class: "applist" }, ...parts,
+        row(installed || "todo", installed ? t("appInstalled") : t("appNotInstalled")),
+        row(prot || "todo", t("appProtected"), prot ? null : t("appProtectedNo"), true)),
+      action,
+      est && est.quota ? h("p", { class: "appnote" }, t("appStorage", { used: fmt(est.usage || 0), free: fmt(Math.max(0, est.quota - (est.usage || 0))) })) : null,
+      !installed && !installPrompt ? h("p", { class: "appnote" }, t("appHow")) : null,
+      h("p", { class: "appnote" }, t("appNoteOnline"))].filter(Boolean));
+  };
+  render();
+  refreshers.add(render);
+  openLayer(h("div", { class: "sheet appsheet" }, body), { onClose: () => refreshers.delete(render) });
+  Promise.all(PARTS.map(verify)).then(refreshApp);
+}
 
 // ------------------------------------------------------------------ views
 async function home() {
@@ -311,7 +396,7 @@ async function home() {
     h("header", { class: "chalkhead" },
       h("h1", {}, h("img", { class: "logo", src: "media/logo.webp", alt: "Let's Try!", width: 1200, height: 311 })),
       h("p", {}, t("subtitle")),
-      h("div", { class: "date", "aria-hidden": "true" }, ...date)),
+      h("div", { class: "date", "aria-hidden": "true" }, ...date), appButton()),
     h("div", { class: "ledge-wrap" },
       h("div", { class: "shelf" }, tome("lt1", lt1, ja ? "3年" : "G3"), tome("lt2", lt2, ja ? "4年" : "G4"), storySlot),
       h("div", { class: "ledge", "aria-hidden": "true" })),
@@ -465,7 +550,9 @@ onLang(() => route());
 route();
 
 // offline: check saved books on every start-up and warn if anything is missing
-checkAll({ lt1: BOOKS.lt1.name, lt2: BOOKS.lt2.name, stories: BOOKS.stories.name }, msg => toast(msg, 7000));
+const PARTNAMES = { app: t("appPartApp"), lt1: BOOKS.lt1.name, lt2: BOOKS.lt2.name, stories: BOOKS.stories.name };
+checkAll(PARTNAMES, (msg, ms) => toast(msg, ms || 7000));
+addEventListener("online", () => checkAll(PARTNAMES, (msg, ms) => toast(msg, ms || 7000)));
 
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
   navigator.serviceWorker.register("sw.js").catch(() => {});
