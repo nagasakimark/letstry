@@ -12,7 +12,7 @@ import { flipbook } from "./flipbook.js";
 import { activeZoom, onZoom } from "./zoom.js";
 import { timerButton } from "./timer.js";
 import { t, getLang, setLang, onLang } from "./i18n.js";
-import { offlineState, onOffline, download, remove, checkAll, PARTS, sizeOf, installAll, installAllState, onInstallAll, allReady, isProtected, storageUse, verify } from "./offline.js";
+import { offlineState, onOffline, checkAll, PARTS, sizeOf, installAll, installAllState, onInstallAll, allReady, isProtected, storageUse, verify } from "./offline.js";
 import { bonusFor, openBonus, wordGamesFor, classGamesFor } from "./bonus/index.js";
 import { openPicker } from "./bonus/picker.js";
 
@@ -50,7 +50,7 @@ function relayout() {
   route();
 }
 addEventListener("resize", relayout);
-onLayersChange(n => { if (!n) relayout(); });
+onLayersChange(n => { if (!n) relayout(); dispatchEvent(new Event("resize")); });   // (resize also re-places the drawing toolbox)
 document.addEventListener("fullscreenchange", () => setTimeout(relayout, 50));
 
 // rails: { top, body, mid, bot, extra } per side
@@ -128,9 +128,32 @@ function penControls() {
     h("div", { class: "penfoot" }, handBtn));
   // keep focus in an open text box while picking colours and sizes
   panel.addEventListener("mousedown", e => { if (e.target.closest("button")) e.preventDefault(); });
+  // The toolbox floats above everything, open windows included (the rails sit in their own
+  // stacking layer below the window layer, so a toolbox inside the rail was covered by windows).
+  const place = () => {
+    if (!toggle.isConnected) { if (toggle.dataset.mounted) removeEventListener("resize", place); return; }
+    const rail = toggle.closest(".rail");
+    if (!rail) return;
+    const r = rail.getBoundingClientRect();
+    if (document.body.dataset.layout === "dock") {
+      Object.assign(panel.style, { right: "8px", top: "auto", bottom: (innerHeight - r.top + 8) + "px" });
+    } else {
+      // start below an open window's close button (top-right, 8 + 46px)
+      Object.assign(panel.style, { right: (innerWidth - r.left + 4) + "px", top: (r.top + (layerCount() ? 62 : 10)) + "px", bottom: "auto" });
+    }
+  };
+  addEventListener("resize", place);
   const sync = () => {
+    if (toggle.isConnected) toggle.dataset.mounted = "1";
+    else if (toggle.dataset.mounted) {                    // this page is gone: tidy up
+      panel.remove(); pen.listeners.delete(sync); removeEventListener("resize", place); return;
+    }
     toggle.setAttribute("aria-pressed", pen.on);
     panel.hidden = !pen.on;
+    if (pen.on && toggle.isConnected) {
+      if (panel.parentNode !== document.body) document.body.append(panel);
+      place();
+    }
     swatches.querySelectorAll(".sw").forEach((b, i) => b.setAttribute("aria-pressed", String(pen.tool !== "eraser" && COLORS[i][0] === pen.color)));
     const d = h("span", { class: "size-dot" }); d.style.setProperty("--s", [6, 11, 18][pen.size] + "px");
     sizeBtn.replaceChildren(d);
@@ -144,6 +167,7 @@ function penControls() {
   };
   pen.listeners.add(sync);
   sync();
+  requestAnimationFrame(sync);
   return { toggle, panel };
 }
 
@@ -230,40 +254,8 @@ function popover(anchorBtn, content) {
   });
 }
 
-// ------------------------------------------------------------------ home: offline panel under each book
-const sizes = {};
-function offlinePanel(id) {
-  const box = h("div", { class: "offline", "data-book": id });
-  box.render = () => {
-    const st = offlineState(id);
-    const mb = sizes[id] ? Math.max(1, Math.round(sizes[id] / 1e6)) : "…";
-    const retry = h("button", { class: "obtn", type: "button", onclick: () => download(id) }, icon("download"), t("offlineRedo"));
-    let kids;
-    if (st.status === "busy") {
-      const p = Math.floor((st.progress || 0) * 100);
-      const fill = h("i"); fill.style.width = p + "%";
-      kids = [h("div", { class: "obar", role: "progressbar", "aria-valuenow": p }, fill), h("span", { class: "otext" }, t("offlineBusy", { p }))];
-    } else if (st.status === "ready") {
-      kids = [h("span", { class: "otext ok" }, icon("check"), t("offlineOn")),
-        h("button", { class: "olink", type: "button", onclick: async () => { await remove(id); toast(t("offlineRemoved")); } }, t("offlineRemove"))];
-    } else if (st.status === "broken") {
-      kids = [h("span", { class: "otext warn" }, icon("warn"), t("offlineBroken")), retry];
-    } else if (st.status === "error") {
-      kids = [h("span", { class: "otext warn" }, icon("warn"), st.reason === "space" ? t("offlineNoSpace") : t("offlineFail")), retry];
-    } else {
-      kids = [h("button", { class: "obtn", type: "button", onclick: () => download(id) }, icon("download"), t("offline"), h("small", {}, t("offlineSize", { mb })))];
-    }
-    box.replaceChildren(...kids);
-  };
-  box.render();
-  if (!sizes[id]) fetch(`data/offline-${id}.json`).then(r => r.json()).then(m => { sizes[id] = m.bytes; box.render(); }).catch(() => {});
-  return box;
-}
-onOffline((id, st) => {
-  refreshApp();
-  document.querySelectorAll(`.offline[data-book="${id}"]`).forEach(b => b.render && b.render());
-  if (st && st.justDone && BOOKS[id] && !installAllState().busy) toast(t("offlineDone", { book: BOOKS[id].name }), 4000);
-});
+// Offline: the "Install the app" panel handles everything (see below)
+onOffline(() => refreshApp());
 
 // ------------------------------------------------------------------ home: install the app (everything offline)
 let installPrompt = null;
@@ -372,7 +364,7 @@ async function home() {
       icon("play"), t("resume"), h("small", {}, `${t("unit")} ${ru} · p.${rp}`)) : null;
     return slot(id, b, h("div", { class: "plate" },
       h("div", { class: "pname" }, h("b", {}, BOOKS[id].name), h("span", {}, `${t(BOOKS[id].grade)} · ${t("units9")}`)),
-      units, h("div", { class: "pacts" }, resume, offlinePanel(id))));
+      units, resume ? h("div", { class: "pacts" }, resume) : null));
   };
   // the two picture books, leaning together
   const pics = h("div", { class: "pbooks" }, st.stories.map((s, i) =>
@@ -380,8 +372,7 @@ async function home() {
       h("span", { class: "front" }, h("img", { src: s.pages[0], alt: "" })), h("span", { class: "pages" }))));
   const storySlot = slot("stories", pics, h("div", { class: "plate" },
     h("div", { class: "pname" }, h("b", {}, t("storybooks")), h("span", {}, `${t("storybooksEn")} · ${t("books2")}`)),
-    h("div", { class: "storylinks" }, st.stories.map(s => h("button", { class: "slink", type: "button", onclick: () => go(`#/stories/${s.id}`) }, icon("book"), s.title))),
-    h("div", { class: "pacts" }, offlinePanel("stories"))));
+    h("div", { class: "storylinks" }, st.stories.map(s => h("button", { class: "slink", type: "button", onclick: () => go(`#/stories/${s.id}`) }, icon("book"), s.title)))));
   function slot(id, obj, plate) {
     const c = h("div", { class: "bslot s-" + id }, h("div", { class: "stand" }, obj), plate);
     c.style.setProperty("--accent", BOOKS[id].color);
@@ -464,7 +455,7 @@ async function unitPage(bookId, un, pn) {
     h("small", {}, t("unit")), h("b", {}, un), h("small", {}, `${pIdx + 1} / ${unit.pages.length}`));
   const penc = penControls();
   const bookBtn = firstBookPage !== null ? tbtn("book", t("readBook"), () => openPictureBook(unit, firstBookPage), { cls: "accent" }) : null;
-  const right = { top: [bookBtn, penc.toggle, revealBtn(), zoomBtn(), timerButton(), pickerBtn()], bot: [langBtn(), fsBtn()], extra: [penc.panel] };
+  const right = { top: [bookBtn, penc.toggle, revealBtn(), zoomBtn(), timerButton(), pickerBtn()], bot: [langBtn(), fsBtn()] };
   const homeBtn = () => tbtn("home", t("home"), () => go("#/"));
   const contentsBtn = () => tbtn("grid", t("contents"), () => go(`#/${bookId}`));
 
@@ -525,6 +516,7 @@ function turnTo(hash, dir) { sessionStorage.setItem("turn", dir); go(hash); }
 
 async function route() {
   pen.listeners.clear();
+  document.querySelectorAll("body > .penpanel").forEach(p => p.remove());   // the drawing toolbox floats on <body>
   zoomSubs.clear();
   if (pen.on) setPen({ on: false });
   const parts = location.hash.replace(/^#\/?/, "").split("/").filter(Boolean);

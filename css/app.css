@@ -143,7 +143,7 @@ body[data-layout="dock"] .where { grid-auto-flow: column; gap: 6px; align-items:
 
 /* pen panel: floats beside the right rail (or above the dock) */
 .penpanel {
-  position: absolute; right: calc(100% + 4px); top: 10px; z-index: 50;
+  position: fixed; z-index: 45;                     /* above open windows (layer root is 30); placed by JS */
   display: grid; gap: 10px; padding: 12px; width: 148px;
   background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
   backdrop-filter: blur(12px); box-shadow: var(--shadow);
@@ -151,7 +151,7 @@ body[data-layout="dock"] .where { grid-auto-flow: column; gap: 6px; align-items:
 }
 .penpanel[hidden] { display: none; }
 @keyframes panel { from { opacity: 0; transform: translateX(8px); } }
-body[data-layout="dock"] .penpanel { right: 8px; top: auto; bottom: calc(100% + 8px); width: auto; grid-template-columns: auto auto; align-items: center; }
+body[data-layout="dock"] .penpanel { width: auto; grid-template-columns: auto auto; align-items: center; }
 .swatches { display: grid; grid-template-columns: repeat(3, 34px); gap: 8px; }
 .sw {
   width: 34px; height: 34px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
