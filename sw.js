@@ -4,7 +4,7 @@
 // - Books saved with "Use offline", and the whole app after "Install the app", live in their own
 //   caches (letstry-offline-*), which updates never delete. Videos are served here with
 //   byte-range support so they can seek.
-const VERSION = "letstry-v24";
+const VERSION = "letstry-v25";
 const SHELL = ["./", "index.html", "css/app.css", "css/fonts.css", "css/games.css", "data/words.json", "media/logo.webp", "js/app.js", "js/ui.js", "js/media.js", "js/layers.js",
   "js/viewer.js", "js/pen.js", "js/board.js", "js/rps.js", "js/flipbook.js", "js/zoom.js", "js/timer.js",
   "js/offline.js", "js/i18n.js", "js/pageturn.js", "fonts/Pook.woff2",

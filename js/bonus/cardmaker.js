@@ -52,15 +52,12 @@ export function mount(stage) {
   const clearBtn = btn("trash", t("cm_clear"), () => { [...st.items].forEach(remove); caption.replaceChildren(h("b", {}, "What do you want?")); }, "pill ghost");
   // QR code for the students' own card maker
   const qrBtn = h("button", { class: "cmqrbtn", type: "button", "aria-label": t("cm_qr"), "data-tip": t("cm_qr"),
-    onclick: () => { qrBox.hidden = false; qrBox.querySelector("button").focus(); } }, icon("qr"), h("span", {}, t("cm_qr")));
+    onclick: () => { qrBox.hidden = false; qrBox.querySelector(".cmqrclose").focus(); } }, icon("qr"), h("span", {}, t("cm_qr")));
   const qrBox = h("div", { class: "cmqr", hidden: true, onclick: e => { if (e.target === qrBox) qrBox.hidden = true; } },
     h("div", { class: "cmqrcard" },
+      h("button", { class: "cmqrclose", type: "button", "aria-label": t("cm_qrClose"), onclick: () => { qrBox.hidden = true; } }, icon("close")),
       h("div", { class: "cmqrcode", html: qrSvg(STUDENT_URL) }),
-      h("div", { class: "cmqrtext" },
-        h("b", {}, t("cm_qrTitle")),
-        h("span", {}, t("cm_qrSub")),
-        h("code", {}, STUDENT_URL.replace("https://", "")),
-        h("button", { class: "pill", type: "button", onclick: () => { qrBox.hidden = true; } }, icon("close"), t("cm_qrClose")))));
+      h("b", {}, t("cm_qrTitle"))));
   // the QR button sits in the activity's title bar (top right, beside the close button)
   (stage.closest(".bonus") || stage).append(qrBtn);
   stage.append(h("div", { class: "bpanel cmpanel" }, qrBox,
