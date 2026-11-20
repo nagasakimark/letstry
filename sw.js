@@ -4,7 +4,7 @@
 // - Books saved with "Use offline", and the whole app after "Install the app", live in their own
 //   caches (letstry-offline-*), which updates never delete. Videos are served here with
 //   byte-range support so they can seek.
-const VERSION = "letstry-v26";
+const VERSION = "letstry-v27";
 const SHELL = ["./", "index.html", "css/app.css", "css/fonts.css", "css/games.css", "data/words.json", "media/logo.webp", "js/app.js", "js/ui.js", "js/media.js", "js/layers.js",
   "js/viewer.js", "js/pen.js", "js/board.js", "js/rps.js", "js/flipbook.js", "js/zoom.js", "js/timer.js",
   "js/offline.js", "js/i18n.js", "js/pageturn.js", "fonts/Pook.woff2",
@@ -61,9 +61,23 @@ self.addEventListener("fetch", e => {
     })());
     return;
   }
-  // app files: network first; with no connection (or a very slow one) use the saved copy,
-  // preferring the newest: this version's cache, then the installed app's offline copy.
-  e.respondWith((async () => {
+  // app code, styles and data saved with this version (all of SHELL, which includes every bonus
+  // game): use the saved copy straight away. A new release is a new VERSION, saved fresh on install,
+  // so these are never out of date, and school Wi-Fi that hangs can't hold up opening a game.
+  if (req.mode !== "navigate") {
+    e.respondWith((async () => {
+      const own = await (await caches.open(VERSION)).match(req, { ignoreSearch: true });
+      return own || appFile(req);
+    })());
+    return;
+  }
+  e.respondWith(appFile(req));
+});
+
+// Other app files and the page itself: network first; with no connection (or a very slow one) use
+// the saved copy, preferring the newest: this version's cache, then the installed app's offline copy.
+function appFile(req) {
+  return (async () => {
     const saved = async () => {
       const opts = { ignoreSearch: true };
       const own = await (await caches.open(VERSION)).match(req, opts);
@@ -90,5 +104,5 @@ self.addEventListener("fetch", e => {
     } catch {
       return (await saved()) || Response.error();
     }
-  })());
-});
+  })();
+}

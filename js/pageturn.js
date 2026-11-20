@@ -46,7 +46,32 @@ function foldGradient(W, H, M, n, stops) {
   return `linear-gradient(${deg.toFixed(2)}deg, ${stops.map(([d, c]) => `${c} ${((at + d / L) * 100).toFixed(2)}%`).join(", ")})`;
 }
 
-export function cancelTurn() { if (active) active.stop(); }
+// Wait until the pictures in these copies can be drawn (copies of an <img> load again, even from
+// the memory cache, and would show as a blank white sheet for a moment). Gives up after `ms`.
+function ready(els, ms = 900) {
+  const imgs = els.filter(Boolean).flatMap(el => [...el.querySelectorAll("img")]);
+  const all = Promise.all(imgs.map(i => (i.decode ? i.decode() : Promise.resolve()).catch(() => {})));
+  return Promise.race([all, new Promise(r => setTimeout(r, ms))]);
+}
+
+// The real page being turned, kept on screen (outside the page area, which is about to be rebuilt)
+// until the turn can start, so nothing goes blank in between.
+let hold = null;
+function dropHold() { if (hold) { clearTimeout(hold.timer); hold.el.remove(); hold = null; } }
+function holdPage(sheet, r) {
+  dropHold();
+  const el = document.createElement("div");
+  el.className = "pt-hold";
+  Object.assign(el.style, { left: r.left + "px", top: r.top + "px", width: r.width + "px", height: r.height + "px" });
+  Object.assign(sheet.style, { position: "absolute", left: "0", top: "0", width: r.width + "px", height: r.height + "px",
+    margin: "0", transform: "none", animation: "none", pointerEvents: "none" });
+  sheet.removeAttribute("id");
+  el.append(sheet);
+  document.body.append(el);
+  hold = { el, timer: setTimeout(dropHold, 3000) };   // (in case the turn never starts)
+}
+
+export function cancelTurn() { if (active) active.stop(); dropHold(); }
 
 // Capture the page that's about to be turned. Returns a function that animates the turn
 // once the new page is on screen (call it with the new page's sheet element).
@@ -58,11 +83,12 @@ export function prepareTurn(oldSheet, dir) {
   const r0 = oldSheet.getBoundingClientRect();
   if (r0.width < 50) return null;
   const oldCopy = snapshot(oldSheet, r0.width, r0.height);
+  holdPage(oldSheet, r0);
   return async newSheet => {
     // wait for the new page's picture (it stays hidden until ready)
     const t0 = performance.now();
     while (newSheet.classList.contains("pending") && performance.now() - t0 < 1500) await new Promise(r => requestAnimationFrame(r));
-    if (!newSheet.isConnected) return;
+    if (!newSheet.isConnected) { dropHold(); return; }
     const r = newSheet.getBoundingClientRect();
     const W = r.width, H = r.height;
     const fwd = dir !== "prev";
@@ -76,6 +102,8 @@ export function prepareTurn(oldSheet, dir) {
     // Going back plays the forward turn in reverse, from the previous spread (A) to this one (B).
     const A = fwd ? fit(oldCopy) : newCopy();
     const B = fwd ? (spread ? newCopy() : null) : fit(oldCopy);
+    await ready([A, B]);
+    if (!newSheet.isConnected) { dropHold(); return; }
 
     const box = document.createElement("div");
     box.className = "pageturn" + (spread ? " spread" : "");
@@ -98,8 +126,8 @@ export function prepareTurn(oldSheet, dir) {
     backWrap.append(back);
     const cast = layer("pt-cast");                      // the sheet's shadow on the page below (an offset copy of its shape: no blur, so it stays smooth on Chromebooks)
     box.append(shade, front, cast, backWrap);
-    document.body.append(box);
     newSheet.classList.add("pt-under-real");
+    document.body.append(box);
 
     const rect = [[S, 0], [W, 0], [W, H], [S, H]];       // the turning sheet
     const C = [W, H];                                    // its bottom outer corner
@@ -138,6 +166,7 @@ export function prepareTurn(oldSheet, dir) {
     const stop = () => { if (done) return; done = true; cancelAnimationFrame(raf); box.remove(); newSheet.classList.remove("pt-under-real"); if (active && active.stop === stop) active = null; };
     active = { stop };
     frame(fwd ? 0 : 1);
+    dropHold();                                          // the turn now covers the page
     const start = performance.now();
     const tick = now => {
       const p = Math.min(1, (now - start) / DUR);

@@ -7,7 +7,7 @@ import { $, h, icon, tbtn, preload, toast } from "./ui.js";
 import { renderScreen, openPopup, openPictureBook, popupState } from "./viewer.js";
 import { stopAudio } from "./media.js";
 import { closeAll, layerCount, onLayersChange, openLayer } from "./layers.js";
-import { prepareTurn } from "./pageturn.js";
+import { prepareTurn, cancelTurn } from "./pageturn.js";
 import { pen, setPen, COLORS, SIZES, TEXT_SIZES, undo, clearInk, hasInk, isTyping } from "./pen.js";
 import { flipbook } from "./flipbook.js";
 import { activeZoom, onZoom } from "./zoom.js";
@@ -525,6 +525,7 @@ function turnTo(hash, dir) {
 }
 
 async function route() {
+  if (!sessionStorage.getItem("turn")) cancelTurn();           // left the page mid-turn: drop the turning page
   pen.listeners.clear();
   document.querySelectorAll("body > .penpanel").forEach(p => p.remove());   // the drawing toolbox floats on <body>
   zoomSubs.clear();

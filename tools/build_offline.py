@@ -105,3 +105,19 @@ app |= tree("media/bonus") | tree("media/parfait") | tree("media/thumbs") | {"me
 idx = [["./", os.path.getsize(P("index.html")), fingerprint("index.html")]]
 write("app", app, idx)
 flush()
+
+# Check: every module the app can load (including each bonus and word game, loaded on demand) is in
+# the app's offline list and in the service worker's SHELL, so all of them work offline.
+import re
+mods, todo = set(), ["js/app.js"]
+while todo:
+    f = todo.pop()
+    if f in mods: continue
+    mods.add(f)
+    src = open(P(f), encoding="utf-8").read()
+    for spec in re.findall(r"""(?:import\s*\(|from)\s*["'](\.{1,2}/[^"']+)["']""", src):
+        todo.append(os.path.normpath(os.path.join(os.path.dirname(f), spec)).replace(os.sep, "/"))
+shell = open(P("sw.js"), encoding="utf-8").read()
+missing = sorted(m for m in mods if m not in app or f'"{m}"' not in shell)
+if missing: sys.exit("not saved for offline: " + ", ".join(missing))
+print(f"all {len(mods)} modules (app, bonus and word games) are in the offline save")

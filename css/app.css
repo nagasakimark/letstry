@@ -972,3 +972,4 @@ body[data-layout="dock"] .btools { margin-right: 54px; }
 .pt-back.printed { background: var(--paper, #fff); }
 .pt-back .pt-mirror { transform: scaleX(-1) !important; }               /* the next left page, so it reads right once turned */
 .sheet.pt-under-real { animation: none !important; }
+.pt-hold { position: fixed; z-index: 25; pointer-events: none; }
