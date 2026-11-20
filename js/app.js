@@ -7,6 +7,7 @@ import { $, h, icon, tbtn, preload, toast } from "./ui.js";
 import { renderScreen, openPopup, openPictureBook, popupState } from "./viewer.js";
 import { stopAudio } from "./media.js";
 import { closeAll, layerCount, onLayersChange, openLayer } from "./layers.js";
+import { prepareTurn } from "./pageturn.js";
 import { pen, setPen, COLORS, SIZES, TEXT_SIZES, undo, clearInk, hasInk, isTyping } from "./pen.js";
 import { flipbook } from "./flipbook.js";
 import { activeZoom, onZoom } from "./zoom.js";
@@ -431,7 +432,10 @@ async function unitPage(bookId, un, pn) {
   const ctx = { book, unit, inkKey: `${bookId}/${un}/p${pIdx + 1}` };
   try { localStorage.setItem("last:" + bookId, `${un}/${pIdx + 1}`); } catch {}
   const v = renderScreen(page, ctx);
-  if (dir) v.sheet.classList.add("turn-" + dir);
+  const turn = dir ? pendingTurn : null;
+  pendingTurn = null;
+  if (turn) requestAnimationFrame(() => turn(v.sheet));          // the paper page turn
+  else if (dir && !matchMedia("(prefers-reduced-motion: reduce)").matches) v.sheet.classList.add("turn-" + dir);
   const goPrev = () => prev && turnTo(`#/${bookId}/${prev[0]}/${prev[1]}`, "prev");
   const goNext = () => next && turnTo(`#/${bookId}/${next[0]}/${next[1]}`, "next");
   const mode = layoutMode();
@@ -512,7 +516,13 @@ async function stories(id) {
 
 // ------------------------------------------------------------------ routing
 function go(hash) { if (location.hash === hash) route(); else location.hash = hash; }
-function turnTo(hash, dir) { sessionStorage.setItem("turn", dir); go(hash); }
+// Turning a page: copy the current page first, so the new one can be revealed with a page turn.
+let pendingTurn = null;
+function turnTo(hash, dir) {
+  sessionStorage.setItem("turn", dir);
+  pendingTurn = prepareTurn(document.querySelector(".pagewrap .sheet"), dir);
+  go(hash);
+}
 
 async function route() {
   pen.listeners.clear();

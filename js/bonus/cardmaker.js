@@ -2,6 +2,20 @@
 import { h, icon } from "../ui.js";
 import { t, getLang } from "../i18n.js";
 import { btn } from "./common.js";
+import qrcode from "../vendor/qrcode.js";
+
+// The students' own card maker (same activity, on its own page)
+const STUDENT_URL = "https://nagasakimark.github.io/card/";
+
+// A QR code as crisp SVG (drawn here, so it works offline)
+function qrSvg(text) {
+  const q = qrcode(0, "M");
+  q.addData(text); q.make();
+  const n = q.getModuleCount(), m = 4;                  // 4-module quiet zone
+  let d = "";
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) d += `M${c + m},${r + m}h1v1h-1z`;
+  return `<svg viewBox="0 0 ${n + 2 * m} ${n + 2 * m}" shape-rendering="crispEdges" role="img" aria-label="QR"><rect width="100%" height="100%" fill="#fff"/><path d="${d}" fill="#111"/></svg>`;
+}
 
 const SHAPES = {
   circle: "M50,6 a44,44 0 1 1 -0.1,0 z",
@@ -36,7 +50,20 @@ export function mount(stage) {
     h("button", { class: "ib", type: "button", "data-tip": t("cm_delete"), "aria-label": t("cm_delete"), onclick: () => remove(st.sel) }, icon("trash")));
   const giveBtn = btn("star", "This is for you!", () => give(), "pill");
   const clearBtn = btn("trash", t("cm_clear"), () => { [...st.items].forEach(remove); caption.replaceChildren(h("b", {}, "What do you want?")); }, "pill ghost");
-  stage.append(h("div", { class: "bpanel cmpanel" },
+  // QR code for the students' own card maker
+  const qrBtn = h("button", { class: "cmqrbtn", type: "button", "aria-label": t("cm_qr"), "data-tip": t("cm_qr"),
+    onclick: () => { qrBox.hidden = false; qrBox.querySelector("button").focus(); } }, icon("qr"), h("span", {}, t("cm_qr")));
+  const qrBox = h("div", { class: "cmqr", hidden: true, onclick: e => { if (e.target === qrBox) qrBox.hidden = true; } },
+    h("div", { class: "cmqrcard" },
+      h("div", { class: "cmqrcode", html: qrSvg(STUDENT_URL) }),
+      h("div", { class: "cmqrtext" },
+        h("b", {}, t("cm_qrTitle")),
+        h("span", {}, t("cm_qrSub")),
+        h("code", {}, STUDENT_URL.replace("https://", "")),
+        h("button", { class: "pill", type: "button", onclick: () => { qrBox.hidden = true; } }, icon("close"), t("cm_qrClose")))));
+  // the QR button sits in the activity's title bar (top right, beside the close button)
+  (stage.closest(".bonus") || stage).append(qrBtn);
+  stage.append(h("div", { class: "bpanel cmpanel" }, qrBox,
     h("div", { class: "cmside" }, palette, swatches),
     h("div", { class: "cmmain" }, card, selbar, caption),
     h("div", { class: "bbar" }, giveBtn, clearBtn)));
@@ -100,9 +127,7 @@ export function mount(stage) {
   }
   function dragItem(e, it) {
     e.preventDefault(); e.stopPropagation();
-    select(it);
-    card.append(it.el);
-    st.items.push(st.items.splice(st.items.indexOf(it), 1)[0]);
+    select(it);                        // shapes keep the order they were placed in (no jumping to the front)
     const [sx, sy] = rel(e), ox = it.x, oy = it.y;
     let moved = false;
     it.el.setPointerCapture(e.pointerId);
@@ -122,5 +147,5 @@ export function mount(stage) {
     caption.replaceChildren(h("b", {}, "This is for you!"), h("small", {}, "Thank you!"));
   }
   function sync() { swatches.querySelectorAll(".sw").forEach((b, i) => b.setAttribute("aria-pressed", String(COLORS[i] === st.color))); }
-  return () => {};
+  return () => qrBtn.remove();
 }

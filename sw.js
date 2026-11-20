@@ -4,12 +4,12 @@
 // - Books saved with "Use offline", and the whole app after "Install the app", live in their own
 //   caches (letstry-offline-*), which updates never delete. Videos are served here with
 //   byte-range support so they can seek.
-const VERSION = "letstry-v23";
+const VERSION = "letstry-v24";
 const SHELL = ["./", "index.html", "css/app.css", "css/fonts.css", "css/games.css", "data/words.json", "media/logo.webp", "js/app.js", "js/ui.js", "js/media.js", "js/layers.js",
   "js/viewer.js", "js/pen.js", "js/board.js", "js/rps.js", "js/flipbook.js", "js/zoom.js", "js/timer.js",
-  "js/offline.js", "js/i18n.js", "fonts/Pook.woff2",
+  "js/offline.js", "js/i18n.js", "js/pageturn.js", "fonts/Pook.woff2",
   "js/bonus/index.js", "js/bonus/common.js", "js/bonus/weather.js", "js/bonus/howmany.js", "js/bonus/slot.js",
-  "js/bonus/cardmaker.js", "js/bonus/clock.js", "js/bonus/picker.js", "js/bonus/words.js", "js/bonus/flashcards.js", "js/bonus/mystery.js", "js/bonus/memory.js", "js/bonus/flashgame.js", "js/bonus/soundmatch.js", "js/bonus/pencilcase.js", "js/bonus/parfait.js", "js/bonus/gettingaround.js", ...["glass", "example", ...["apple", "banana", "cherry", "icecream", "kiwi", "melon", "orange", "peach", "pineapple", "strawberry"].flatMap(f => [f + "-left", f + "-right"])].map(f => `media/parfait/${f}.webp`), "media/bonus/weather/japan.webp",
+  "js/bonus/cardmaker.js", "js/vendor/qrcode.js", "js/bonus/clock.js", "js/bonus/picker.js", "js/bonus/words.js", "js/bonus/flashcards.js", "js/bonus/mystery.js", "js/bonus/memory.js", "js/bonus/flashgame.js", "js/bonus/soundmatch.js", "js/bonus/pencilcase.js", "js/bonus/parfait.js", "js/bonus/gettingaround.js", ...["glass", "example", ...["apple", "banana", "cherry", "icecream", "kiwi", "melon", "orange", "peach", "pineapple", "strawberry"].flatMap(f => [f + "-left", f + "-right"])].map(f => `media/parfait/${f}.webp`), "media/bonus/weather/japan.webp",
   "media/bonus/clock/face.webp", "media/bonus/clock/hour.webp", "media/bonus/clock/minute.webp",
   "data/lt1.json", "data/lt2.json", "data/stories.json",
   "data/offline-lt1.json", "data/offline-lt2.json", "data/offline-stories.json", "data/offline-app.json",
