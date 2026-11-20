@@ -12,7 +12,6 @@ const DUR = 720;
 let active = null;
 
 const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // Copy of a page for the animation (no buttons to press, no ids)
 function snapshot(sheet, w, h) {
@@ -53,7 +52,9 @@ export function cancelTurn() { if (active) active.stop(); }
 // once the new page is on screen (call it with the new page's sheet element).
 export function prepareTurn(oldSheet, dir) {
   cancelTurn();
-  if (reduced() || !oldSheet || oldSheet.classList.contains("pending")) return null;
+  // (plays even with "reduce motion" on: it only ever happens when someone turns a page, and
+  // school computers often have that setting on without anyone choosing it)
+  if (!oldSheet || oldSheet.classList.contains("pending")) return null;
   const r0 = oldSheet.getBoundingClientRect();
   if (r0.width < 50) return null;
   const oldCopy = snapshot(oldSheet, r0.width, r0.height);

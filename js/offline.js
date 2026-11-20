@@ -16,6 +16,9 @@ const state = {};            // id -> {status: none|busy|ready|broken|error, pro
 const subs = new Set();
 export const onOffline = f => subs.add(f);
 const emit = id => subs.forEach(f => f(id, state[id]));
+// progress updates redraw the panel: at most ~5 a second (there can be thousands of files)
+const lastEmit = {};
+const emitProgress = id => { const now = performance.now(); if (now - (lastEmit[id] || 0) > 200) { lastEmit[id] = now; emit(id); } };
 export const offlineState = id => state[id] || { status: "none" };
 
 async function manifest(id) {
@@ -101,18 +104,34 @@ export async function download(id, { onBytes } = {}) {
     }
     protect();
     let done = p.m.bytes - need;
-    const report = () => { state[id] = { status: "busy", progress: p.m.bytes ? done / p.m.bytes : 1 }; emit(id); };
+    const report = () => { state[id] = { status: "busy", progress: p.m.bytes ? done / p.m.bytes : 1 }; emitProgress(id); };
     report();
-    const queue = p.todo.slice();
+    // copies already saved by another part (e.g. from an older layout of the lists) are reused, not downloaded again
+    const elsewhere = {};
+    for (const other of PARTS) {
+      if (other === id) continue;
+      const c = await caches.open(CACHE(other));
+      const r = await readRec(c, other);
+      if (r && r.files) for (const [f, fp] of Object.entries(r.files)) if (fp) elsewhere[f] = { c, fp };
+    }
+    // biggest files first, so the connection stays busy; 12 at a time
+    const queue = p.todo.slice().sort((a, b) => b[1] - a[1]);
     let failed = 0;
     const worker = async () => {
       while (queue.length) {
-        const [f, size] = queue.shift();
+        const [f, size, fp] = queue.shift();
+        const url = abs(f);
+        try {
+          const o = elsewhere[f];
+          const hit = o && o.fp === fp && await o.c.match(url);
+          if (hit) { await p.cache.put(url, hit); done += size; onBytes && onBytes(size); report(); continue; }
+        } catch {}
         for (let attempt = 0; attempt < 3; attempt++) {
           try {
-            const res = await fetch(f, { cache: "reload" });
+            // "no-cache": anything the browser already holds is only checked (a tiny 304), not downloaded again
+            const res = await fetch(f, { cache: "no-cache" });
             if (!res.ok || res.status !== 200) throw new Error(res.status);
-            await p.cache.put(abs(f), res);
+            await p.cache.put(url, res);
             done += size; onBytes && onBytes(size); report();
             break;
           } catch (e) {
@@ -123,7 +142,7 @@ export async function download(id, { onBytes } = {}) {
         }
       }
     };
-    await Promise.all([worker(), worker(), worker(), worker()]);
+    await Promise.all(Array.from({ length: 12 }, worker));
     if (failed) throw new Error("fetch");
     // tidy away files this part no longer uses
     const keep = new Set(p.m.files.map(([f]) => abs(f)).concat(REC));
@@ -163,7 +182,11 @@ export async function installAll() {
   await protect();
   for (const id of PARTS) {
     all.part = id; allSubs.forEach(f => f(all));
-    const st = await download(id, { onBytes: n => { got += n; all.progress = got / total; allSubs.forEach(f => f(all)); } });
+    let last = 0;
+    const st = await download(id, { onBytes: n => {
+      got += n; all.progress = got / total;
+      const now = performance.now(); if (now - last > 200) { last = now; allSubs.forEach(f => f(all)); }
+    } });
     if (st.status !== "ready") { all = { busy: false, error: st.reason || "fetch", part: id }; allSubs.forEach(f => f(all)); return all; }
   }
   try { localStorage.setItem("offline:all", "1"); } catch {}

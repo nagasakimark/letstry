@@ -38,7 +38,21 @@ def fingerprint(path):
     return h.hexdigest()[:10]
 
 
+parts = {}
 def write(name, files, extra_rows=()):
+    parts[name] = (set(files), list(extra_rows))
+
+
+def flush():
+    taken = set()
+    for name in ("app", "lt1", "lt2", "stories"):     # a file shared by several parts is saved once, in the first
+        files, extra = parts[name]
+        files = files - taken
+        taken |= files
+        _write(name, files, extra)
+
+
+def _write(name, files, extra_rows=()):
     rows = [[f, os.path.getsize(P(f)), fingerprint(f)] for f in sorted(files)] + list(extra_rows)
     v = hashlib.sha1("".join(f + fp for f, _, fp in rows).encode()).hexdigest()[:12]
     out = {"book": name, "version": v, "bytes": sum(s for _, s, _ in rows), "files": rows}
@@ -46,7 +60,30 @@ def write(name, files, extra_rows=()):
     print(f"{name:8s} {len(rows):5d} files {out['bytes'] / 1e6:7.1f} MB  {v}")
 
 
-fonts = {f"fonts/{f}" for f in os.listdir(P("fonts")) if f.endswith(".woff2")}
+# Fonts: Klee One and Zen Maru Gothic come in ~500 small pieces by character range. The offline
+# copy only needs the pieces covering characters the app can actually show (its code and data).
+def needed_fonts():
+    import re
+    text = ""
+    for folder, exts in (("js", (".js",)), ("data", (".json",))):
+        for f in tree(folder, exts):
+            if "offline-" not in f: text += open(P(f), encoding="utf-8").read()
+    text += open(P("index.html"), encoding="utf-8").read()
+    chars = {ord(c) for c in text} | set(range(0x20, 0x7f))
+    css = open(P("css", "fonts.css"), encoding="utf-8").read()
+    keep = {"fonts/Pook.woff2"} if os.path.exists(P("fonts", "Pook.woff2")) else set()
+    for block in re.findall(r"@font-face\s*\{.*?\}", css, re.S):
+        url = re.search(r"url\((?:\.\./)?(fonts/[^)]+)\)", block)
+        rng = re.search(r"unicode-range:\s*([^;]+);", block)
+        if not url: continue
+        if not rng: keep.add(url.group(1)); continue
+        spans = []
+        for part in rng.group(1).split(","):
+            a, _, z = part.strip()[2:].partition("-")
+            spans.append((int(a, 16), int(z or a, 16)))
+        if any(any(a <= c <= z for a, z in spans) for c in chars): keep.add(url.group(1))
+    return keep
+fonts = needed_fonts()
 
 for name in ("lt1", "lt2", "stories"):
     files = set()
@@ -57,14 +94,14 @@ for name in ("lt1", "lt2", "stories"):
         walk(json.load(open(P("data", "words.json"))), files)
     else:
         files.add("media/thumbs/stories.webp")
-    files |= fonts                     # so Japanese text looks right with no connection
     write(name, files)
 
 # The app itself. offline-app.json is left out of its own list (it changes when written).
 app = {"index.html", "manifest.webmanifest"}
-app |= tree("js", (".js",)) | tree("css", (".css",)) | tree("fonts") | tree("icons")
+app |= tree("js", (".js",)) | tree("css", (".css",)) | fonts | tree("icons")
 app |= {f for f in tree("data", (".json",)) if not f.endswith("offline-app.json")}
 app |= tree("media/bonus") | tree("media/parfait") | tree("media/thumbs") | {"media/logo.webp"}
 # the address the app is opened at ("./") is the same page as index.html
 idx = [["./", os.path.getsize(P("index.html")), fingerprint("index.html")]]
 write("app", app, idx)
+flush()
